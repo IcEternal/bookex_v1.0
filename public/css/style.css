@@ -1,0 +1,54 @@
+/*
+ =index.php
+*/
+#index {
+	padding-top: 80px;
+	padding-bottom: 250px;
+	text-align: center;
+}
+
+#index h1 a {
+	display: block;
+	margin: auto;
+	width: 376px;
+	height: 171px;
+	text-indent: -9999px;
+	background: url(../img/logo.jpg) no-repeat;
+}
+
+#index form {
+	position: relative;
+}
+
+#index .text {
+	width: 700px;
+	height: 24px;
+	margin-top: 2px;
+	padding: 2px 5px;
+	border: 2px #7e7e7e solid;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+#index .submit {
+	position: absolute;
+	right: 118px;
+	top: 6px;
+	border: 0;
+	cursor: pointer;
+	background: url(../img/search.jpg);
+	width: 30px;
+	height: 24px;
+}
+
+#index .text:focus, #index.text:hover {
+	outline: 0;
+}
+
+#index_footer{
+	width: 960px;
+	margin: auto;
+	text-align: center;
+	color: #7e7e7e;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
