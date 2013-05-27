@@ -83,10 +83,6 @@
         </tr>
 	<tr>
           <td>2013-5-27</td>
-          <td>jiayiwu</td>
-        </tr>
-	<tr>
-          <td>2013-5-28</td>
           <td>敬请期待！</td>
         </tr>
       </tbody>
