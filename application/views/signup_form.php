@@ -1,38 +1,38 @@
 <div class="container">
 <?php if (form_error('username') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('username'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('username'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('password') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('password'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('password'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('password_confirm') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('password_confirm'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('password_confirm'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('email') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('email'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('email'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('phone') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('phone'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('phone'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('student_number') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('student_number'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('student_number'); ?>
 	</div>
 <?php endif; ?>
 </div>

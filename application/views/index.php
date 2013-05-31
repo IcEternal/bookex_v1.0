@@ -80,14 +80,14 @@
 <div class="container">
 <?php if (form_error('username') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('username'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('username'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('password') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('password'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('password'); ?>
 	</div>
 <?php endif; ?>
 <?php if (isset($nobook)): ?>
@@ -108,7 +108,6 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <div>现在网站中有不少GRE方面的书籍，价格十分优惠。另新增ISBN和书名搜索的人性化上传功能！喜欢这个网站的话请在右侧分享一下哦</div>
 </div>
-
 </div>
 
 <div class="container" id="index">
