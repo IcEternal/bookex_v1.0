@@ -1,14 +1,14 @@
 <div class="container">
 <?php if (form_error('username') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('username'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('username'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('password') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('password'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('password'); ?>
 	</div>
 <?php endif; ?>
 </div>

@@ -1,26 +1,26 @@
 <div class="container">
 <?php if (form_error('bookname') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('bookname'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('bookname'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('price') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('price'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('price'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('originprice') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('originprice'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('originprice'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('userfile') != ''): ?>
 	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('userfile'); ?>
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('userfile'); ?>
 	</div>
 <?php endif; ?>
 </div>
