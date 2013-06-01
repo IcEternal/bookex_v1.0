@@ -1,7 +1,7 @@
 <?php include("includes/header.php"); ?>
 	<div class="container">
 		<legend>月大奖</legend>
-		<p>于2013年6月1日放出，尽请期待！</p>
+		<p>月大奖获得者为machismo~上传书本数为199本。恭喜！！</p>
 
 		<br/><br/>
 		<legend style="border-bottom: none;">每日中奖用户</legend>
@@ -99,7 +99,7 @@
         </tr>
 	<tr>
           <td>2013-5-31</td>
-          <td>敬请期待！</td>
+          <td>kalafina</td>
         </tr>
       </tbody>
     </table>
