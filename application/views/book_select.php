@@ -155,7 +155,7 @@
 	     	<input type="text" id="filename" class="disabled" style="width: 148px;" disabled>
 				<input type="button" class="btn" onclick="file.click();" value="浏览">  
 				<input style="display: none" type="file" id="file" name="userfile" onchange="filename.value=this.value">
-	     	                <span class="help-inline">上传图片有助于提高书的出售率哦～</span>
+	     	                <span class="help-inline">上传图片会使书本搜索排名靠前哦～</span>
 		<span class="help-block">若不上传图片则将会使用默认图片.<br /> 书本图片可以在z.cn亚马逊上轻松找到哦～</span>
 	    </div>
 		</div>			
