@@ -89,7 +89,7 @@
 			$condition = "((CONCAT(name, author) LIKE \"$newkey\" OR uploader LIKE \"$key\") AND (subscriber = \"N\" OR subscriber = \"$user\" OR uploader = \"$user\") AND (id > 1) AND (finishtime = \"0000-00-00 00:00:00\"))";
 			$query = "SELECT $fields FROM book WHERE $condition $order LIMIT $begin, 20;";
 			if (strlen($key) == 0)
-				$query = "SELECT $fields FROM book WHERE $condition ORDER BY id DESC LIMIT $begin, 20;";
+				$query = "SELECT $fields FROM book WHERE $condition ORDER BY hasimg DESC, id DESC LIMIT $begin, 20;";
 
 			$result = $this->db->query($query)->result();
 			$query = "SELECT $fields FROM book WHERE $condition;";
