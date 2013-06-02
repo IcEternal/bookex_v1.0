@@ -85,7 +85,7 @@
 			$begin = ($page - 1) * 20;
 			$user = $this->session->userdata('username');
 			$newkey = $this->getKey($key);
-			$order = "order by ((CASE WHEN name LIKE '%$key%' THEN 2 ELSE 0 END) + (CASE WHEN author LIKE '%$key%' THEN 1 ELSE 0 END)) DESC, id DESC";
+			$order = "order by ((CASE WHEN name LIKE '%$key%' THEN 2 ELSE 0 END) + (CASE WHEN author LIKE '%$key%' THEN 1 ELSE 0 END)) DESC, hasimg DESC, id DESC";
 			$condition = "((CONCAT(name, author) LIKE \"$newkey\" OR uploader LIKE \"$key\") AND (subscriber = \"N\" OR subscriber = \"$user\" OR uploader = \"$user\") AND (id > 1) AND (finishtime = \"0000-00-00 00:00:00\"))";
 			$query = "SELECT $fields FROM book WHERE $condition $order LIMIT $begin, 20;";
 			if (strlen($key) == 0)
