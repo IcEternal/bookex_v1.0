@@ -1,4 +1,3 @@
-
 <?php include("includes/header.php"); ?>
 
 <div class="container">
@@ -218,6 +217,20 @@ if ($err != "")
                 详细页面
               </a>
             </p>
+            <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p>
+            <div id="myModal1<?php echo $item->id ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModal1Label" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModal1Label">确认信息</h3>
+              </div>
+              <div class="modal-body">
+                <p>您确认将本书登记为完成交易吗？<br/>此操作不可撤销，操作完成后此书将不再会被搜索到。</p>
+              </div>
+              <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                <a href="<?php echo site_url('book_upload/book_finish') ?>/<?php echo $item->id ?>" class="btn btn-primary">确认完成交易</a>
+              </div>
+            </div>
           </div>
         <?php endforeach;?>
       </div>
