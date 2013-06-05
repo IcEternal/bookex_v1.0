@@ -13,7 +13,8 @@
 					$subscriber = $info->subscriber;
 					$originprice = $info->originprice;
 					$finished = ($info->finishtime != "0000-00-00 00:00:00");
-
+					$show = $info->show_phone;
+					$use = $info->use_phone;
 					$err = $err_mes;
 					$is_success = $is_succ;
 ?>
@@ -54,6 +55,23 @@
 		}
 ?>
 
+<?php if ($show == true && $err == '订购成功！工作人员将于1天内于您联系') { ?>
+	<div class="modal hide fade" id="phoneInfo">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h3>提示</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>对方支持当面交易,手机号为 <?php echo $phone ?>.</p>
+	    <p>点击下方的 <strong>自行当面交易</strong> 后，手机号会在书本图片下方显示。</p>
+	    <p>如果您不想当面交易,请点击下方的 <strong>委托交易</strong> 按钮, 我们会联系您并送书上门。</p>
+	  </div>
+	  <div class="modal-footer">
+	    <a href='<?php echo site_url("book_details/use_phone/$id") ?>' class="btn">自行当面交易</a>
+	    <a class="btn btn-primary" data-dismiss="modal" aria-hidden="true">委托交易</a>
+	  </div>
+	</div>
+<?php } ?> 
 	<div class="alert alert-info fade in">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	点击右侧 <strong>分享</strong> 按钮即可选择将本书信息分享到人人、微博、QQ空间等平台。   好书就要让更多人看到！
@@ -64,8 +82,11 @@
 			<div class="thumbnail">
 
 				<img src = "<?php echo base_url('get_data.php?id='.$id); ?>" style = "width:80%" />
-				
+				<p></p>
 				<p> <strong> 上传人: </strong> &nbsp <?php echo $uploader; ?> </p>
+			  <?php if ($user == $subscriber && $use == true) { ?>
+			  	<p> <strong> 手机号: </strong> &nbsp <?php echo $phone; ?> </p>
+			  <?php } ?>
 				<?php
 					if ($finished) {
 						?>

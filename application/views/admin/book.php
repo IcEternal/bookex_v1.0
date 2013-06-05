@@ -20,7 +20,7 @@
 
 		<div class="alert alert-error fade in">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <div>书本管理</div>
+		  <div>书本管理  绿色行代表用户选择自行交易,无须送书！</div>
 		</div>
 		<div class="alert alert-error fade in">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -94,15 +94,19 @@
 						}
 						
 					}
+					$style = '';
+					if ($row->use_phone == true) {
+						$style = 'class="success"';
+					}
 					printf('
-						<tr>
+						<tr %s>
 						<td><a href="%s" target="_blank"><i class="icon-pencil"></i>%s</a></td>
 						<td>%s</td>
 						<td>%s</td>
 						<td><a href="%s" target="_blank">%s</a></td>
 						<td>%s</td>
 						<td>%s</td>
-						<td><a href="%s"><i class="icon-remove"></i></a></td></tr>',$modify_url,$row->name,$row->price,$row->originprice,$uploader_url,$row->uploader,$subscriber_url,$trade_status,$delete_url);
+						<td><a href="%s"><i class="icon-remove"></i></a></td></tr>',$style,$modify_url,$row->name,$row->price,$row->originprice,$uploader_url,$row->uploader,$subscriber_url,$trade_status,$delete_url);
 				}
 				?>
 				

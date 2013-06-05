@@ -72,10 +72,18 @@
 		    </div>
 			</div>
 			<div class="control-group">
+		    <div class="controls">
+		      <label class="checkbox">
+		        <input type="checkbox" name="show" value="1"> 愿意自行交易
+		      </label>
+		      <span class="help-block">选中此项后，预订此书的用户将能看到您的手机号码。</span>
+		    </div>
+	  	</div>
+			<div class="control-group">
 			    <label class="control-label" for="description">简介</label>
 			    <div class="controls">
 			     	<textarea name="description" id="description" cols="60" rows="5"><?php echo set_value('description') ?></textarea>
-			     	<span class="help-inline">比如新旧程度，有无笔记（笔记质量好坏）等。<br/>若您想当面交易，可以将您的手机号写在简介中。</span>
+			     	<span class="help-inline">比如新旧程度，有无笔记（笔记质量好坏）等。</span>
 			    </div>
 			</div>
 		  <input type="hidden" id="uploader" name="uploader" value="<?php echo $this->session->userdata('username') ?>">

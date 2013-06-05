@@ -22,8 +22,19 @@ class Book_model extends CI_Model {
 		$arr = array(
 			'subscriber' => $new_sub
 		);
+		if ($new_sub == 'N') {
+			$arr['use_phone'] = false;
+		}
 		$this->db->update('book', $arr);
 		$this->db->query("UPDATE book SET subscribetime = now() WHERE id = \"$book_id\"");
+	}
+
+	function use_phone($book_id) {
+		$this->db->where('id', $book_id);
+		$arr = array(
+			'use_phone' => true
+		);
+		$this->db->update('book', $arr);
 	}
 
 	function add_book() {
@@ -38,6 +49,12 @@ class Book_model extends CI_Model {
 			'uploader' => htmlspecialchars($this->input->post('uploader'), true),
 			'hasimg' => false
 		);
+		if ($this->input->post('show') == 1) {
+			$new_book_insert_data['show_phone'] = true;
+		}
+		else {
+			$new_book_insert_data['show_phone'] = false;
+		}
 		if ($_FILES['userfile']['error'] == 0) {
 			$userfile_data = $_FILES['userfile']['tmp_name'];
 			$data = fread(fopen($userfile_data, "r"), filesize($userfile_data));
@@ -75,7 +92,7 @@ class Book_model extends CI_Model {
 	}
 
 	
-        function rr_share($title,$description,$pic_url,$class="",$img="",$message="我在BookEx交大校内二手书交易网出售一本书哦，大家快来看看吧！")
+  function rr_share($title,$description,$pic_url,$class="",$img="",$message="我在BookEx交大校内二手书交易网出售一本书哦，大家快来看看吧！")
 	{
 		$url = urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 		$params['url']=$url;
@@ -102,7 +119,12 @@ class Book_model extends CI_Model {
 			'description' => nl2br(htmlspecialchars($this->input->post('description'), true)),
 			'uploader' => htmlspecialchars($this->input->post('uploader'), true),
 		);
-
+		if ($this->input->post('show') == 1) {
+			$new_book_insert_data['show_phone'] = true;
+		}
+		else {
+			$new_book_insert_data['show_phone'] = false;
+		}
 		if (strlen($img) >= 1500) {
 			$new_book_insert_data['img'] = $img;
 			$new_book_insert_data['hasimg'] = TRUE;
@@ -262,5 +284,15 @@ class Book_model extends CI_Model {
 		{
 			return FALSE;
 		}
+	}
+
+	function get_phone_by_book_id($id) {
+		$query = $this->db->select('uploader')->from('book')->where('id', $id)->get()->result();
+		$row = $query[0];
+		$uploader = $row->uploader;
+		$query = $this->db->select('phone')->where('username', $uploader)->from('user')->get()->result();
+		$row = $query[0];
+		$phone = $row->phone;
+		return $phone;
 	}
 }
