@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class Book_details extends CI_Controller {
 
@@ -9,7 +9,7 @@ class Book_details extends CI_Controller {
 		$data['info']['err_mes'] = $message;
 		$data['info']['is_succ'] = $is_succ;
 		$data['info']['title'] = '详细书本信息';
-		$data['info']['rr_share'] = $this->book_model->rr_share('BookEx交大校内二手书交易网','图书名:  '.$res->name.';     作者:  '.$res->author.';     原价:  '.$res->originprice.'元;     现在只要 '.$res->price.'元 哦！',base_url('get_data.php?id='.$book_id),'pull-right');
+		$data['info']['phone'] = $this->book_model->get_phone_by_book_id($res->id);
 		$this->load->view('includes/template_book_details', $data);
 	}
 
@@ -85,5 +85,11 @@ class Book_details extends CI_Controller {
 			$this->load_page($book_id, '您还未登入', false);
 			return;
 		}
+	}
+
+	function use_phone($book_id) {
+		$this->load->model('book_model');
+		$this->book_model->use_phone($book_id);
+		$this->load_page($book_id, '订购成功！手机号已在图片下方显示。', true);
 	}
 }

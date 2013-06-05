@@ -68,6 +68,15 @@
 	    </div>
 		</div>
 		<div class="control-group">
+	    <div class="controls">
+	      <label class="checkbox">
+	        <input type="checkbox" name="show" value="1" 
+	        <?php if($show == true){echo 'checked="checked"';}?> > 愿意自行交易
+	      </label>
+	      <span class="help-block">选中此项后，预订此书的用户将能看到您的手机号码。</span>
+	    </div>
+	  </div>
+		<div class="control-group">
 	    <label class="control-label" for="description">简介</label>
 	    <div class="controls">
 	     	<textarea name="description" id="description" cols="60" rows="5"><?php echo $description ?></textarea>

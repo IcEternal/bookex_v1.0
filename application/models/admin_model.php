@@ -121,7 +121,7 @@ class Admin_model extends CI_Model {
 		$total_rows = $pre_query->num_rows();
 		//内容搜索，将所有信息显示，并对结果根据页码进行limit
 		$search_data = $this->book_search_condition();
-		$query = $this->db->select('book.id,name,price,originprice,uploader,subscriber,finishtime,a.id AS uploader_id,b.id AS subscriber_id')
+		$query = $this->db->select('book.id,book.use_phone,name,price,originprice,uploader,subscriber,finishtime,a.id AS uploader_id,b.id AS subscriber_id')
 		->from('book')->join('user AS a','a.username = book.uploader','left')->join('user AS b','b.username = book.subscriber','left')
 		->limit($per_page,$cur_page)->order_by('id','DESC')->get();
 		return array($query,$total_rows,$search_data);
@@ -260,6 +260,12 @@ class Admin_model extends CI_Model {
 				'ISBN' => htmlspecialchars($this->input->post('isbn', true)),
 				'description' => nl2br(htmlspecialchars($this->input->post('description'), true))
 			  );
+			if ($this->input->post('show') == 1) {
+				$arr['show_phone'] = true;
+			}
+			else {
+				$arr['show_phone'] = false;
+			}
 
 			if ($_FILES['userfile']['error'] == 0) {
 				$userfile_data = $_FILES['userfile']['tmp_name'];

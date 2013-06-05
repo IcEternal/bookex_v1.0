@@ -103,6 +103,7 @@ class Book_upload extends CI_Controller {
 			$data['data']['isbn'] = $query->ISBN;
 			$data['data']['description'] = str_replace("<br />", "", $query->description);
 			$data['data']['title'] = '修改书本信息';
+			$data['data']['show'] = $query->show_phone;
 			$this->load->view('includes/user_template', $data);
 		}
 	}
@@ -172,6 +173,13 @@ class Book_upload extends CI_Controller {
 				'ISBN' => htmlspecialchars($this->input->post('isbn', true)),
 				'description' => nl2br(htmlspecialchars($this->input->post('description'), true))
 			  );
+
+			if ($this->input->post('show') == 1) {
+				$arr['show_phone'] = true;
+			}
+			else {
+				$arr['show_phone'] = false;
+			}
 
 			if ($_FILES['userfile']['error'] == 0) {
 				$userfile_data = $_FILES['userfile']['tmp_name'];
