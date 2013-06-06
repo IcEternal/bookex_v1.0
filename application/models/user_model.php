@@ -44,4 +44,20 @@ class User_model extends CI_Model {
 		$this->db->where('username', $username);
 		$this->db->update('user', $arr);
 	}
+	
+	function get_use_phone() {
+		$this->db->where('username', $this->session->userdata('username'));
+		$query = $this->db->get('user')->result();
+		$arr = $query[0];
+		$use_or_not = $arr->show_phone;
+		return $uer_or_not;
+	}
+	
+	function update_use_phone($username) {
+		$this->db->where('username', $username);
+		$arr = array(
+			'show_phone' => true
+		);
+		$this->db->update('user', $arr);
+	}
 }
