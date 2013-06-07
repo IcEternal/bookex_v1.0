@@ -40,7 +40,13 @@
 		<div class="control-group">
 	    <div class="controls">
 	      <label class="checkbox">
-	        <input type="checkbox" name="show" value="1"> 愿意自行交易
+	        <input type="checkbox" name="show" value="1"
+	        <?php 
+	        	if (isset($use_or_not)) {
+	        		if ($use_or_not) echo 'checked="checked"';
+	        	}
+	        ?>
+			  	> 愿意自行交易
 	      </label>
 	      <span class="help-block">选中此项后，预订此书的用户将能看到您的手机号码。</span>
 	    </div>

@@ -260,11 +260,16 @@ class Admin_model extends CI_Model {
 				'ISBN' => htmlspecialchars($this->input->post('isbn', true)),
 				'description' => nl2br(htmlspecialchars($this->input->post('description'), true))
 			  );
+
+			$this->load->model('user_model');
+			$username = $this->session->userdata('username');
 			if ($this->input->post('show') == 1) {
 				$arr['show_phone'] = true;
+				$this->user_model->update_use_phone($username, true);
 			}
 			else {
 				$arr['show_phone'] = false;
+				$this->user_model->update_use_phone($username, false);
 			}
 
 			if ($_FILES['userfile']['error'] == 0) {
