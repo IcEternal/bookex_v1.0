@@ -10,7 +10,12 @@ class Test extends CI_Controller {
 		foreach ($query as $row) {
 			$diff += $row->originprice - $row->price;
 		}
-		echo $diff;
+		$tot = 0;
+		foreach ($query as $row) {
+			$tot += $row->price;
+		}
+		echo "共省下". $diff ."元";
+		echo "共卖出". $tot ."元";
 	}
 
 }
