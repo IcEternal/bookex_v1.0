@@ -1,13 +1,22 @@
-<html>
-<head>
-	<meta charset="utf-8">
-</head>
-<body>
-
 <?php 
-$str='脚本之家:http://www.jb51.net'; 
-echo mb_substr($str,0,8,'utf-8');//截取头5个字，假定此代码所在php文件的编码为utf-8 
-?> 
 
-</body>
-</html>
+class Test extends CI_Controller {
+
+	function __construct() {
+		parent::__construct();
+		$this->load->helper(array('form', 'url'));
+	}
+
+	function index() {
+		$this->db->where('finishtime > 0');
+		$arr = $this->db->get('book')->result();
+		$tot = 0;
+		$save = 0;
+		foreach ($arr as $row) {
+			$tot += $row->price;
+			$save += $row->originprice - $row->price;
+		}
+		echo "total saved:  ".$save."!!<br/>";
+		echo "total sold:  ".$tot."!!";
+	}
+}
