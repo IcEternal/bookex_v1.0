@@ -50,11 +50,16 @@ class Book_model extends CI_Model {
 			'hasimg' => false,
 			'class' => htmlspecialchars($this->input->post('class'), true)
 		);
+
+		$this->load->model('user_model');  
+    $username = $this->session->userdata('username'); 
 		if ($this->input->post('show') == 1) {
 			$new_book_insert_data['show_phone'] = true;
+			$this->user_model->update_use_phone($username, true); 
 		}
 		else {
 			$new_book_insert_data['show_phone'] = false;
+			$this->user_model->update_use_phone($username, false); 
 		}
 		if ($_FILES['userfile']['error'] == 0) {
 			$userfile_data = $_FILES['userfile']['tmp_name'];
@@ -121,11 +126,15 @@ class Book_model extends CI_Model {
 			'uploader' => htmlspecialchars($this->input->post('uploader'), true),
 			'class' => htmlspecialchars($this->input->post('class'), true),
 		);
+		$this->load->model('user_model');  
+    $username = $this->session->userdata('username'); 
 		if ($this->input->post('show') == 1) {
 			$new_book_insert_data['show_phone'] = true;
+			$this->user_model->update_use_phone($username, true); 
 		}
 		else {
 			$new_book_insert_data['show_phone'] = false;
+			$this->user_model->update_use_phone($username, false); 
 		}
 		if (strlen($img) >= 1500) {
 			$new_book_insert_data['img'] = $img;
