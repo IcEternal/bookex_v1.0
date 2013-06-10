@@ -10,6 +10,19 @@
 		body {
 			padding-top: 60px;
 		}
+
+		#indexlist {
+			width: 720px;
+			margin:auto;
+			text-align: center;
+			margin-top:-15px;
+			padding-left: 20px;
+			font-weight: bold;
+		}
+
+		#indexlist a {
+			margin-right: 20px;
+		}
 	</style>
 </head>
 <body>
@@ -116,6 +129,7 @@
 		<input class="text" type="text" name="key" value placeholder="输入书名,作者或上传用户, 若无关键字则显示所有书本">
 		<input class="submit" type="submit" name="submit" value="">
 	</form>
+	<div id="indexlist" style="display:none;"></div>
 </div>
 
 <div id="index_footer">
@@ -158,5 +172,30 @@ $(document).ready(function(){
 	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
 </script>
 <!-- Baidu Button END -->
+<script>
+	$(function (){
+		$.ajax({
+	        type:"GET",
+	        url:"<?php echo base_url(); ?>classification.xml",
+	        dataType:"xml",
+	        success:function(xml){
+	        	//构建分类导航栏，在DOM中hide
+	            var indexlist = $("<p>").addClass("indexlist");
+	            $(xml).find("class").each(function(i){
+	                var classname = $(this).attr("name");
+	                var lv = $(this).attr("lv");
+	                if(lv == 1)
+	                {
+                    var url = "<?php echo site_url('book_view/book') ?>"+"/"+classname+"/1";
+                    url = encodeURI(url);
+                    var anchor = $("<a>").text(classname).attr("href", url);
+                    indexlist.append(anchor);
+	                }
+	            });
+							$("#indexlist").html(indexlist);
+	        }
+	    });
+	});
+</script>
 </body>
 </html>

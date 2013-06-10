@@ -5,12 +5,36 @@ class Admin_model extends CI_Model {
 		parent::__construct();
 	}
 
+	function class_search($data,$offset,$limit)
+	{
+		$this->class_search_condition($data);
+		$result = $this->db->select('COUNT(*) AS total')->get('book')->result();
+		$row1 = $result[0];
+		$total = $row1->total;
 
-	//页码导航设置
-	//参数
-	//	total_rows，总记录数
-	//	per_page 每页显示记录数
-	//	model book或user，为base_url提供参数
+		$this->class_search_condition($data);
+		$book_result = $this->db->select('id,name,uploader,class')
+		->limit($limit,$offset)->get('book')->result();
+
+		return array($total,$book_result);
+	}
+
+	function class_search_condition($data)
+	{
+		$this->db->like('name',$data['book_name']);
+
+		switch ($data['class_status']) {
+			case 1:
+				$this->db->where('class !=','');
+				break;
+			case 2:
+				$this->db->where('class','');
+				break;
+			default:
+				break;
+		}
+	}
+
 	function page_set($total_rows,$per_page,$model)
 	{
 		//分页设置
@@ -39,7 +63,7 @@ class Admin_model extends CI_Model {
 		$config['base_url'] = site_url('admin/'.$model);
 		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $per_page;
-		$config['num_links'] = 10;
+		$config['num_links'] = 4;
 		$this->pagination->initialize($config); 
 	}
 
@@ -121,7 +145,7 @@ class Admin_model extends CI_Model {
 		$total_rows = $pre_query->num_rows();
 		//内容搜索，将所有信息显示，并对结果根据页码进行limit
 		$search_data = $this->book_search_condition();
-		$query = $this->db->select('book.id,book.use_phone,name,price,originprice,uploader,subscriber,finishtime,a.id AS uploader_id,b.id AS subscriber_id')
+		$query = $this->db->select('book.id,book.use_phone,class,name,price,originprice,uploader,subscriber,finishtime,a.id AS uploader_id,b.id AS subscriber_id')
 		->from('book')->join('user AS a','a.username = book.uploader','left')->join('user AS b','b.username = book.subscriber','left')
 		->limit($per_page,$cur_page)->order_by('id','DESC')->get();
 		return array($query,$total_rows,$search_data);
@@ -260,16 +284,11 @@ class Admin_model extends CI_Model {
 				'ISBN' => htmlspecialchars($this->input->post('isbn', true)),
 				'description' => nl2br(htmlspecialchars($this->input->post('description'), true))
 			  );
-
-			$this->load->model('user_model');
-			$username = $this->session->userdata('username');
 			if ($this->input->post('show') == 1) {
 				$arr['show_phone'] = true;
-				$this->user_model->update_use_phone($username, true);
 			}
 			else {
 				$arr['show_phone'] = false;
-				$this->user_model->update_use_phone($username, false);
 			}
 
 			if ($_FILES['userfile']['error'] == 0) {

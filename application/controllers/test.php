@@ -1,21 +1,13 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
 
-class Test extends CI_Controller {
+<?php 
+$str='脚本之家:http://www.jb51.net'; 
+echo mb_substr($str,0,8,'utf-8');//截取头5个字，假定此代码所在php文件的编码为utf-8 
+?> 
 
-	public function index()
-	{
-		$this->db->where('finishtime > 0');
-		$query = $this->db->get('book')->result();
-		$diff = 0;
-		foreach ($query as $row) {
-			$diff += $row->originprice - $row->price;
-		}
-		$tot = 0;
-		foreach ($query as $row) {
-			$tot += $row->price;
-		}
-		echo "共省下". $diff ."元";
-		echo "共卖出". $tot ."元";
-	}
-
-}
+</body>
+</html>

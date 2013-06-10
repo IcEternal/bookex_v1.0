@@ -5,6 +5,7 @@ class Admin extends CI_Controller {
 	{
 		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
 		$data = array();
+		//书籍统计信息
 		$book_result = $this->db->select('count(id) AS book_num')->from('book')->get()->result();
 		$row1 = $book_result[0];
 		$data['book_num'] = $row1->book_num;
@@ -22,11 +23,17 @@ class Admin extends CI_Controller {
 		->where('finishtime >',0)->get()->result();
 		$row1 = $book_result[0];
 		$data['book_traded_num'] = $row1->book_num;
-
 		
+		//用户统计信息
 		$user_result = $this->db->select('count(id) AS user_num')->from('user')->get()->result();
 		$row1 = $user_result[0];
 		$data['user_num'] = $row1->user_num;
+
+		//分类统计信息
+		$book_result = $this->db->select('count(id) AS book_num')->from('book')
+		->where('class','')->get()->result();
+		$row1 = $book_result[0];
+		$data['unclassify_num'] = $row1->book_num;
 		
 		$this->load->view('admin/index',$data);
 	}
@@ -47,6 +54,53 @@ class Admin extends CI_Controller {
 		$data['total_rows'] = $total_rows;
 		$data['search_data'] = $search_data;
 		$this->load->view('admin/book',$data);
+	}
+
+	//修改书本分类，
+	//参数total_rows 表示每页显示多少行
+	function book_classify()
+	{
+		//权限控制
+		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+
+		//导入model
+		$this->load->model('admin_model');
+		$this->load->model('pagination_model');
+
+		//从页面获取数据
+		//貌似get方法获取不存在的 键，返回的值为0
+		//所以通过判断语句设置 应该从get中得到的值
+		$book_name = $this->input->get('book_name')?$this->input->get('book_name'):null;
+		$class_status = $this->input->get('class_status')?$this->input->get('class_status'):null;
+		$offset = $this->input->get('offset')?$this->input->get('offset'):0;
+
+		//进行搜索
+		$search_data = array(
+			'book_name' => $book_name, 
+			'class_status' => $class_status,
+			);
+		//参数：搜索内容，偏移量，每页显示数
+		//返回：总记录数，搜索结果数组
+		list($total,$book_result) = $this->admin_model->class_search($search_data,$offset,10);
+
+		//页码导航
+		$link_config = array(
+			'total'=>$total,
+			'offset'=>$offset,
+			'search_data'=>$search_data,
+			'pre_url'=>'admin/book_classify',
+			);
+		$this->pagination_model->initialize($link_config);
+		$link_array = $this->pagination_model->create_link();
+
+		//页面显示
+		$data = array(
+			'search_data' => $search_data, 
+			'book_info' => $book_result, 
+			'link_array' => $link_array, 
+			'total_rows'=>$total,
+			);
+		$this->load->view('admin/book_classify',$data);
 	}
 
 	//修改书本
@@ -98,6 +152,7 @@ class Admin extends CI_Controller {
 		$data['subscriber'] = $query->subscriber;
 		$data['title'] = '修改书本信息';
 		$data['show'] = $query->show_phone;
+		
 		$this->load->view('admin/book_modify', $data);
 	}
 
@@ -179,5 +234,20 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/user_modify', $data);
 	}
 
-
+	function modify_book_class(){
+		$book_id = $_GET['book_id'];
+		$this->db->set('class',$_GET['classname']);
+		$this->db->where('id',$book_id);
+		$this->db->update('book');
+		if($this->db->affected_rows() == 0)
+		{
+			echo '更新失败';
+		}
+		else
+		{
+			$result = $this->db->select('class')->where('id',$book_id)->get('book')->result();
+			$row1 = $result[0];
+			echo $row1->class;
+		}
+	}
 }

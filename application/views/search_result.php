@@ -4,9 +4,13 @@
 	<legend>
 		<?php echo $key ?> 
 		<small> 共有 <?php echo $count ?> 条搜索结果</small>
+		<span class="pull-right">
 		<?php if ($key != "") {?>
 			<a href="<?php echo site_url();?>/search?key=" class=""><small style="color:blue;"><strong>查看平台全部书本</strong></small></a>
+			<small>&nbsp或&nbsp</small>
 		<?php } ?>
+		<a href="<?php echo site_url();?>/book_view/book/教材教辅/" class=""><small style="color:blue;"><strong>根据分类查看书本</strong></small></a>
+		</span>
 	</legend>
 	<?php
 
