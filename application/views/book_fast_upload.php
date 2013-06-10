@@ -17,6 +17,12 @@
   <?php echo form_error('originprice'); ?>
 	</div>
 <?php endif; ?>
+<?php if (form_error('class') != ''): ?>
+	<div class="alert alert-error fade in">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <?php echo form_error('class'); ?>
+	</div>
+<?php endif; ?>
 </div>
 
 
@@ -71,16 +77,22 @@
 		     	<input type="text" id="price" name="price" value="<?php echo set_value('price'); ?>" placeholder="售出价格">
 		    </div>
 			</div>
+
+			<div class="control-group">
+			    <label class="control-label" for="class">图书分类</label>
+			    <div class="controls">
+			     	<input type="text" id="class" readonly="readonly"
+				     	data-toggle="popover" 
+				     	name="class" 
+				     	value="<?php echo set_value('class')?set_value('class'):'教材教辅';?>" 
+				     	placeholder="图书分类">
+		    	</div>
+			</div>
+
 			<div class="control-group">
 		    <div class="controls">
 		      <label class="checkbox">
-		        <input type="checkbox" name="show" value="1"
-		        <?php 
-	        	if (isset($use_or_not)) {
-	        		if ($use_or_not) echo 'checked="checked"';
-	        	}
-	        	?>
-	        	> 愿意自行交易
+		        <input type="checkbox" name="show" value="1"> 愿意自行交易
 		      </label>
 		      <span class="help-block">选中此项后，预订此书的用户将能看到您的手机号码。</span>
 		    </div>

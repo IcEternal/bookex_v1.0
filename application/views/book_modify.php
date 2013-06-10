@@ -23,7 +23,15 @@
   		<?php echo form_error('userfile'); ?>
 	</div>
 <?php endif; ?>
+<?php if (form_error('class') != ''): ?>
+	<div class="alert alert-error fade in">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('class'); ?>
+	</div>
+<?php endif; ?>
 </div>
+
+
 
 <div id="book_modify" class="container">
 <fieldset>
@@ -67,6 +75,18 @@
 	     	<input type="text" id="price" name="price" value="<?php echo $price ?>" placeholder="售出价格">
 	    </div>
 		</div>
+		
+		<div class="control-group">
+		    <label class="control-label" for="class">图书分类</label>
+		    <div class="controls">
+		     	<input type="text" id="class" readonly="readonly"
+			     	data-toggle="popover" 
+			     	name="class" 
+			     	value="<?php echo $class; ?>" 
+			     	placeholder="图书分类">
+	    	</div>
+		</div>
+
 		<div class="control-group">
 	    <div class="controls">
 	      <label class="checkbox">

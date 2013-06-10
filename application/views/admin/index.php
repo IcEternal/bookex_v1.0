@@ -49,6 +49,12 @@
 		  		<tr><td>会员总数</td><td><?php echo $user_num;?></td></tr>
 		  		<tr><td>今日新增</td><td><?php echo $user_num;?></td></tr>
 		  	</table>
+
+		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/book_classify';?>">图书分类</a>
+		  	<table class="table table-bordered table-hover">
+		  		<tr><td>统计信息</td><td>(本)</td></tr>
+		  		<tr><td>未分类图书</td><td><?php echo $unclassify_num;?></td></tr>
+		  	</table>
 			
 		  </div>
 		</div>
