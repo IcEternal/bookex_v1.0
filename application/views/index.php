@@ -119,7 +119,7 @@
 <?php endif; ?>
 <div class="alert alert-info fade in">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <div>现在网站中有不少GRE方面的书籍，价格十分优惠。另新增ISBN和书名搜索的人性化上传功能！喜欢这个网站的话请在右侧分享一下哦</div>
+                <div>平台成立1个月啦!! 现在共为同学们省下了<strong>2527.5</strong>元! 喜欢这个网站的话请在右边分享哦~</div>
 </div>
 </div>
 
