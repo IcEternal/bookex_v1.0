@@ -148,20 +148,20 @@
 			//return array("result1"=>$result1, "result2"=>$result2, "result3"=>$result3, "result4"=>$result4);
 		}
 
-		function getBookByClass($class="all", $page=1) {
+		function getBookByClass($class="所有书本", $page=1) {
 			$this->load->helper('safe');
 			jd_stopattack();
 			$fields = "id,name,author,price,originprice,publisher,ISBN,description,uploader,subscriber,subscribetime,finishtime,hasimg";
 			$begin = ($page - 1) * 21;
 			$user = $this->session->userdata('username');
 			$order = "order by hasimg DESC, id DESC";
-			if ($class=="all") $class="";
+			if ($class=="所有书本") $class="";
 			$condition = "(class LIKE \"%$class%\" AND (subscriber = \"N\" OR subscriber = \"$user\" OR uploader = \"$user\") AND (id > 1) AND (finishtime = \"0000-00-00 00:00:00\"))";
 			$query = "SELECT $fields FROM book WHERE $condition $order LIMIT $begin, 21;";
 			$result = $this->db->query($query)->result();
 			$query = "SELECT $fields FROM book WHERE $condition;";
 			$count = $this->db->query($query)->num_rows;
-			
+			if ($class=="") $class="所有书本";
 			return array("result"=>$result,'class'=>$class,'page'=>$page, 'count'=>$count);
 		}
 	}

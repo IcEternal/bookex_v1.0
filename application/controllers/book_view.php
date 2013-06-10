@@ -8,7 +8,7 @@ class Book_view extends CI_Controller {
   $this->load->helper(array('form', 'url'));
   }
 
-  function book($class="all", $page=1)
+  function book($class="所有书本", $page=1)
   { 
     $this->load->model('search_model');
     $data = $this->search_model->getBookByClass(urldecode($class), $page);
