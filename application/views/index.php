@@ -129,7 +129,7 @@
 		<input class="text" type="text" name="key" value placeholder="输入书名,作者或上传用户, 若无关键字则显示所有书本">
 		<input class="submit" type="submit" name="submit" value="">
 	</form>
-	<div id="indexlist" style="display:none;"></div>
+	<div id="indexlist"></div>
 </div>
 
 <div id="index_footer">
