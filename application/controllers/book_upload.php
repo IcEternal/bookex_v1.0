@@ -7,6 +7,8 @@ class Book_upload extends CI_Controller {
 		}
 		$data['main_content'] = 'book_upload';
 		$data['data']['title'] = '上传书本';
+		$this->load->model('user_model');  
+    $data['use_or_not'] = $this->user_model->get_use_phone();  
 		$this->load->view('includes/template', $data);
 	}
 
@@ -177,11 +179,15 @@ class Book_upload extends CI_Controller {
 
 			  );
 
+			$this->load->model('user_model');  
+			$username = $this->session->userdata('username');  
 			if ($this->input->post('show') == 1) {
 				$arr['show_phone'] = true;
+				$this->user_model->update_use_phone($username, true); 
 			}
 			else {
 				$arr['show_phone'] = false;
+				$this->user_model->update_use_phone($username, false); 
 			}
 
 			if ($_FILES['userfile']['error'] == 0) {
@@ -243,6 +249,8 @@ class Book_upload extends CI_Controller {
 			$data['bc_id'] = $bc_id;
 			$data['main_content'] = 'book_fast_upload';
 			$data['data']['title'] = '快速上传书本';
+			$this->load->model('user_model');  
+    	$data['use_or_not'] = $this->user_model->get_use_phone();  
 			$this->load->view('includes/template', $data);
 		}
 		else {
@@ -254,6 +262,8 @@ class Book_upload extends CI_Controller {
 				$data['bc_id'] = $bc_id;
 				$data['main_content'] = 'book_fast_upload';
 				$data['data']['title'] = '快速上传书本';
+				$this->load->model('user_model');  
+    		$data['use_or_not'] = $this->user_model->get_use_phone();  
 				$this->load->view('includes/template', $data);
 			}
 		}
@@ -273,6 +283,8 @@ class Book_upload extends CI_Controller {
 		{
 			$data['q_error'] = "无法根据您所提供的信息找到相应书籍";
 		}
+		$this->load->model('user_model');  
+    $data['use_or_not'] = $this->user_model->get_use_phone();
 		$this->load->view('includes/template', $data);
 	}
 
@@ -294,6 +306,8 @@ class Book_upload extends CI_Controller {
 			$data['main_content'] = 'book_upload';
 			$data['data']['title'] = '上传书本';
 			$data['isbn_error'] = "无法根据您所提供的ISBN找到相应书籍";
+			$this->load->model('user_model');  
+    	$data['use_or_not'] = $this->user_model->get_use_phone();
 			$this->load->view('includes/template', $data);
 		}
 	}
@@ -308,6 +322,8 @@ class Book_upload extends CI_Controller {
 		$data['bc_id'] = $bc_id;
 
 		$data['main_content'] = 'book_fast_upload';
+		$this->load->model('user_model');  
+    $data['use_or_not'] = $this->user_model->get_use_phone();
 		$this->load->view('includes/template', $data);
 	}	
 }
