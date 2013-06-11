@@ -76,7 +76,7 @@
 		              </div>
 		            </div>
 		          </li>
-					<?php if ($index % $row_num == 2 || $index == $count-1) { ?> 
+					<?php if ($index % $row_num == $row_num-1 || $index == $count-1-($page-1)*21) { ?> 
 						</ul>
 					<?php } ?>
 				<?php endforeach;?>
