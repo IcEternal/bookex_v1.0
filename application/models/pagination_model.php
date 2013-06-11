@@ -40,7 +40,7 @@ class Pagination_model extends CI_Model {
 		//设置 首页
 		if($current_page != 1)
 		{
-			$links['首页'] = '<li>'.anchor($this->url_maker($this->offset),'首页').'</li>';
+			$links['首页'] = '<li>'.anchor($this->url_maker(0),'首页').'</li>';
 			$links['上一页'] = '<li>'.anchor($this->url_maker($this->offset - $this->limit),'上一页').'</li>';
 		}
 
