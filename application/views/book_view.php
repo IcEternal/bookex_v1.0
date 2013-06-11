@@ -112,28 +112,28 @@
 					    ?>
 					    <li class="active <?php $tmp = $page; if ($tmp > 0) echo ''; else echo 'disabled'; ?>"><a href="<?php if ($tmp > 0) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
 					    <?php }
-					    if ($page * 20 < $count) { ?>
-					    <li class="<?php $tmp = $page + 1; if (($tmp - 1) *20 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 20 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
+					    if ($page * 21 < $count) { ?>
+					    <li class="<?php $tmp = $page + 1; if (($tmp - 1) *21 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 21 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
 					    <?php }
-					    	if (($page + 1) * 20 < $count) {
+					    	if (($page + 1) * 21 < $count) {
 					     ?>
-					    <li class="<?php $tmp = $page + 2; if (($tmp - 1) *20 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 20 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
+					    <li class="<?php $tmp = $page + 2; if (($tmp - 1) *21 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 21 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
 					    <?php }
-					    	if (($page + 2) * 20 < $count) {
+					    	if (($page + 2) * 21 < $count) {
 					     ?>
-					    <li class="<?php $tmp = $page + 3; if (($tmp - 1) *20 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 20 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
+					    <li class="<?php $tmp = $page + 3; if (($tmp - 1) *21 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 21 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
 					    <?php }
-					    	if (($page + 3) * 20 < $count) {
+					    	if (($page + 3) * 21 < $count) {
 					     ?>
-					    <li class="<?php $tmp = $page + 4; if (($tmp - 1) *20 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 20 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
+					    <li class="<?php $tmp = $page + 4; if (($tmp - 1) *21 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 21 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
 					    <?php }
-					    	if (($page + 4) * 20 < $count) {
+					    	if (($page + 4) * 21 < $count) {
 					     ?>
-					    <li class="<?php $tmp = $page + 5; if (($tmp - 1) *20 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 20 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
+					    <li class="<?php $tmp = $page + 5; if (($tmp - 1) *21 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 21 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>"><?php echo $tmp ?></a></li>
 					    <?php } 
-					    	if ($page * 20 < $count) { 
+					    	if ($page * 21 < $count) { 
 					    ?>
-					    <li class="<?php $tmp = $page + 1; if (($tmp - 1) *20 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 20 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>">后一页</a></li>
+					    <li class="<?php $tmp = $page + 1; if (($tmp - 1) *21 < $count) echo ''; else echo 'disabled'; ?>"><a href="<?php if (($tmp - 1) * 21 < $count) echo $url.'/'."$tmp"; else echo '#'; ?>">后一页</a></li>
 					  <?php } ?>
 					  </ul>
 					</div>
