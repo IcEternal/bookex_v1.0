@@ -14,7 +14,7 @@ class Admin_model extends CI_Model {
 
 		$this->class_search_condition($data);
 		$book_result = $this->db->select('id,name,uploader,class')
-		->limit($limit,$offset)->get('book')->result();
+		->limit($limit,$offset)->order_by('id','DESC')->get('book')->result();
 
 		return array($total,$book_result);
 	}
@@ -235,6 +235,9 @@ class Admin_model extends CI_Model {
 		if($row1['traded'] == 0)//表示未勾选时，搜索结果不包含已交易的书
 		{
 			$this->db->where('finishtime',0);
+		}
+		if ($row1['no_reserve'] == 0 && $row1['reserved'] == 0) {
+			$this->db->order_by('finishtime', 'DESC');
 		}
 
 		return $row1;
