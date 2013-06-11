@@ -50,20 +50,20 @@
 
 										</div>
 									</a>
-		              <div class="caption" style = "font-size:10px">
+		              <div class="caption" style = "font-size:14px">
 		                <p>书名：									
 		                	<?php
 					              $text = $item->name;
-					              if (strlen($text) > 18)
-					                $text = $this->search_model->getstr($text, 18).' ...';
+					              if (strlen($text) > 16)
+					                $text = $this->search_model->getstr($text, 16).' ...';
 					              echo $text;
 					            ?>
 			          		</p>
 		                <p>作者：
 											<?php
 					              $text = $item->author;
-					              if (strlen($text) > 18)
-					                $text = $this->search_model->getstr($text, 18).' ...';
+					              if (strlen($text) > 16)
+					                $text = $this->search_model->getstr($text, 16).' ...';
 					              echo $text;
 					            ?>
 		                </p>
