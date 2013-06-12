@@ -28,36 +28,25 @@
 		  <div>管理员们请注意，删除按钮没有确认框，请勿手滑删掉用户信息！！！！！</div>
 		</div>
 		<div class="row">
-		  <div class="span3">
+		  <div class="span12">
 		  	<h3>搜索条件</h3>
-		  	<p>每个空都为约束条件</p>
-			<?php
-			echo form_open('admin/user');
-			echo form_label('用户名','username');
-			echo form_input('username',$search_data['username']);
-			echo form_label('电话','phone');
-			echo form_input('phone',$search_data['phone']);
-			echo form_label('邮箱','email');
-			echo form_input('email',$search_data['email']);
-			echo form_label('学号','student_number');
-			echo form_input('student_number',$search_data['student_number']);
-			?>
+		  	<form action="" method="GET" class="form-inline">
+		  	<input type="text" class="input-small" name="username" placeholder="用户名" value="<?php echo $search_data['username'];?>">
+  			<input type="text" class="input-small" name="phone" placeholder="电话" value="<?php echo $search_data['phone'];?>">
+  			<input type="text" class="input-small" name="email" placeholder="邮箱" value="<?php echo $search_data['email'];?>">
+  			<input type="text" class="input-small" name="stu_num" placeholder="学号" value="<?php echo $search_data['stu_num'];?>">
 			<label for="order_by_up" class="checkbox inline">
 				<input type="checkbox"  name="order_by_up" id="order_by_up" value="1" 
 				<?php 
 				if($search_data['order_by_up'])echo 'checked="checked"';?> >
 				按上传量排序
 			</label>
-			
-			<div class="submit">
-			<input class="btn btn-primary" type="submit" name="submit" value="搜索"  />
-			<a class="btn btn-primary" href="<?php echo site_url().'/admin/user/index';?>"/>重置</a>
+			<button class="btn btn-primary" type="submit" name="submit" value="1" >搜索</button>
+			<a class="btn btn-primary" href="<?php echo site_url().'/admin/user?order_by_up=1';?>"/>重置</a>
 			<a class="btn btn-primary" href="<?php echo site_url().'/admin';?>"/>返回</a>
-			</div>
 			</form>
-			
 		  </div>
-		  <div class="span9">
+		  <div class="span12">
 		  	<h3>搜索结果</h3>
 		  	<p>找到<?php echo $total_rows;?>个用户，默认按注册时间排序，最新注册第一位</p>
 			<table  class="table table-bordered table-hover">
@@ -79,15 +68,21 @@
 						<td>%s</td>
 						<td>%s</td>
 						<td>%s</td>
-						',$modify_url,$row->username,$row->phone,$row->email,$row->student_number,$row->book_num);
+						',$modify_url,$row->username,$row->phone,$row->email,$row->student_number,$row->up_num);
 				}
 				?>
 				
 
 			</table>
-			<?php
-			echo $this->pagination->create_links();
-			?>
+			<div class="pagination">
+				<ul>
+				<?php
+				foreach ($link_array as $key => $value) {
+					echo $value;
+				}
+				?>
+				</ul>
+			</div>
 		  </div>
 		</div>
 	</div>

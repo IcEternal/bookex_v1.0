@@ -2,33 +2,9 @@
 <script src="<?php echo base_url() ?>public/js/bootstrap.min.js"></script>
 <script>
 	$(function (){
-		var changeOne = function(classname,span){
-			$.get(
-	            "<?php echo site_url();?>/admin/modify_book_class",
-	            {'classname':classname,"book_id":span.attr("book_id")},
-	            function(data)
-	            {
-	            	span.text(data);
-	            });
-		}
-		var changeAll = function(classname){
-			$('.selectBook').each(function(){
-				var book = $(this);
-				if(book.prop('checked') == true)
-				{
-					$.get(
-		            "<?php echo site_url();?>/admin/modify_book_class",
-		            {'classname':classname,"book_id":book.attr("book_id")},
-		            function(data)
-		            {
-		            	book.parents('tr').find('span.classification').text(data);
-		            });
-				}
-			});
-		}
 		var makeup = function()
 		{
-			var classification = $("<div>").addClass("popover-content");
+			var content = $("<div>").addClass("popover-content");
 			$.ajax({
 		        type:"GET",
 		        url:"<?php echo base_url(); ?>classification.xml",
@@ -45,12 +21,12 @@
 		                    var lv2 = $("<p>").addClass("lv2");
 		                    lv1.append(title);
 		                    lv1.append(lv2);
-		                    classification.append(lv1);
+		                    content.append(lv1);
 		                }
 		                else //if(lv == 2)
 		                {
 		                    var lv2name = $("<a>").css({"cursor":"pointer","white-space":"nowrap","color":"#003399"}).text(classname);
-		                    classification.find(".lv2").last().append(lv2name).append(" | ");
+		                    content.find(".lv2").last().append(lv2name).append(" | ");
 		                }
 		            });
 		        }
@@ -58,7 +34,6 @@
 
 			var arrow = $("<div>").addClass("arrow");
 			var title = $("<h3>").addClass("popover-title").text("图书分类");
-			var content = classification;
 
 			var pop_class =$("<div>").addClass("popover").addClass("left");
 			pop_class.append(arrow).append(title).append(content);
@@ -66,6 +41,36 @@
 			return pop_class;
 		}
 		var pop_class = makeup();
+		//先从xml文件中读取数据，把分类框弄好
+
+		//这是修改一本书分类的执行函数
+		var changeOne = function(classname,span){
+			$.get(
+	            "<?php echo site_url();?>/admin/modify_book_class",
+	            {'classname':classname,"book_id":span.attr("book_id")},
+	            function(data)
+	            {
+	            	span.text(data);
+	            });
+		}
+		//这是批量修改书分类的执行函数
+		var changeAll = function(classname){
+			$('.selectBook').each(function(){
+				var book = $(this);
+				if(book.prop('checked') == true)
+				{
+					$.get(
+		            "<?php echo site_url();?>/admin/modify_book_class",
+		            {'classname':classname,"book_id":book.attr("book_id")},
+		            function(data)
+		            {
+		            	book.parents('tr').find('span.classification').text(data);
+		            });
+				}
+			});
+		}
+
+		//点击后触发的函数
 		var clickFunc = function(event){
 			event.stopPropagation();
 			var span = $(this);
@@ -86,36 +91,50 @@
             	{
             		var classname = anchor.parent().parent().attr("name")+'-'+anchor.text();
             	}
-            	// anchor.parents("td").children('span').text(classname);
-            	// $.get(
-	            //     "<?php echo site_url();?>/admin/modify_book_class",
-	            //     {'classname':classname,"book_id":span.attr("book_id")},
-	            //     function(data)
-	            //     {
-	            //     	span.text(data);
-	            //     });
 				if(span.attr('id') == 'classAll')
 				{
 					changeAll(classname);
-				}else
+				}else if(span.hasClass('classification'))
 				{
 					changeOne(classname,span);
+				}else if(span.attr('id') == 'class_name')
+				{
+					span.attr('value',classname);
 				}
        			$('.popover').remove();
 			});
 			var left = span.offset().left-pop_class.width();
 			var top = span.offset().top-pop_class.height()/2;
-			pop_class.css(
+			if(left<0)
 			{
-				"position":"absolute",
-				"top":top,
-				"left":left,
-			});
-		}
-		$(".classification").css({"cursor":"pointer"}).bind("click",clickFunc);
-	
+				pop_class.removeClass('left');
+				pop_class.addClass('right');
+				left = span.offset().left+pop_class.width()-50;
+				top = span.offset().top-pop_class.height()/2+10;
+				pop_class.css(
+				{
+					"position":"absolute",
+					"top":top,
+					"left":left,
+				});
+			}
+			else
+			{
+				pop_class.css(
+				{
+					"position":"absolute",
+					"top":top,
+					"left":left,
+				});
+			}
 
-		
+			
+			
+		}
+		//给每本数的按钮绑定点击事件
+		$(".classification").css({"cursor":"pointer"}).bind("click",clickFunc);
+
+		//给批量修改 勾选框 绑定事件
 		$('#selectAllBook').click(function(){
 			if($('#selectAllBook').prop('checked') == true)
 			{
@@ -127,7 +146,11 @@
 			}
 		});
 
+		//给批量修改的按钮绑定点击事件
 		$('#classAll').css({"cursor":"pointer"}).bind("click",clickFunc);
+
+		//给input框绑定点击事件
+		$('#class_name').css({"cursor":"pointer"}).bind("click",clickFunc);
 
 	});
 	</script>

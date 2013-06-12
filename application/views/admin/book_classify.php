@@ -29,7 +29,9 @@
 		  	<form action="" method="GET">
 		  		<label for="">书名搜索</label>
 		  		<input type="text" name="book_name" value="<?php echo $search_data['book_name'];?>">
-		  		<label for="">分类</label>
+		  		<label for="">类名搜索</label>
+		  		<input type="text" name="class_name" id="class_name" value="<?php echo $search_data['class_name'];?>">
+		  		<label for="">分类状态</label>
 		  		<label class="radio inline">
 				  <input type="radio" name="class_status" value="1" <?php if($search_data['class_status']==1)echo 'checked="checked"';?> > 已分类
 				</label>
@@ -37,7 +39,7 @@
 				  <input type="radio" name="class_status" value="2" <?php if($search_data['class_status']==2)echo 'checked="checked"';?> > 未分类
 				</label>
 				<div class="submit">
-				<input class="btn btn-primary" type="submit" name="submit" value="搜索"/>
+				<button class="btn btn-primary" type="submit" name="submit" value="1" >搜索</button>
 				<a class="btn btn-primary" href="<?php echo site_url().'/admin/book_classify';?>"/>重置</a>
 				<a class="btn btn-primary" href="<?php echo site_url().'/admin';?>"/>返回</a>
 				</div>
