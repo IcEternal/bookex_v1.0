@@ -51,8 +51,8 @@
 		</style>
 		<table class="table table-bordered table-hover">
 
-			<tr><td>上传数</td><td><a target="_blank" href="<?php echo site_url().'/admin/book/preset/'.urlencode($username); ?>"><?php echo $up_book_num; ?></a></td></tr>
-			<tr><td>预订数</td><td><?php echo $sub_book_num; ?></td></tr>
+			<tr><td>上传数</td><td><a target="_blank" href="<?php echo site_url().'/admin/book?no_reserve=1&reserved=1&traded=1&uploader='.urlencode($username); ?>"><?php echo $up_book_num; ?></a></td></tr>
+			<tr><td>预订数</td><td><a target="_blank" href="<?php echo site_url().'/admin/book?no_reserve=1&reserved=1&traded=1&subscriber='.urlencode($username); ?>"><?php echo $sub_book_num; ?></a></td></tr>
 			<tr><td>交易数</td><td><?php echo $traded_book_num; ?></td></tr>
 			<tr><td>上传金额</td><td>￥<?php echo $up_book_money; ?></td></tr>
 			<tr><td>买入金额</td><td>￥</td></tr>

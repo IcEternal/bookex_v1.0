@@ -15,7 +15,7 @@
 
 		<div class="row">
 		  <div class="span6">
-		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/book/index';?>">图书管理</a>
+		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/book?no_reserve=1&reserved=1&traded=1';?>">图书管理</a>
 		  	<table class="table table-bordered table-hover">
 		  		<tr><th>统计信息</th><th>(本)</th></tr>
 		  		<tr><td>图书总数</td><td><?php echo $book_num;?></td></tr>
@@ -43,7 +43,7 @@
 		  </div>
 		  <div class="span6">
 		  
-		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/user';?>">会员管理</a>
+		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/user?order_by_up=1';?>">会员管理</a>
 		  	<table class="table table-bordered table-hover">
 		  		<tr><td>统计信息</td><td>人数</td></tr>
 		  		<tr><td>会员总数</td><td><?php echo $user_num;?></td></tr>

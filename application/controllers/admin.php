@@ -39,25 +39,60 @@ class Admin extends CI_Controller {
 	}
 
 	//展示书本，
-	//参数total_rows 表示每页显示多少行
 	function book()
 	{
+		//权限控制
 		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
-		$this->load->model('admin_model');
-		$cur_page = $this->uri->segment(3);
-		//搜索结果显示
-		list($query,$total_rows,$search_data) = $this->admin_model->book_search($cur_page,10);//传入当前页，每页显示数
-		//页码显示
-		$this->admin_model->page_set($total_rows,10,'book');//参数：结果数,每页显示数,模式
 
-		$data['book_info'] = $query->result();
-		$data['total_rows'] = $total_rows;
-		$data['search_data'] = $search_data;
+		//导入model
+		$this->load->model('admin_model');
+		$this->load->model('pagination_model');
+
+		//从页面获取数据
+		//貌似get方法获取不存在的 键，返回的值为0,
+		//所以通过判断语句设置 应该从get中得到的值
+		$book_name = $this->input->get('book_name')?$this->input->get('book_name'):null;
+		$uploader = $this->input->get('uploader')?$this->input->get('uploader'):null;
+		$subscriber = $this->input->get('subscriber')?$this->input->get('subscriber'):null;
+		$no_reserve = $this->input->get('no_reserve')?$this->input->get('no_reserve'):0;
+		$reserved = $this->input->get('reserved')?$this->input->get('reserved'):0;
+		$traded = $this->input->get('traded')?$this->input->get('traded'):0;
+		$offset = $this->input->get('offset')?$this->input->get('offset'):0;
+
+		//进行搜索
+		$search_data = array(
+			'book_name' => $book_name, 
+			'uploader' => $uploader,
+			'subscriber' => $subscriber,
+			'no_reserve' => $no_reserve,
+			'reserved' => $reserved,
+			'traded' => $traded,
+			);
+		//参数：搜索内容，偏移量，每页显示数
+		//返回：总记录数，搜索结果数组
+		list($total,$book_result) = $this->admin_model->book_search($search_data,$offset,10);
+
+		//页码导航
+		$link_config = array(
+			'total'=>$total,
+			'offset'=>$offset,
+			'search_data'=>$search_data,
+			'pre_url'=>'admin/book',
+			);
+		$this->pagination_model->initialize($link_config);
+		$link_array = $this->pagination_model->create_link();
+
+		//页面显示
+		$data = array(
+			'search_data' => $search_data, 
+			'book_info' => $book_result, 
+			'link_array' => $link_array, 
+			'total_rows'=>$total,
+			);
 		$this->load->view('admin/book',$data);
 	}
 
 	//修改书本分类，
-	//参数total_rows 表示每页显示多少行
 	function book_classify()
 	{
 		//权限控制
@@ -68,16 +103,18 @@ class Admin extends CI_Controller {
 		$this->load->model('pagination_model');
 
 		//从页面获取数据
-		//貌似get方法获取不存在的 键，返回的值为0
+		//貌似get方法获取不存在的 键，返回的值为0,
 		//所以通过判断语句设置 应该从get中得到的值
 		$book_name = $this->input->get('book_name')?$this->input->get('book_name'):null;
 		$class_status = $this->input->get('class_status')?$this->input->get('class_status'):null;
+		$class_name = $this->input->get('class_name')?$this->input->get('class_name'):null;
 		$offset = $this->input->get('offset')?$this->input->get('offset'):0;
 
 		//进行搜索
 		$search_data = array(
 			'book_name' => $book_name, 
 			'class_status' => $class_status,
+			'class_name' => $class_name,
 			);
 		//参数：搜索内容，偏移量，每页显示数
 		//返回：总记录数，搜索结果数组
@@ -174,18 +211,53 @@ class Admin extends CI_Controller {
 
 	function user()
 	{
+		//权限控制
 		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
-		$this->load->model('admin_model');
-		$cur_page = $this->uri->segment(3);
-		//搜索结果显示
-		list($query,$total_rows,$search_data) = $this->admin_model->user_search($cur_page,10);//传入当前页，每页显示数
 
-		//页码显示
-		$this->admin_model->page_set($total_rows,10,'user');//参数：结果数,每页显示数，模式
-		$data['user_info'] = $query->result();
-		$data['total_rows'] = $total_rows;
-		$data['search_data'] = $search_data;
+		//导入model
+		$this->load->model('admin_model');
+		$this->load->model('pagination_model');
+
+		//从页面获取数据
+		//貌似get方法获取不存在的 键，返回的值为0,
+		//所以通过判断语句设置 应该从get中得到的值
+		$username = $this->input->get('username')?$this->input->get('username'):null;
+		$phone = $this->input->get('phone')?$this->input->get('phone'):null;
+		$email = $this->input->get('email')?$this->input->get('email'):null;
+		$stu_num = $this->input->get('stu_num')?$this->input->get('stu_num'):null;
+		$order_by_up = $this->input->get('order_by_up')?$this->input->get('order_by_up'):0;
+		$offset = $this->input->get('offset')?$this->input->get('offset'):0;
+		//进行搜索
+		$search_data = array(
+			'username' => $username, 
+			'phone' => $phone,
+			'email' => $email,
+			'stu_num' => $stu_num,
+			'order_by_up' => $order_by_up,
+			);
+		//参数：搜索内容，偏移量，每页显示数
+		//返回：总记录数，搜索结果数组
+		list($total,$user_result) = $this->admin_model->user_search($search_data,$offset,10);
+
+		//页码导航
+		$link_config = array(
+			'total'=>$total,
+			'offset'=>$offset,
+			'search_data'=>$search_data,
+			'pre_url'=>'admin/user',
+			);
+		$this->pagination_model->initialize($link_config);
+		$link_array = $this->pagination_model->create_link();
+
+		//页面显示
+		$data = array(
+			'search_data' => $search_data, 
+			'user_info' => $user_result, 
+			'link_array' => $link_array, 
+			'total_rows'=>$total,
+			);
 		$this->load->view('admin/user',$data);
+		
 	}
 
 	function user_modify(){
