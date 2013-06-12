@@ -118,8 +118,8 @@
 <?php endif; ?>
 <?php endif; ?>
 <div class="alert alert-info fade in">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <div>平台成立1个月啦! 书本数量突破了<strong>1000</strong>本! 现已成交<strong>85</strong>本,共为同学们省下了<strong>2527.5</strong>元! 喜欢这个网站的话请在右边分享哦~</div>
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <div>平台成立1个月啦! 书本数量突破了<strong>1000</strong>本! 现已成交<strong>98</strong>本,共为同学们省下了<strong>3073</strong>元! 喜欢这个网站的话请在右边分享哦~</div>
 </div>
 </div>
 
