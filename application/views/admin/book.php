@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header') ?>
+<?php $this->load->view('includes/header') ?>
 	<div class="container">
 		<?php if ($this->session->userdata('del_result') === 'succ'): ?>
 			<div class="alert alert-success fade in">

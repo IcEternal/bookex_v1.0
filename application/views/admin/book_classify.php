@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header') ?>
+<?php $this->load->view('includes/header') ?>
 	<div class="container">
 		<?php if ($this->session->userdata('del_result') === 'succ'): ?>
 			<div class="alert alert-success fade in">
@@ -23,29 +23,23 @@
 		  <div>修改图书分类</div>
 		</div>
 		<div class="row">
-		  <div class="span3">
+		  <div class="span12">
 		  	<h3>搜索条件</h3>
-		  	<p>每个空都为约束条件</p>
-		  	<form action="" method="GET">
-		  		<label for="">书名搜索</label>
-		  		<input type="text" name="book_name" value="<?php echo $search_data['book_name'];?>">
-		  		<label for="">类名搜索</label>
-		  		<input type="text" name="class_name" id="class_name" value="<?php echo $search_data['class_name'];?>">
-		  		<label for="">分类状态</label>
+		  	<form action="" method="GET" class="form-inline">
+		  		<input type="text" name="book_name" placeholder="书名搜索" value="<?php echo $search_data['book_name'];?>">
+		  		<input type="text" name="class_name" id="class_name" placeholder="类名搜索" value="<?php echo $search_data['class_name'];?>">
 		  		<label class="radio inline">
 				  <input type="radio" name="class_status" value="1" <?php if($search_data['class_status']==1)echo 'checked="checked"';?> > 已分类
 				</label>
 				<label class="radio inline">
 				  <input type="radio" name="class_status" value="2" <?php if($search_data['class_status']==2)echo 'checked="checked"';?> > 未分类
 				</label>
-				<div class="submit">
 				<button class="btn btn-primary" type="submit" name="submit" value="1" >搜索</button>
 				<a class="btn btn-primary" href="<?php echo site_url().'/admin/book_classify';?>"/>重置</a>
 				<a class="btn btn-primary" href="<?php echo site_url().'/admin';?>"/>返回</a>
-				</div>
 		  	</form>
 		  </div>
-		  <div class="span9">
+		  <div class="span12">
 		  	<h3>搜索结果</h3>
 		  	<p>找到<?php echo $total_rows;?>本书，默认按上传时间排序，最新上传第一位</p>
 		  	<form action="">

@@ -118,6 +118,16 @@
 					"left":left,
 				});
 			}
+			else if(top<20)
+			{
+				top -= (top-50);
+				pop_class.css(
+				{
+					"position":"absolute",
+					"top":top,
+					"left":left,
+				});
+			}
 			else
 			{
 				pop_class.css(
