@@ -34,7 +34,13 @@ class Admin extends CI_Controller {
 		->where('class','')->get()->result();
 		$row1 = $book_result[0];
 		$data['unclassify_num'] = $row1->book_num;
-		
+
+		//交易信息统计
+		$query_str = "SELECT COUNT(DISTINCT uploader) AS buyer_num,COUNT(DISTINCT subscriber) AS saler_num FROM  book WHERE subscribetime > 0 AND finishtime = 0";
+		$result = $this->db->query($query_str)->result();
+		$row1 = $result[0];
+		$data['buyer_num'] = $row1->buyer_num;
+		$data['saler_num'] = $row1->saler_num;
 		$this->load->view('admin/index',$data);
 	}
 
@@ -321,5 +327,47 @@ class Admin extends CI_Controller {
 			$row1 = $result[0];
 			echo $row1->class;
 		}
+	}
+
+	function trade()
+	{
+		//权限控制
+		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+
+		//导入model
+		$this->load->model('admin_model');
+
+		//卖家信息
+		$query_str = 'SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.phone,user.id AS user_id FROM book INNER JOIN user ON 
+		book.uploader = user.username WHERE subscribetime > 0 AND finishtime = 0 group by uploader';
+		$saler_info = $this->db->query($query_str)->result_array();
+		$sale_book = array();
+		foreach ($saler_info as $saler) {
+			$username = $saler['uploader'];
+			$query_str = "SELECT book.id,book.name,book.price,book.subscriber,user.phone,user.id AS user_id FROM book 
+			INNER JOIN user ON book.subscriber = user.username WHERE subscribetime > 0 AND finishtime = 0 AND uploader = '$username'";
+			$sale_book[$username] = $this->db->query($query_str)->result();
+		}
+
+		//买家信息
+		$query_str = 'SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.phone,user.id AS user_id FROM book INNER JOIN user ON 
+		book.subscriber = user.username WHERE subscribetime > 0 AND finishtime = 0 group by subscriber';
+		$buyer_info = $this->db->query($query_str)->result_array();
+		$buy_book = array();
+		foreach ($buyer_info as $buyer) {
+			$username = $buyer['subscriber'];
+			$query_str = "SELECT book.id,book.name,book.price,book.uploader,user.phone,user.id AS user_id FROM book 
+			INNER JOIN user ON book.uploader = user.username WHERE subscribetime > 0 AND finishtime = 0 AND subscriber = '$username'";
+			$buy_book[$username] = $this->db->query($query_str)->result();
+		}
+
+		//页面显示
+		$data = array(
+			'saler_info'=>$saler_info,
+			'sale_book'=>$sale_book,
+			'buyer_info'=>$buyer_info,
+			'buy_book'=>$buy_book,
+			);
+		$this->load->view('admin/trade',$data);
 	}
 }

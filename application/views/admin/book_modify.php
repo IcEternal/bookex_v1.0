@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header') ?>
+<?php $this->load->view('includes/header') ?>
 
 <div class="container">
 	<?php if (form_error('bookname') != ''): ?>
@@ -129,4 +129,4 @@
 </fieldset>
 </div>
 
-<?php $this->load->view('admin/footer') ?>
+<?php $this->load->view('includes/footer') ?>

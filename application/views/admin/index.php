@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header') ?>
+<?php $this->load->view('includes/header') ?>
 
 <style type="text/css">
 	table
@@ -24,25 +24,13 @@
 		  		<tr><td>图书交易数</td><td><?php echo $book_traded_num;?></td></tr>
 		  	</table>
 
+		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/book_classify';?>">图书分类</a>
 		  	<table class="table table-bordered table-hover">
-		  		<tr><th>今日新增</th><th>(本)</th></tr>
-		  		<tr><td>图书总数</td><td><?php echo $book_num;?></td></tr>
-		  		<tr><td>图书未预定数</td><td><?php echo $book_unreserved_num;?></td></tr>
-		  		<tr><td>图书预定数(等待交易)</td><td><?php echo $book_reserved_num;?></td></tr>
-		  		<tr><td>图书交易数</td><td><?php echo $book_traded_num;?></td></tr>
+		  		<tr><td>统计信息</td><td>(本)</td></tr>
+		  		<tr><td>未分类图书</td><td><?php echo $unclassify_num;?></td></tr>
 		  	</table>
-
-		  	<table class="table table-bordered table-hover">
-		  		<tr><th>本周统计</th><th>(本)</th></tr>
-		  		<tr><td>图书总数</td><td><?php echo $book_num;?></td></tr>
-		  		<tr><td>图书未预定数</td><td><?php echo $book_unreserved_num;?></td></tr>
-		  		<tr><td>图书预定数(等待交易)</td><td><?php echo $book_reserved_num;?></td></tr>
-		  		<tr><td>图书交易数</td><td><?php echo $book_traded_num;?></td></tr>
-		  	</table>
-		  	
 		  </div>
 		  <div class="span6">
-		  
 		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/user?order_by_up=1';?>">会员管理</a>
 		  	<table class="table table-bordered table-hover">
 		  		<tr><td>统计信息</td><td>人数</td></tr>
@@ -50,15 +38,15 @@
 		  		<tr><td>今日新增</td><td><?php echo $user_num;?></td></tr>
 		  	</table>
 
-		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/book_classify';?>">图书分类</a>
+		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/trade';?>">今日交易</a>
 		  	<table class="table table-bordered table-hover">
-		  		<tr><td>统计信息</td><td>(本)</td></tr>
-		  		<tr><td>未分类图书</td><td><?php echo $unclassify_num;?></td></tr>
+		  		<tr><td>交易双方</td><td>人数</td></tr>
+		  		<tr><td>买家数目</td><td><?php echo $buyer_num;?></td></tr>
+		  		<tr><td>卖家数目</td><td><?php echo $saler_num;?></td></tr>
 		  	</table>
-			
+		  	
 		  </div>
 		</div>
-		
 	</div>
 
 <script src="<?php echo base_url() ?>public/js/jquery-1.9.1.min.js"></script>
