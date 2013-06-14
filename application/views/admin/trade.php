@@ -1,5 +1,11 @@
 <?php $this->load->view('includes/header') ?>
 	<div class="container">
+		
+		<div class="alert alert-error fade in">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <div>等待交易的书籍，不包括选择自行交易的图书</div>
+		</div>
+
 		<a class="btn btn-primary" href="<?php echo site_url().'/admin';?>"/>返回管理主页</a>
 		<div class="row">
 		  <div class="span12">
@@ -9,7 +15,7 @@
 		  	
 			<table class="table table-bordered table-hover">
 				<tr class="success">
-					<td width=50%><?php 
+					<td width=50% colspan="4"><?php 
 				  	printf(
 				  		'卖书者：<a target="_blank" href="%s"><span class="label label-info">%s</span></a>
 				  		电话：<span class="label label-info">%s</span>
@@ -19,9 +25,6 @@
 				  		);
 				  	?>
 				    </td>
-					<td width=10%></td>
-		  			<td width=35%></td>
-		  			<td width=5%></td>
 		  		</tr>
 				
 				<?php foreach ($sale_book[$saler['uploader']] as $book) :
@@ -30,9 +33,9 @@
 				?>
 				<tr>
 					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
-					<td>￥<?php echo $book->price;?></td>
-					<td>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?>(<?php echo $book->phone;?>)</a></td>
-					<td><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
+					<td width=10%>￥<?php echo $book->price;?></td>
+					<td width=35%>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?>(<?php echo $book->phone;?>)</a></td>
+					<td width=5%><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
 				</tr>
 				<?php endforeach;?>
 			</table>
@@ -44,7 +47,7 @@
 		  	
 			<table class="table table-bordered table-hover">
 				<tr class="success">
-					<td width=50%>
+					<td width=50% colspan="4">
 						<?php 
 					  	printf(
 					  		'买书者：<a target="_blank" href="%s"><span class="label label-success">%s</span></a>
@@ -55,18 +58,15 @@
 					  		);
 		  			?>
 		  			</td>
-		  			<td width=10%></td>
-		  			<td width=35%></td>
-		  			<td width=5%></td>
 		  		</tr>
 				<?php foreach ($buy_book[$buyer['subscriber']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;?>
 				<tr>
 					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
-					<td>￥<?php echo $book->price;?></td>
-					<td>卖家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->uploader;?>(<?php echo $book->phone;?>)</a></td>
-					<td><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
+					<td width=10%>￥<?php echo $book->price;?></td>
+					<td width=35%>卖家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->uploader;?>(<?php echo $book->phone;?>)</a></td>
+					<td width=5%><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
 				</tr>
 				<?php endforeach;?>
 			</table>
