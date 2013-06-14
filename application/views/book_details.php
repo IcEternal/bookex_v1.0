@@ -194,6 +194,20 @@
 			
 			</div>
 
+			<div class = "row-fluid">
+				<p class = "span2"> <strong> 豆瓣链接 </strong> </p>
+				<p class = "span10"> 
+
+					<?php if ($ISBN != "") { ?>
+						<a href="http://book.douban.com/isbn/<?php echo $ISBN ?>">点击此处转到豆瓣查看详细评价</a>
+						<p>可能有部分书籍ISBN输入有误从而出现链接不正确的情况，请谅解！</p>
+					<?php } else {?>
+						很抱歉！此书没有提供ISBN，无法给出豆瓣链接。
+					<?php } ?>
+
+				</p>
+			</div>
+
 
 	</div>
 </div>
