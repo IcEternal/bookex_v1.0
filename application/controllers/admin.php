@@ -36,7 +36,8 @@ class Admin extends CI_Controller {
 		$data['unclassify_num'] = $row1->book_num;
 
 		//交易信息统计
-		$query_str = "SELECT COUNT(DISTINCT uploader) AS buyer_num,COUNT(DISTINCT subscriber) AS saler_num FROM  book WHERE subscribetime > 0 AND finishtime = 0";
+		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0";
+		$query_str = "SELECT COUNT(DISTINCT uploader) AS buyer_num,COUNT(DISTINCT subscriber) AS saler_num FROM book $common_condition";
 		$result = $this->db->query($query_str)->result();
 		$row1 = $result[0];
 		$data['buyer_num'] = $row1->buyer_num;
@@ -338,7 +339,7 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model');
 
 		//筛选出可以交易的书的统一条件
-		$common_condition = 'WHERE subscribetime > 0 AND finishtime = 0 AND use_phone = 0';
+		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0";
 		//卖家信息
 		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.phone,user.id AS user_id 
 		FROM book INNER JOIN user ON 
