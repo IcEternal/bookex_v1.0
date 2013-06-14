@@ -200,7 +200,7 @@
 
 					<?php if ($ISBN != "") { ?>
 						<a href="http://book.douban.com/isbn/<?php echo $ISBN ?>">点击此处转到豆瓣查看详细评价</a>
-						<p>可能有部分书籍ISBN输入有误从而出现链接不正确的情况，请谅解！</p>
+						<br/>可能有少量书籍ISBN输入有误从而导致链接不正确，请谅解！
 					<?php } else {?>
 						很抱歉！此书没有提供ISBN，无法给出豆瓣链接。
 					<?php } ?>
