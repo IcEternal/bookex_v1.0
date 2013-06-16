@@ -67,8 +67,8 @@
 	    <p>如果您不想当面交易,请点击下方的 <strong>委托交易</strong> 按钮, 我们会联系您并送书上门。</p>
 	  </div>
 	  <div class="modal-footer">
-	    <a href='<?php echo site_url("book_details/use_phone/$id") ?>' class="btn">自行当面交易</a>
-	    <a class="btn btn-primary" data-dismiss="modal" aria-hidden="true">委托交易</a>
+	    <a class="btn" data-dismiss="modal" aria-hidden="true">委托交易</a>
+	    <a href='<?php echo site_url("book_details/use_phone/$id") ?>' class="btn btn-primary">自行当面交易</a>
 	  </div>
 	</div>
 <?php } ?> 
