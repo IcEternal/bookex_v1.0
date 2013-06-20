@@ -18,7 +18,7 @@
 					<td width=50% colspan="4"><?php 
 				  	printf(
 				  		'卖书者：<a target="_blank" href="%s"><span class="label label-info">%s</span></a>
-				  		电话：<span class="label label-info">%s</span>
+				  		电话：<span>%s</span>
 				  		书本数：<span class="label label-info">%s</span>
 				  		书本金额：<span class="label label-info">%s元</span>
 				  		',$user_url,$saler['uploader'],$saler['phone'],$saler['book_num'],$saler['book_money']
@@ -34,7 +34,7 @@
 				<tr>
 					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
 					<td width=10%>￥<?php echo $book->price;?></td>
-					<td width=35%>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?>(<?php echo $book->phone;?>)</a></td>
+					<td width=35%>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?></a>(<?php echo $book->phone;?>)</td>
 					<td width=5%><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
 				</tr>
 				<?php endforeach;?>
@@ -51,7 +51,7 @@
 						<?php 
 					  	printf(
 					  		'买书者：<a target="_blank" href="%s"><span class="label label-success">%s</span></a>
-					  		电话：<span class="label label-success">%s</span>
+					  		电话：<span>%s</span>
 					  		书本数：<span class="label label-success">%s</span>
 					  		书本金额：<span class="label label-success">%s元</span>
 					  		',$user_url,$buyer['subscriber'],$buyer['phone'],$buyer['book_num'],$buyer['book_money']
@@ -65,7 +65,7 @@
 				<tr>
 					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
 					<td width=10%>￥<?php echo $book->price;?></td>
-					<td width=35%>卖家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->uploader;?>(<?php echo $book->phone;?>)</a></td>
+					<td width=35%>卖家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->uploader;?></a>(<?php echo $book->phone;?>)</td>
 					<td width=5%><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
 				</tr>
 				<?php endforeach;?>
@@ -80,4 +80,4 @@
 </body>
 </html>
 
-<?php $this->load->view('includes/footer') ?>
+
