@@ -90,6 +90,7 @@ class Book_model extends CI_Model {
 
 	function book_delete($id) {
 		$this->db->where('id', $id);
+		$this->db->query("UPDATE book SET deltime = now() WHERE id = \"$id\"");
 		$arr = array('del' => true);
 		return $this->db->update('book', $arr);
 	}

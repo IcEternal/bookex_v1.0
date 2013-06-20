@@ -66,6 +66,7 @@ class Admin_model extends CI_Model {
 		else
 		{
 			$this->db->where('del',TRUE);
+			$this->db->order_by('deltime', 'DESC');
 		}
 
 		if($data['no_reserve'] == 0)//表示未勾选时，搜索结果不包含未预定的书
