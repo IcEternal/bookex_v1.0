@@ -98,7 +98,7 @@ class Admin_model extends CI_Model {
 			$this->db->order_by('up_num','DESC');
 		}
 		$user_result = $this->db->select('user.id,user.username,user.phone,user.email,user.student_number,count(book.id) AS up_num')
-		->from('user')->join('book','user.username = book.uploader','left')->group_by('user.id')
+		->from('user')->join('book','user.username = book.uploader AND book.del != true','left')->group_by('user.id')
 		->limit($limit,$offset)->order_by('id','DESC')->get()->result();
 		return array($total_rows,$user_result);
 	}
