@@ -86,7 +86,7 @@
 			$user = $this->session->userdata('username');
 			$newkey = $this->getKey($key);
 			$order = "order by ((CASE WHEN name LIKE '%$key%' THEN 2 ELSE 0 END) + (CASE WHEN author LIKE '%$key%' THEN 1 ELSE 0 END)) DESC, hasimg DESC, id DESC";
-			$condition = "((CONCAT(name, author) LIKE \"$newkey\" OR uploader LIKE \"$key\") AND (subscriber = \"N\" OR subscriber = \"$user\" OR uploader = \"$user\") AND (id > 1) AND (finishtime = \"0000-00-00 00:00:00\"))";
+			$condition = "((CONCAT(name, author) LIKE \"$newkey\" OR uploader LIKE \"$key\") AND (subscriber = \"N\" OR subscriber = \"$user\" OR uploader = \"$user\") AND (id > 1) AND del != true AND (finishtime = \"0000-00-00 00:00:00\"))";
 			$query = "SELECT $fields FROM book WHERE $condition $order LIMIT $begin, 20;";
 			if (strlen($key) == 0)
 				$query = "SELECT $fields FROM book WHERE $condition ORDER BY hasimg DESC, id DESC LIMIT $begin, 20;";
@@ -104,13 +104,13 @@
 			jd_stopattack();
 			$fields = "id,name,author,price,originprice,publisher,ISBN,description,uploader,subscriber,subscribetime,finishtime,hasimg";
 			$user = $this->session->userdata('username');
-			$query = "SELECT $fields FROM book WHERE (subscriber = \"$user\" AND finishtime = \"0000-00-00 00:00:00\");";
+			$query = "SELECT $fields FROM book WHERE (subscriber = \"$user\" AND del != true AND finishtime = \"0000-00-00 00:00:00\");";
 			$result1 = $this->db->query($query)->result();
-			$query = "SELECT $fields FROM book WHERE (uploader = \"$user\" AND subscriber != \"N\" AND finishtime = \"0000-00-00 00:00:00\");";
+			$query = "SELECT $fields FROM book WHERE (uploader = \"$user\" AND del != true AND subscriber != \"N\" AND finishtime = \"0000-00-00 00:00:00\");";
 			$result2 = $this->db->query($query)->result();
-			$query = "SELECT $fields FROM book WHERE (uploader = \"$user\" AND finishtime = \"0000-00-00 00:00:00\") ;";
+			$query = "SELECT $fields FROM book WHERE (uploader = \"$user\" AND del != true AND finishtime = \"0000-00-00 00:00:00\") ;";
 			$result3 = $this->db->query($query)->result();
-			$query = "SELECT $fields FROM book WHERE ((uploader = \"$user\" OR subscriber = \"$user\") AND finishtime != \"0000-00-00 00:00:00\") ;";
+			$query = "SELECT $fields FROM book WHERE ((uploader = \"$user\" OR subscriber = \"$user\") AND del != true AND finishtime != \"0000-00-00 00:00:00\") ;";
 			$result4 = $this->db->query($query)->result();
 
 			$data = array("result1"=>$result1, "result2"=>$result2, "result3"=>$result3, "result4"=>$result4);
@@ -156,7 +156,7 @@
 			$user = $this->session->userdata('username');
 			$order = "order by hasimg DESC, id DESC";
 			if ($class=="所有书本") $class="";
-			$condition = "(class LIKE \"%$class%\" AND (subscriber = \"N\" OR subscriber = \"$user\" OR uploader = \"$user\") AND (id > 1) AND (finishtime = \"0000-00-00 00:00:00\"))";
+			$condition = "(class LIKE \"%$class%\" AND del != true AND (subscriber = \"N\" OR subscriber = \"$user\" OR uploader = \"$user\") AND (id > 1) AND (finishtime = \"0000-00-00 00:00:00\"))";
 			$query = "SELECT $fields FROM book WHERE $condition $order LIMIT $begin, 21;";
 			$result = $this->db->query($query)->result();
 			$query = "SELECT $fields FROM book WHERE $condition;";
