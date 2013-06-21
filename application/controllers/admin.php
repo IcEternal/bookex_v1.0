@@ -23,6 +23,11 @@ class Admin extends CI_Controller {
 		->where('del !=',TRUE)->where('finishtime >',0)->get()->result();
 		$row1 = $book_result[0];
 		$data['book_traded_num'] = $row1->book_num;
+
+		$book_result = $this->db->select('count(id) AS book_num')->from('book')
+		->where('del',TRUE)->get()->result();
+		$row1 = $book_result[0];
+		$data['book_del_num'] = $row1->book_num;
 		
 		//用户统计信息
 		$user_result = $this->db->select('count(id) AS user_num')->from('user')->get()->result();

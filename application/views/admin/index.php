@@ -22,6 +22,7 @@
 		  		<tr><td>图书未预定数</td><td><?php echo $book_unreserved_num;?></td></tr>
 		  		<tr><td>图书预定数(等待交易)</td><td><?php echo $book_reserved_num;?></td></tr>
 		  		<tr><td>图书交易数</td><td><?php echo $book_traded_num;?></td></tr>
+		  		<tr><td>图书删除数</td><td><?php echo $book_del_num;?></td></tr>
 		  	</table>
 
 		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/book_classify';?>">图书分类</a>
@@ -48,9 +49,6 @@
 		  </div>
 		</div>
 	</div>
-
-<script src="<?php echo base_url() ?>public/js/jquery-1.9.1.min.js"></script>
-<script src="<?php echo base_url() ?>public/js/bootstrap.min.js"></script>
 </body>
 </html>
 
