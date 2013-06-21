@@ -22,7 +22,7 @@
 		  		<tr><td>图书未预定数</td><td><?php echo $book_unreserved_num;?></td></tr>
 		  		<tr><td>图书预定数(等待交易)</td><td><?php echo $book_reserved_num;?></td></tr>
 		  		<tr><td>图书交易数</td><td><?php echo $book_traded_num;?></td></tr>
-		  		<tr><td>图书删除数</td><td><?php echo $book_del_num;?></td></tr>
+		  		<tr><td><?php echo anchor('/admin/book?del=1&no_reserve=1&reserved=1&traded=1','图书删除数');?></td><td><?php echo $book_del_num;?></td></tr>
 		  	</table>
 
 		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/book_classify';?>">图书分类</a>

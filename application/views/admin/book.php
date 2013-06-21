@@ -93,7 +93,14 @@
 						<td><a href="%s" target="_blank">%s</a></td>
 						<td>%s</td>
 						<td>%s</td>
-						<td><a href="%s"><i class="icon-remove"></i></a></td></tr>',$style,$modify_url,$row->name,$row->price,$row->originprice,$uploader_url,$row->uploader,$subscriber_url,$trade_status,$delete_url);
+						',$style,$modify_url,$row->name,$row->price,$row->originprice,$uploader_url,$row->uploader,$subscriber_url,$trade_status);
+					if($row->del)
+					{
+						echo '<td>已删除</td></tr>';
+					}else
+					{
+						printf('<td><a href="%s"><i class="icon-remove"></i></a></td></tr>',$delete_url);
+					}
 				}
 				?>
 				

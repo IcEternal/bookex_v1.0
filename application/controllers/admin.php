@@ -68,6 +68,7 @@ class Admin extends CI_Controller {
 		$subscriber = $this->input->get('subscriber')?$this->input->get('subscriber'):null;
 		$no_reserve = $this->input->get('no_reserve')?$this->input->get('no_reserve'):0;
 		$reserved = $this->input->get('reserved')?$this->input->get('reserved'):0;
+		$del = $this->input->get('del')?$this->input->get('del'):0;
 		$traded = $this->input->get('traded')?$this->input->get('traded'):0;
 		$offset = $this->input->get('offset')?$this->input->get('offset'):0;
 
@@ -78,6 +79,7 @@ class Admin extends CI_Controller {
 			'subscriber' => $subscriber,
 			'no_reserve' => $no_reserve,
 			'reserved' => $reserved,
+			'del'=>$del,
 			'traded' => $traded,
 			);
 		//参数：搜索内容，偏移量，每页显示数
