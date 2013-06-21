@@ -23,6 +23,7 @@ class Admin_model extends CI_Model {
 	{
 		$this->db->like('name',$data['book_name']);
 		$this->db->like('class',$data['class_name']);
+		$this->db->where('del !=',TRUE);
 
 		switch ($data['class_status']) {
 			case 1:
@@ -57,6 +58,7 @@ class Admin_model extends CI_Model {
 		$this->db->like('name',$data['book_name']);
 		$this->db->like('uploader',$data['uploader']);
 		$this->db->like('subscriber',$data['subscriber']);
+		$this->db->where('del !=',TRUE);
 
 		if($data['no_reserve'] == 0)//表示未勾选时，搜索结果不包含未预定的书
 		{
@@ -72,9 +74,6 @@ class Admin_model extends CI_Model {
 		}
 		if ($data['no_reserve'] == 0 && $data['reserved'] == 0) {
 			$this->db->order_by('finishtime', 'DESC');
-		}
-		if ($data['no_reserve'] == 0 && $data['traded'] == 0) {
-			$this->db->order_by('subscribetime', 'DESC');
 		}
 	}
 

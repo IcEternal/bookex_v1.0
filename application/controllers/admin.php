@@ -2,25 +2,25 @@
 	
 class Admin extends CI_Controller {
 	function index()
-	{
+	{$this->db->where('del !=',TRUE);
 		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
 		$data = array();
 		//书籍统计信息
-		$book_result = $this->db->select('count(id) AS book_num')->from('book')->get()->result();
+		$book_result = $this->db->select('count(id) AS book_num')->where('del !=',TRUE)->from('book')->get()->result();
 		$row1 = $book_result[0];
 		$data['book_num'] = $row1->book_num;
 
-		$book_result = $this->db->select('count(id) AS book_num')->from('book')->where('finishtime',0)->where('subscriber','N')->get()->result();
+		$book_result = $this->db->select('count(id) AS book_num')->from('book')->where('del !=',TRUE)->where('finishtime',0)->where('subscriber','N')->get()->result();
 		$row1 = $book_result[0];
 		$data['book_unreserved_num'] = $row1->book_num;
 
 		$book_result = $this->db->select('count(id) AS book_num')->from('book')
-		->where('subscriber !=','N')->where('finishtime',0)->get()->result();
+		->where('del !=',TRUE)->where('subscriber !=','N')->where('finishtime',0)->get()->result();
 		$row1 = $book_result[0];
 		$data['book_reserved_num'] = $row1->book_num;
 
 		$book_result = $this->db->select('count(id) AS book_num')->from('book')
-		->where('finishtime >',0)->get()->result();
+		->where('del !=',TRUE)->where('finishtime >',0)->get()->result();
 		$row1 = $book_result[0];
 		$data['book_traded_num'] = $row1->book_num;
 		
@@ -31,12 +31,12 @@ class Admin extends CI_Controller {
 
 		//分类统计信息
 		$book_result = $this->db->select('count(id) AS book_num')->from('book')
-		->where('class','')->get()->result();
+		->where('del !=',TRUE)->where('class','')->get()->result();
 		$row1 = $book_result[0];
 		$data['unclassify_num'] = $row1->book_num;
 
 		//交易信息统计
-		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0";
+		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0 AND del != TRUE";
 		$query_str = "SELECT COUNT(DISTINCT uploader) AS buyer_num,COUNT(DISTINCT subscriber) AS saler_num FROM book $common_condition";
 		$result = $this->db->query($query_str)->result();
 		$row1 = $result[0];
@@ -339,7 +339,7 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model');
 
 		//筛选出可以交易的书的统一条件
-		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0";
+		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0 AND del != TRUE";
 		//卖家信息
 		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.phone,user.id AS user_id 
 		FROM book INNER JOIN user ON 
