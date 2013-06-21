@@ -46,7 +46,7 @@ class Admin_model extends CI_Model {
 		$total_rows = $pre_query->num_rows();
 		//内容搜索，将所有信息显示，并对结果根据页码进行limit
 		$this->book_search_condition($data);
-		$book_result = $this->db->select('book.id,book.use_phone,class,name,price,originprice,uploader,subscriber,finishtime,a.id AS uploader_id,b.id AS subscriber_id')
+		$book_result = $this->db->select('book.id,book.use_phone,class,name,price,originprice,uploader,subscriber,finishtime,del,a.id AS uploader_id,b.id AS subscriber_id')
 		->from('book')->join('user AS a','a.username = book.uploader','left')->join('user AS b','b.username = book.subscriber','left')
 		->limit($limit,$offset)->order_by('id','DESC')->get()->result();
 
@@ -58,7 +58,15 @@ class Admin_model extends CI_Model {
 		$this->db->like('name',$data['book_name']);
 		$this->db->like('uploader',$data['uploader']);
 		$this->db->like('subscriber',$data['subscriber']);
-		$this->db->where('del !=',TRUE);
+		//url参数中有del时，找出被删除的书籍
+		if($data['del'] == 0)
+		{
+			$this->db->where('del !=',TRUE);
+		}
+		else
+		{
+			$this->db->where('del',TRUE);
+		}
 
 		if($data['no_reserve'] == 0)//表示未勾选时，搜索结果不包含未预定的书
 		{
