@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>BookEx - 交大校内二手书交易平台</title>
+	<title>BookEx - 上海交大二手书 - SJTU上海交通大学校内二手书交易平台</title>
 	<link rel="stylesheet" href="<?php echo base_url() ?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>public/css/style.css">
 	<style>
@@ -44,15 +44,6 @@
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li><a href="<?php echo site_url('welcome/about') ?>"><b>如何使用?</b></a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: red;">
-            	<b>活动相关</b>
-          	</a>
-            <ul class="dropdown-menu">
-					    <li><a href="<?php echo site_url('welcome/act_detail'); ?>">活动细则</a></li>
-					    <li><a href="<?php echo site_url('welcome/prize_user') ?>">中奖名单</a></li>
-					  </ul>
-          </li>
           <li><a href="<?php echo site_url('welcome/contact') ?>">联系我们</a></li>
         </ul>
       </div><!--/.nav-collapse -->
