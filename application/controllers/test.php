@@ -8,7 +8,7 @@ class Test extends CI_Controller {
 	}
 
 	function index() {
-		$this->db->where('finishtime > 0');
+		$this->db->where('finishtime > 0 AND subscriber != "N"');
 		$arr = $this->db->get('book')->result();
 		$tot = 0;
 		$save = 0;
