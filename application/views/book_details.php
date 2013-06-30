@@ -212,6 +212,11 @@
 	</div>
 </div>
 
+<!-- 51.la script -->
+<div class="container" style="display:none">
+<script language="javascript" type="text/javascript" src="http://js.users.51.la/15806741.js"></script>
+</div>
+
 <!-- Baidu Button BEGIN -->
 <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=2&amp;pos=right&amp;uid=4388338" ></script> 
 <script type="text/javascript" id="bdshell_js"></script> 
