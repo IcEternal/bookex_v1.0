@@ -15,7 +15,7 @@
 		  	
 			<table class="table table-bordered table-hover">
 				<tr class="success">
-					<td width=50% colspan="4"><?php 
+					<td width=50% colspan="5"><?php 
 				  	printf(
 				  		'卖书者：<a target="_blank" href="%s"><span class="label label-info">%s</span></a>
 				  		电话：<span>%s</span>
@@ -35,7 +35,7 @@
 					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
 					<td width=10%>￥<?php echo $book->price;?></td>
 					<td width=35%>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?></a>(<?php echo $book->phone;?>)</td>
-					<td width=20%><?php echo $book->dormitory; ?><?php echo $book->price;?></td>
+					<td width=10%><?php echo $book->dormitory; ?></td>
 					<td width=5%><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
 				</tr>
 				<?php endforeach;?>
@@ -53,7 +53,7 @@
 					  	printf(
 					  		'买书者：<a target="_blank" href="%s"><span class="label label-success">%s</span></a>
 					  		电话：<span>%s</span>
-					  		寝室: <span>%s</span>
+					  		寝室: <span class="label label-success">%s</span>
 					  		书本数：<span class="label label-success">%s</span>
 					  		书本金额：<span class="label label-success">%s元</span>
 					  		',$user_url,$buyer['subscriber'],$buyer['phone'],$buyer['dormitory'],$buyer['book_num'],$buyer['book_money']
