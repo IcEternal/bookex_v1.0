@@ -356,13 +356,13 @@ class Admin extends CI_Controller {
 		$sale_book = array();
 		foreach ($saler_info as $saler) {
 			$username = $saler['uploader'];
-			$query_str = "SELECT book.id,book.name,book.price,book.subscriber,user.phone,user.id AS user_id FROM book 
+			$query_str = "SELECT book.id,book.name,book.price,book.subscriber,user.phone,user.dormitory,user.id AS user_id FROM book 
 			INNER JOIN user ON book.subscriber = user.username $common_condition AND uploader = '$username'";
 			$sale_book[$username] = $this->db->query($query_str)->result();
 		}
 
 		//买家信息
-		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.phone,user.id AS user_id 
+		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.dormitory,user.phone,user.id AS user_id 
 		FROM book INNER JOIN user ON 
 		book.subscriber = user.username $common_condition group by subscriber";
 		$buyer_info = $this->db->query($query_str)->result_array();
