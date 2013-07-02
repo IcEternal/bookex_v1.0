@@ -37,7 +37,6 @@
 	                    url = encodeURI(url);
 	                    var anchor = $("<a>").text(classname).attr("href", url);
 	                    var url_classname = "<?php echo urldecode($this->uri->segment(3));?>";
-	                    console.log(classname);
 	                    if((lv1class+"-"+classname) == url_classname)
 	                    {
 	                    	li.addClass("active").append(anchor);
