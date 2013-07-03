@@ -1,0 +1,133 @@
+/*
+********************
+  =user interface
+********************
+*/
+用户注册：
+	1. 提供 用户名 密码 手机 邮箱 学号 寝室 支付宝账号(学校，头像)
+		如果使用银行卡作为账号，需要提供真实姓名
+	2. 记录用户注册时间
+
+上传书本：
+	1. 提供 书名 作者 出版社 ISBN 图片 原价 售价 图书分类 简介 是否愿意自行出售
+	2. 记录 用户的愿意自行出售 选项
+	3. 豆瓣API的 图片搜索功能 以及 ISBN搜索功能
+	4. 自动分类的实现 
+
+搜索书本：
+	use query string
+
+分类浏览：
+	use query string
+
+预订书本：
+	预订后，若卖家愿意自行交易，则买家选择是否自行交易。
+
+
+
+/*
+********************
+  =admin interface
+********************
+*/
+
+/*
+********************
+  =database level
+********************
+*/
+
+NOTICE: 为了统一，跟日期有关的都以time为后缀吧
+NOTICE：admin_book_search & admin_user_search 的字段是否有点冗余？
+
+user:
+	id
+	username
+	password
+	phone
+	email
+	student_number
+	dormitory
+	alipay
+	school
+	show_phone
+	register_time
+
+admin:
+	id
+	user_id
+	username
+	view_book
+	del_user
+	del_book
+	modify_user
+	modify_book
+
+book:
+	id
+	name
+	author
+	price
+	publisher
+	ISBN
+	decription
+	uploader
+	subscriber
+	originprice
+	img
+	hasimg
+	class
+	show_phone
+	use_phone
+	del
+	deltime
+	subscribetime
+	finishtime
+	uploadtime
+
+user_book_search:
+	id
+	username
+	view_or_search
+	search_time
+	key
+	class
+
+book_collect:
+	bc_id
+	title
+	author
+	translator
+	price
+	publisher
+	pubtime
+	ISBN
+	img
+
+admin_book_search:
+	bs_id
+	book_info
+	uploader
+	subscriber
+	no_reserve
+	reserved
+	traded
+	admin_name
+	bs_time
+
+admin_user_search:
+	us_id
+	username
+	phone
+	email
+	student_number
+	order_by_up
+	admin_name
+	us_time
+
+
+
+
+
+
+
