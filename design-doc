@@ -40,6 +40,18 @@
   =admin interface
 ********************
 */
+用户管理：
+	1.通过学号、电话号码、邮箱等各种信息查找用户
+	2.能对某个用户进行信息修改，包括，重置密码，冻结账户等操作
+	3.显示用户统计信息：如用户上传量排名，某个用户的上传数和预订数，成交金额
+
+书本管理：
+	1.查找书本
+	2.修改（书本基本信息、分类）、删除、批量删除
+
+交易管理：
+	显示当前交易情况，包括自行交易。可以进行的操作：取消交易、完成交易。
+
 
 /*
 ********************
@@ -70,7 +82,7 @@ user:
 	register_time
 	remarks
 
-admin://不同权限?
+admin:
 	id
 	user_id
 	username
@@ -81,7 +93,7 @@ admin://不同权限?
 	modify_book
 	remarks
 
-book://图片文件系统，上线时给你展示下dropbox的图片管理
+book://uploader 和 subscriber 是用id还是用户名？
 	id
 	name
 	author
@@ -163,10 +175,3 @@ admin_user_search:
 	order_by_up
 	admin_name
 	us_time
-
-
-
-
-
-
-
