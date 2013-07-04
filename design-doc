@@ -22,6 +22,7 @@
 
 预订书本：
 	预订后，若卖家愿意自行交易，则买家选择是否自行交易。
+	
 推荐书本：
 	根据用户的学号，判断出用户的年级、专业。
 	从以往的历史记录中，可以知道某年级某专业的学生需要什么书，然后给出推荐书本列表。
@@ -64,6 +65,7 @@ user:
 	school
 	show_phone
 	register_time
+	remarks
 
 admin://不同权限?
 	id
@@ -74,6 +76,7 @@ admin://不同权限?
 	del_book
 	modify_user
 	modify_book
+	remarks
 
 book://图片文件系统，上线时给你展示下dropbox的图片管理
 	id
@@ -96,6 +99,7 @@ book://图片文件系统，上线时给你展示下dropbox的图片管理
 	subscribetime
 	finishtime
 	uploadtime
+	remarks
 
 user_book_search:
 	id
@@ -104,6 +108,7 @@ user_book_search:
 	search_time
 	key
 	class
+	remarks
 
 book_collect:
 	bc_id
@@ -115,6 +120,25 @@ book_collect:
 	pubtime
 	ISBN
 	img
+	remarks
+
+subscribe_records:
+	id
+	book_id
+	subscriber_id
+	subscribetime
+	canceled
+	trade_records_id
+	remarks
+	
+trade_records:
+	id
+	sub_records_id
+	book_id
+	buyer_id
+	finishtime
+	canceled
+	remarks	
 
 admin_book_search:
 	bs_id
