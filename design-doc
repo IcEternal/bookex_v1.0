@@ -53,6 +53,9 @@ NOTICE：admin_book_search & admin_user_search 的字段是否有点冗余？
 时间可以用stamptime，时间戳，可以在数据库中设置默认记录添加时间
 速度快，而且使用起来挺方便的。
 
+考虑dropbox图片托管
+存放大图与小图
+
 user:
 	id
 	username
