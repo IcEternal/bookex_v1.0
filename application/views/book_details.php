@@ -64,6 +64,7 @@
 	  <div class="modal-body">
 	    <p>对方支持当面交易,手机号为 <?php echo $phone ?>.</p>
 	    <p>点击下方的 <strong>自行当面交易</strong> 后，手机号会在书本图片下方显示。</p>
+	    <p>推荐使用<strong>自行当面交易</strong>，可以出去走走并且认识新同学哈~</p>
 	    <p>如果您不想当面交易,请点击下方的 <strong>委托交易</strong> 按钮, 我们会联系您并送书上门。</p>
 	  </div>
 	  <div class="modal-footer">
