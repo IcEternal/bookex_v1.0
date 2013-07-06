@@ -60,7 +60,7 @@
 							?>  
 						> 愿意自行交易 
 	      </label>
-	      <span class="help-block">选中此项后，预订此书的用户将能看到您的手机号码。</span>
+	      <span class="help-block">选择自行交易可以出去走走并且认识新同学哈～<br/>选中此项后，预订此书的用户将能看到您的手机号码。</span>
 	    </div>
   	</div>
 		<div class="control-group">
