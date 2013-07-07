@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '172.16.6.107';
-$db['default']['username'] = 'bookex';
-$db['default']['password'] = 'Xy!SpJZlpS2m';
+$db['default']['hostname'] = 'bookex';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'root';
 $db['default']['database'] = 'bookex';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
