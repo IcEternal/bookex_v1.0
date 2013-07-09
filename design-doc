@@ -150,6 +150,7 @@ subscribe_records:
 	book_id
 	subscriber_id
 	subscribetime
+	gotit
 	canceled
 	trade_records_id
 	remarks
