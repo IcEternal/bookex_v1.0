@@ -357,7 +357,7 @@ class Admin extends CI_Controller {
 		//筛选出可以交易的书的统一条件
 		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0 AND del != TRUE";
 		//卖家信息
-		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.dormitory,user.phone,user.id,user.remarks AS user_id 
+		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.dormitory,user.phone,user.remarks,user.id AS user_id 
 		FROM book INNER JOIN user ON 
 		book.uploader = user.username $common_condition group by uploader";
 		$saler_info = $this->db->query($query_str)->result_array();
@@ -371,7 +371,7 @@ class Admin extends CI_Controller {
 		}
 
 		//买家信息
-		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.dormitory,user.phone,user.id,user.remarks AS user_id 
+		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.dormitory,user.phone,user.remarks,user.id AS user_id 
 		FROM book INNER JOIN user ON 
 		book.subscriber = user.username $common_condition group by subscriber";
 		$buyer_info = $this->db->query($query_str)->result_array();
