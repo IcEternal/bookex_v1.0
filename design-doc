@@ -146,23 +146,24 @@ book_collect:
 	remarks
 
 subscribe_records:
-	id
-	book_id
-	subscriber_id
-	subscribetime
-	gotit
-	canceled
-	trade_records_id
-	remarks
+	id 
+	book_id \\书本id
+	subscriber_id \\预订者id
+	subscribetime \\预订时间
+	gotit \\如果是委托交易，那么如果我们已经从卖家拿到这本书，就设为true;如果是自行交易，直接设为true
+	canceled \\该预订被取消了就设为true
+	trade_records_id \\如果该预订最后成功交易，那么该字段就设置为trade_records中相应的条目id
+	remarks \\备注
 	
 trade_records:
-	id
-	sub_records_id
-	book_id
-	buyer_id
-	finishtime
-	canceled
-	remarks	
+	id 
+	sub_records_id \\对应的subscribe_records中的条目id
+	book_id \\ 书本id
+	buyer_id \\ 买家id
+	finishtime \\ 完成时间
+	canceled \\如果该交易完成后又被撤回那么设为true
+	has_paid \\如果已经向卖家支付宝打钱就设为true
+	remarks	\\备注
 
 admin_book_search:
 	bs_id
