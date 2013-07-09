@@ -247,6 +247,8 @@ class Admin_model extends CI_Model {
 			$arr['email'] = htmlspecialchars($this->input->post('email', true));
 			$arr['phone'] = htmlspecialchars($this->input->post('phone', true));
 			$arr['student_number'] = htmlspecialchars($this->input->post('student_number', true));
+			$arr['dormitory'] = htmlspecialchars($this->input->post('dormitory', true));
+			$arr['remarks'] = htmlspecialchars($this->input->post('remarks', true));
 			//user_model update
 			$this->db->where('id', $id);
 			$this->db->update('user', $arr);

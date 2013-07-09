@@ -324,6 +324,8 @@ class Admin extends CI_Controller {
 		$data['phone'] = $query->phone;
 		$data['student_number'] = $query->student_number;
 		$data['title'] = '更改个人信息';
+		$data['dormitory'] = $query->dormitory;
+		$data['remarks'] = $query->remarks;
 		$this->load->view('admin/user_modify', $data);
 	}
 
