@@ -61,11 +61,13 @@
 					<th>预订者</th>
 					<th>交易</th>
 					<th></th>
+					<th></th>
 				</tr>
 				<?php
 				foreach ($book_info as $row) {
 					$modify_url = site_url().'/admin/book_modify/'.$row->id;
 					$delete_url = site_url().'/admin/book_delete/'.$row->id;
+					$hasit_url = site_url().'/admin/book_hasit/'.$row->id;
 					$uploader_url = site_url().'/admin/user_modify/'.$row->uploader_id;
 					if(isset($row->subscriber_id)){$subscriber_url = anchor(site_url('admin/user_modify/'.$row->subscriber_id),$row->subscriber);}
 					else{$subscriber_url = $row->subscriber;}
@@ -94,6 +96,7 @@
 						<td>%s</td>
 						<td>%s</td>
 						',$style,$modify_url,$row->name,$row->price,$row->originprice,$uploader_url,$row->uploader,$subscriber_url,$trade_status);
+					if ($row->hasit){echo '<td>已拥有</td>';}else{printf('<td><a href="%s"><i class="icon-ok"></i></a></td>',$hasit_url);}
 					if($row->del)
 					{
 						echo '<td>已删除</td></tr>';
