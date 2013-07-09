@@ -27,6 +27,9 @@
 				  	?>
 				    </td>
 		  		</tr>
+		  		<tr class="info">
+		  			<td><?php echo $saler['remarks'] ?></td>
+		  		</tr>
 				
 				<?php foreach ($sale_book[$saler['uploader']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
@@ -61,6 +64,9 @@
 					  		);
 		  			?>
 		  			</td>
+		  		</tr>
+		  		<tr class="info">
+		  			<td><?php echo $buyer['remarks'] ?></td>
 		  		</tr>
 				<?php foreach ($buy_book[$buyer['subscriber']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
