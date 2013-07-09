@@ -104,7 +104,7 @@
 		<div class="control-group">
 		    <label class="control-label" for="remarks">交易备注</label>
 		    <div class="controls">
-		      	<input type="text" id="remarks" name="remarks" value="<?php echo $remarks ?>" placeholder="交易备注">
+		      	<textarea id="remarks" name="remarks" rows=5><?php echo $remarks; ?></textarea>
 		    </div>
 		</div>
 		<div class="control-group">
