@@ -27,10 +27,11 @@
 				  	?>
 				    </td>
 		  		</tr>
-		  		<tr class="info">
-		  			<td><?php echo $saler['remarks'] ?></td>
+				<?php if ($saler['remarks']!="") { ?>
+		  		<tr class="alert">
+		  			<td width=100% colspan="5"><?php echo $saler['remarks'] ?></td>
 		  		</tr>
-				
+				<?php } ?>
 				<?php foreach ($sale_book[$saler['uploader']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;
@@ -65,9 +66,11 @@
 		  			?>
 		  			</td>
 		  		</tr>
-		  		<tr class="info">
-		  			<td><?php echo $buyer['remarks'] ?></td>
+				<?php if ($buyer['remarks']!="") { ?>
+		  		<tr class="alert">
+		  			<td width=100% colspan=5><?php echo $buyer['remarks'] ?></td>
 		  		</tr>
+				<?php } ?>
 				<?php foreach ($buy_book[$buyer['subscriber']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;?>
