@@ -215,6 +215,13 @@ class Admin extends CI_Controller {
 		$this->admin_model->book_delete($id);
 	}
 
+	function book_hasit()
+	{
+		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		$id = $this->uri->segment(3);
+		$this->load->model('admin_model');
+		$this->admin_model->book_hasit($id);
+	}
 	function book_trade()
 	{
 		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
