@@ -74,6 +74,13 @@
 		    </div>
 		</div>
 		<div class="control-group">
+		    <label class="control-label" for="dormitory">寝室</label>
+		    <div class="controls">
+		      	<input type="text" id="dormitory" name="dormitory" value="<?php echo set_value('dormitory')?>" placeholder="寝室">
+		      	<span class="help-block">填写寝室是为了方便我们为您送书与取书。</span>
+		    </div>
+		</div>
+		<div class="control-group">
 		    <div class="controls">
 		      	<button type="submit" class="btn">修改</button>
 		    </div>
