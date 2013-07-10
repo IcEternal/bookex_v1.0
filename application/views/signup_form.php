@@ -77,15 +77,20 @@
 		    <label class="control-label" for="phone">手机号码</label>
 		    <div class="controls">
 		      	<input type="text" id="phone" name="phone" value="<?php echo set_value('phone'); ?>" placeholder="手机号码">
-			 <span class="help-block">手机号码是您交易时的唯一联系方式。BookEx承诺不会泄露您的信息。</span>
-
+			 	<span class="help-block">手机号码是您交易时的唯一联系方式。BookEx承诺不会泄露您的信息。</span>
 		    </div>
-
 		</div>
 		<div class="control-group">
 		    <label class="control-label" for="student_number">学号</label>
 		    <div class="controls">
 		      	<input type="text" id="student_number" name="student_number" value="<?php echo set_value('student_number')?>" placeholder="交大学号">
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="dormitory">寝室</label>
+		    <div class="controls">
+		      	<input type="text" id="dormitory" name="dormitory" value="<?php echo set_value('dormitory')?>" placeholder="寝室">
+		      	<span class="help-block">填写寝室是为了方便我们为您送书与取书。</span>
 		    </div>
 		</div>
 		<div class="control-group">
