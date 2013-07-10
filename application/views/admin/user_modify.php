@@ -96,6 +96,18 @@
 		    </div>
 		</div>
 		<div class="control-group">
+		    <label class="control-label" for="dormitory">寝室</label>
+		    <div class="controls">
+		      	<input type="text" id="dormitory" name="dormitory" value="<?php echo $dormitory ?>" placeholder="寝室">
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="remarks">交易备注</label>
+		    <div class="controls">
+		      	<textarea id="remarks" name="remarks" rows=5><?php echo $remarks; ?></textarea>
+		    </div>
+		</div>
+		<div class="control-group">
 		    <div class="controls">
 		      	<input type="submit" name="submit" value="修改" class="btn">
 		    </div>

@@ -46,7 +46,7 @@ class Admin_model extends CI_Model {
 		$total_rows = $pre_query->num_rows();
 		//内容搜索，将所有信息显示，并对结果根据页码进行limit
 		$this->book_search_condition($data);
-		$book_result = $this->db->select('book.id,book.use_phone,class,name,price,originprice,uploader,subscriber,finishtime,del,a.id AS uploader_id,b.id AS subscriber_id')
+		$book_result = $this->db->select('book.id,book.use_phone,class,name,price,originprice,uploader,subscriber,finishtime,del,book.has AS hasit,a.id AS uploader_id,b.id AS subscriber_id')
 		->from('book')->join('user AS a','a.username = book.uploader','left')->join('user AS b','b.username = book.subscriber','left')
 		->limit($limit,$offset)->order_by('id','DESC')->get()->result();
 
@@ -190,6 +190,15 @@ class Admin_model extends CI_Model {
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	function book_hasit($id)
+	{
+		$this->load->model('book_model');
+		$data = array('has'=>'1');
+		$this->db->where('id', $id);
+		$this->db->update('book',$data);
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
 	function book_trade($id)
 	{
 
@@ -238,6 +247,8 @@ class Admin_model extends CI_Model {
 			$arr['email'] = htmlspecialchars($this->input->post('email', true));
 			$arr['phone'] = htmlspecialchars($this->input->post('phone', true));
 			$arr['student_number'] = htmlspecialchars($this->input->post('student_number', true));
+			$arr['dormitory'] = htmlspecialchars($this->input->post('dormitory', true));
+			$arr['remarks'] = htmlspecialchars($this->input->post('remarks', true));
 			//user_model update
 			$this->db->where('id', $id);
 			$this->db->update('user', $arr);

@@ -3,6 +3,9 @@
   =user interface
 ********************
 */
+
+NOTICE: 在每个页面添加一个头条信息数组
+
 用户注册：
 	1. 提供 用户名 密码 手机 邮箱 学号 寝室 支付宝账号(学校，头像)
 		如果使用银行卡作为账号，需要提供真实姓名
@@ -22,7 +25,11 @@
 
 预订书本：
 	预订后，若卖家愿意自行交易，则买家选择是否自行交易。
+	NOTICE: 取消预订后自动跳转到userspace
 	
+NOTICE: 
+	完成交易后，设置卖家已将书卖出，和买家已拿到书，两个状态
+
 推荐书本：
 	根据用户的学号，判断出用户的年级、专业。
 	从以往的历史记录中，可以知道某年级某专业的学生需要什么书，然后给出推荐书本列表。
@@ -112,6 +119,7 @@ book://uploader 和 subscriber 是用id还是用户名？
 	del
 	deltime
 	subscribetime
+	soldtime
 	finishtime
 	uploadtime
 	remarks
@@ -138,22 +146,24 @@ book_collect:
 	remarks
 
 subscribe_records:
-	id
-	book_id
-	subscriber_id
-	subscribetime
-	canceled
-	trade_records_id
-	remarks
+	id 
+	book_id \\书本id
+	subscriber_id \\预订者id
+	subscribetime \\预订时间
+	gotit \\如果是委托交易，那么如果我们已经从卖家拿到这本书，就设为true;如果是自行交易，直接设为true
+	canceled \\该预订被取消了就设为true
+	trade_records_id \\如果该预订最后成功交易，那么该字段就设置为trade_records中相应的条目id
+	remarks \\备注
 	
 trade_records:
-	id
-	sub_records_id
-	book_id
-	buyer_id
-	finishtime
-	canceled
-	remarks	
+	id 
+	sub_records_id \\对应的subscribe_records中的条目id
+	book_id \\ 书本id
+	buyer_id \\ 买家id
+	finishtime \\ 完成时间
+	canceled \\如果该交易完成后又被撤回那么设为true
+	has_paid \\如果已经向卖家支付宝打钱就设为true
+	remarks	\\备注
 
 admin_book_search:
 	bs_id

@@ -215,6 +215,13 @@ class Admin extends CI_Controller {
 		$this->admin_model->book_delete($id);
 	}
 
+	function book_hasit()
+	{
+		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		$id = $this->uri->segment(3);
+		$this->load->model('admin_model');
+		$this->admin_model->book_hasit($id);
+	}
 	function book_trade()
 	{
 		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
@@ -317,6 +324,8 @@ class Admin extends CI_Controller {
 		$data['phone'] = $query->phone;
 		$data['student_number'] = $query->student_number;
 		$data['title'] = '更改个人信息';
+		$data['dormitory'] = $query->dormitory;
+		$data['remarks'] = $query->remarks;
 		$this->load->view('admin/user_modify', $data);
 	}
 
@@ -348,7 +357,7 @@ class Admin extends CI_Controller {
 		//筛选出可以交易的书的统一条件
 		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0 AND del != TRUE";
 		//卖家信息
-		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.phone,user.id AS user_id 
+		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.dormitory,user.phone,user.remarks,user.id AS user_id 
 		FROM book INNER JOIN user ON 
 		book.uploader = user.username $common_condition group by uploader";
 		$saler_info = $this->db->query($query_str)->result_array();
@@ -362,7 +371,7 @@ class Admin extends CI_Controller {
 		}
 
 		//买家信息
-		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.dormitory,user.phone,user.id AS user_id 
+		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.dormitory,user.phone,user.remarks,user.id AS user_id 
 		FROM book INNER JOIN user ON 
 		book.subscriber = user.username $common_condition group by subscriber";
 		$buyer_info = $this->db->query($query_str)->result_array();
@@ -370,7 +379,7 @@ class Admin extends CI_Controller {
 		$buy_book = array();
 		foreach ($buyer_info as $buyer) {
 			$username = $buyer['subscriber'];
-			$query_str = "SELECT book.id,book.name,book.price,book.uploader,user.phone,user.id AS user_id FROM book 
+			$query_str = "SELECT book.id,book.name,book.price,book.uploader,user.dormitory,user.phone,user.id AS user_id FROM book 
 			INNER JOIN user ON book.uploader = user.username $common_condition AND subscriber = '$username'";
 			$buy_book[$username] = $this->db->query($query_str)->result();
 		}

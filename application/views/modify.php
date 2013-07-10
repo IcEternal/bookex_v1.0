@@ -29,6 +29,12 @@
   		<?php echo form_error('student_number'); ?>
 	</div>
 <?php endif; ?>
+<?php if (form_error('dormitory') != ''): ?>
+	<div class="alert alert-error fade in">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<?php echo form_error('dormitory'); ?>
+	</div>
+<?php endif; ?>
 </div>
 
 <div class="container">
@@ -71,6 +77,13 @@
 		    <label class="control-label" for="student_number">学号</label>
 		    <div class="controls">
 		      	<input type="text" id="student_number" name="student_number" value="<?php echo $student_number ?>" placeholder="交大学号">
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="dormitory">寝室</label>
+		    <div class="controls">
+		      	<input type="text" id="dormitory" name="dormitory" value="<?php echo $dormitory ?>" placeholder="寝室">
+		      	<span class="help-block">填写寝室可以让我们更快捷的为您送书与取书。</span>
 		    </div>
 		</div>
 		<div class="control-group">
