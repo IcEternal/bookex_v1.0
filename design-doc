@@ -1,5 +1,102 @@
 /*
 ********************
+  =trade system
+********************
+*/
+
+subscribe_records:
+	id 
+	book \\书本id
+	subscriber \\预订者id
+	directly \\当面自行交易
+	subscribetime \\预订时间
+	gotit \\如果是委托交易，那么如果我们已经从卖家拿到这本书，就设为true;如果是自行交易，直接设为true
+	remarks \\备注
+	
+cancelled_subscribe:
+	id 
+	book \\书本id
+	subscriber \\预订者id
+	directly \\当面自行交易
+	subscribetime \\预订时间
+	gotit \\如果是委托交易，那么如果我们已经从卖家拿到这本书，就设为true;如果是自行交易，直接设为true
+	remarks \\备注
+
+trade_records:
+	id 
+	book \\书本id
+	subscriber \\预订者id
+	directly \\当面自行交易
+	tradetime \\预订时间
+	deposit \\是存放在我们仓库里的书
+	alipay \\要求通过支付宝或银行卡付款的卖家（现在不用，为以后做拓展）
+	paid \\支付宝或银行卡已付款
+	remarks \\备注
+
+cancelled_trade:
+	id 
+	book \\书本id
+	subscriber \\预订者id
+	directly \\当面自行交易
+	tradetime \\预订时间
+	deposit \\是存放在我们仓库里的书
+	paid \\支付宝或银行卡已付款
+	remarks \\备注
+
+
+
+找到当前正在进行的与某本书相关的记录
+	在subscribe_records中 book = id 
+
+找到当前正在交易并且我们没有拿到的书
+	在subscribe_records中 directly=false AND gotit=false
+
+找到已交易完成但未付款的书
+	在trade_records中 (deposit=true OR alipay=true) AND paid=false 
+
+买家：
+	点击预订，生成一条新subscribe_record
+		directly = false, gotit = false
+		若是自行交易, directly = true, gotit = true
+		subscribetime = now
+
+	点击取消预订
+		将该条记录复制到cancelled_subscribe，然后从subscribe_records中删除
+
+	点击完成交易
+		将该条记录复制到trade_records，然后从subscribe_records中删除，注意不需要gotit字段
+		tradetime = now
+		若directly = false则
+			若卖家是托管卖家 或 要求通过支付宝或银行卡付款的卖家（现在不用，为以后做拓展），那么(deposit = true 或 alipay = true), paid = false
+
+卖家：
+	点击取消预订
+		将该条记录复制到cancelled_subscribe，然后从subscribe_records中删除
+
+	点击完成交易
+		若directly = true, 则
+			将该条记录复制到trade_records，然后从subscribe_records中删除，注意不需要gotit字段
+			tradetime = now
+		若directly = false，则gotit = true
+
+管理员：
+	点击 已拿到书本
+		gotit = true
+
+	点击 完成交易
+		将该条记录复制到trade_records，然后从subscribe_records中删除，注意不需要gotit字段
+		tradetime = now
+		若directly = false则
+			若卖家是托管卖家 或 要求通过支付宝或银行卡付款的卖家（现在不用，为以后做拓展），那么(deposit = true 或 alipay = true), paid = false
+
+	点击付款完成
+		paid = true
+	
+
+
+
+/*
+********************
   =user interface
 ********************
 */
