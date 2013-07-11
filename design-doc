@@ -10,7 +10,7 @@ order_list
 	buyer_id
 	start_time //预订时间，可以作为订单号
 	finish_time //3. tradeSucc canceledBySaler canceledByBuyer canceledByAdmin 这几状态出现时的时间
-	trade_method //自行交易1 委托交易0
+	trade_method //自行交易0 委托交易1
 	trade_status // 11.subscribe 21.gotBook 31 tradeSucc 32 canceledBySaler  33 canceledByBuyer  34 canceledByAdmin
 	paid // 是否给卖家钱了？默认false
 	remark //备注
@@ -118,7 +118,10 @@ NOTICE:
 	2.修改（书本基本信息、分类）、删除、批量删除
 
 交易管理：
-	显示当前交易情况，包括自行交易。可以进行的操作：取消交易、完成交易。
+	显示当前交易情况，所有的交易订单，管理员可以管理subscribe 和 gotBook 状态的书。
+	可以进行的操作：取消交易、完成交易、设置gotBook、设置paid。
+	有gotBook并paid按钮
+	
 
 
 /*
