@@ -18,6 +18,7 @@ class Book_model extends CI_Model {
 	}
 
 	function update_subscriber($book_id, $new_sub) {
+
 		$this->db->where('id', $book_id);
 		$arr = array(
 			'subscriber' => $new_sub
@@ -27,6 +28,14 @@ class Book_model extends CI_Model {
 		}
 		$this->db->update('book', $arr);
 		$this->db->query("UPDATE book SET subscribetime = now() WHERE id = \"$book_id\"");
+		//new order or cancel order
+		if ($new_sub == 'N') {
+			$this->load->model('order_model');
+			$this->order_model->closeOrder($book_id,3);//3 means cancel
+		}else{
+			$this->load->model('order_model');
+			$this->order_model->createOrder($book_id,1);
+		}
 	}
 
 	function use_phone($book_id) {
@@ -35,6 +44,9 @@ class Book_model extends CI_Model {
 			'use_phone' => true
 		);
 		$this->db->update('book', $arr);
+		$this->load->model('order_model');
+		$this->order_model->changeTradeMethod($book_id,2);
+		//use_phone execute after update_subscriber,so use changeTradeMethod
 	}
 
 	function add_book() {
@@ -96,6 +108,8 @@ class Book_model extends CI_Model {
 	}
 
 	function book_finish($id) {
+		$this->load->model('order_model');
+		$this->order_model->closeOrder($id,2);
 		return $this->db->query("UPDATE book SET finishtime = now() WHERE id = \"$id\"");
 	}
 
@@ -308,5 +322,5 @@ class Book_model extends CI_Model {
 		$phone = $row->phone;
 		return $phone;
 	}
-	
+
 }

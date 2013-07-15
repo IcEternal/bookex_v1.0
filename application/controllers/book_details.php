@@ -37,9 +37,7 @@ class Book_details extends CI_Controller {
 			$this->load_page($book_id, '您不是本书的上传者', false);
 			return;
 		}
-
 		$this->book_model->update_subscriber($book_id, 'N');
-
 		$this->load_page($book_id, '成功取消订单！', true);
 	}
 
@@ -62,6 +60,7 @@ class Book_details extends CI_Controller {
 	}
 
 	function order($book_id) {
+		
 		$this->load->model('book_model');
 		if ($this->book_model->is_book_exist($book_id) <= 0) {
 			#book is not exist
