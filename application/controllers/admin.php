@@ -3,7 +3,7 @@
 class Admin extends CI_Controller {
 	function index()
 	{$this->db->where('del !=',TRUE);
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 		$data = array();
 		//书籍统计信息
 		$book_result = $this->db->select('count(id) AS book_num')->where('del !=',TRUE)->from('book')->get()->result();
@@ -54,7 +54,7 @@ class Admin extends CI_Controller {
 	function book()
 	{
 		//权限控制
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 
 		//导入model
 		$this->load->model('admin_model');
@@ -110,7 +110,7 @@ class Admin extends CI_Controller {
 	function book_classify()
 	{
 		//权限控制
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 
 		//导入model
 		$this->load->model('admin_model');
@@ -158,7 +158,7 @@ class Admin extends CI_Controller {
 	//url 传递书本id
 	function book_modify()
 	{
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$data = array();
@@ -209,7 +209,7 @@ class Admin extends CI_Controller {
 
 	function book_delete()
 	{
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$this->admin_model->book_delete($id);
@@ -217,14 +217,14 @@ class Admin extends CI_Controller {
 
 	function book_hasit()
 	{
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$this->admin_model->book_hasit($id);
 	}
 	function book_trade()
 	{
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$this->admin_model->book_trade($id);
@@ -233,7 +233,7 @@ class Admin extends CI_Controller {
 	function user()
 	{
 		//权限控制
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 
 		//导入model
 		$this->load->model('admin_model');
@@ -282,7 +282,7 @@ class Admin extends CI_Controller {
 	}
 
 	function user_modify(){
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$data = array();
@@ -330,6 +330,9 @@ class Admin extends CI_Controller {
 	}
 
 	function modify_book_class(){
+		
+		//权限控制;
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 		$book_id = $_GET['book_id'];
 		$this->db->set('class',$_GET['classname']);
 		$this->db->where('id',$book_id);
@@ -348,8 +351,8 @@ class Admin extends CI_Controller {
 
 	function trade()
 	{
-		//权限控制
-		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		//权限控制;
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 
 		//导入model
 		$this->load->model('admin_model');
