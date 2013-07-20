@@ -58,7 +58,7 @@ class Book_details extends CI_Controller {
 		}
 
 		$this->book_model->update_subscriber($book_id, 'N');
-		$this->load_page($book_id, '成功取消订单！', true);
+		redirect('site/userspace');	
 	}
 
 	function order($book_id) {
