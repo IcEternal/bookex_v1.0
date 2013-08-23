@@ -2,7 +2,7 @@
 
 class Book_details extends CI_Controller {
 
-	private function load_page($book_id, $message, $is_succ) {
+	function load_page($book_id, $message, $is_succ) {
 		$data['page'] = 'book_details';
 		$res = $this->book_model->get_book_infomation($book_id);
 		$data['info']['info'] = $res;
