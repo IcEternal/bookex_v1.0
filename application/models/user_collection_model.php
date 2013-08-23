@@ -2,25 +2,28 @@
 
 class User_collection_model extends CI_Model {
 
+	var $username;
+
 	function __construct() {
 		parent::__construct();
+		$this->username = $this->session->userdata('username');
 	}
 
-	function condition($username, $book_id) {
-		$this->db->where('username', $username);
+	function condition($book_id) {
+		$this->db->where('username', $this->username);
 		$this->db->where('book_id', $book_id);
 	}
 
-	function settime($username, $book_id, $which) {
-		$this->db->query("UPDATE user_collection SET $which = now() WHERE username = \"$username\" AND book_id = $book_id");
+	function settime($book_id, $which) {
+		$this->db->query("UPDATE user_collection SET $which = now() WHERE username = \"$this->username\" AND book_id = $book_id");
 	}
 
-	function collect($username, $book_id) {
-		$this->condition($username, $book_id);
+	function collect($book_id) {
+		$this->condition($book_id);
 		$query = $this->db->get('user_collection');
 
 		if ($query->num_rows) {
-			$this->condition($username, $book_id);
+			$this->condition($book_id);
 			$arr = array(
 				'status' => 1
 			);
@@ -28,29 +31,29 @@ class User_collection_model extends CI_Model {
 		}
 		else {
 			$arr = array(
-				'username' => $username,
+				'username' => $this->username,
 				'book_id' => $book_id,
 				'status' => 1
 			);
 			$this->db->insert('user_collection', $arr);
-			$this->settime($username, $book_id, "begintime");
+			$this->settime($book_id, "begintime");
 		}
 	}
 
-	function cancel_collect($username, $book_id) {
-		$this->condition($username, $book_id);
+	function cancel_collect($book_id) {
+		$this->condition($book_id);
 		$query = $this->db->get('user_collection');
 
-		$this->condition($username, $book_id);
+		$this->condition($book_id);
 		$arr = array(
 			'status' => 0
 		);
 		$this->db->update('user_collection', $arr);
-		$this->settime($username, $book_id, "endtime");
+		$this->settime($book_id, "endtime");
 	}
 
-	function find($username, $book_id) {
-		$this->condition($username, $book_id);
+	function find($book_id) {
+		$this->condition($book_id);
 		$query = $this->db->get('user_collection');
 
 		if ($query->num_rows) {

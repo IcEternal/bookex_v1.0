@@ -81,7 +81,7 @@
               </a>
             </p>
             <p>
-              <a href="<?php echo site_url('book_details/user_cancel_collect') ?>/<?php echo $user?>/<?php echo $item->id ?>">
+              <a href="<?php echo site_url('book_details/user_cancel_collect') ?>/<?php echo $item->id ?>">
                 取消收藏
               </a>
             </p>
