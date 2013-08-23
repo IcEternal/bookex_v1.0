@@ -299,14 +299,24 @@ class Book_model extends CI_Model {
 		}
 	}
 
-	function get_phone_by_book_id($id) {
+	function get_uploader_by_id($id) {
 		$query = $this->db->select('uploader')->from('book')->where('id', $id)->get()->result();
 		$row = $query[0];
 		$uploader = $row->uploader;
+		return $uploader;
+	}
+
+	function get_phone_by_book_id($id) {
+		$uploader = $this->get_uploader_by_id($id);
 		$query = $this->db->select('phone')->where('username', $uploader)->from('user')->get()->result();
 		$row = $query[0];
 		$phone = $row->phone;
 		return $phone;
+	}
+
+	function is_uploader($book_id) {
+		if ($this->session->userdata('username') == $this->get_uploader_by_id($book_id)) return true;
+		return false;
 	}
 	
 }

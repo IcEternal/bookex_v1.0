@@ -229,7 +229,7 @@ class Book_upload extends CI_Controller {
 	}
 
 	
-		function fast_upload_validation($bc_id) {
+	function fast_upload_validation($bc_id) {
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div>', '</div>');
@@ -284,7 +284,7 @@ class Book_upload extends CI_Controller {
 			$data['q_error'] = "无法根据您所提供的信息找到相应书籍";
 		}
 		$this->load->model('user_model');  
-    $data['use_or_not'] = $this->user_model->get_use_phone();
+    	$data['use_or_not'] = $this->user_model->get_use_phone();
 		$this->load->view('includes/template', $data);
 	}
 
@@ -307,7 +307,7 @@ class Book_upload extends CI_Controller {
 			$data['data']['title'] = '上传书本';
 			$data['isbn_error'] = "无法根据您所提供的ISBN找到相应书籍";
 			$this->load->model('user_model');  
-    	$data['use_or_not'] = $this->user_model->get_use_phone();
+    		$data['use_or_not'] = $this->user_model->get_use_phone();
 			$this->load->view('includes/template', $data);
 		}
 	}
@@ -323,7 +323,7 @@ class Book_upload extends CI_Controller {
 
 		$data['main_content'] = 'book_fast_upload';
 		$this->load->model('user_model');  
-    $data['use_or_not'] = $this->user_model->get_use_phone();
+    	$data['use_or_not'] = $this->user_model->get_use_phone();
 		$this->load->view('includes/template', $data);
 	}	
 }

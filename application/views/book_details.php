@@ -16,6 +16,7 @@
 					$show = $info->show_phone;
 					$use = $info->use_phone;
 					$err = $err_mes;
+					$del = $info->del;
 					$is_success = $is_succ;
 ?>
 
@@ -94,6 +95,11 @@
 						<a class = "btn disabled"> 已交易 </a>
 						<?php
 					}
+					else if ($del) {
+						?>
+						<a class = "btn disabled"> 已删除 </a>
+						<?php
+					}
 					else if ($st == true) {
 						if ($uploader == $user) {
 							if ($subscriber == 'N') {
@@ -165,6 +171,33 @@
 					</a>
 				<?php } ?>
 
+				<?php
+					if ($st) { 
+						if ($collect == 0) {
+				?>
+					<a href="<?php echo site_url('book_details/user_collect') ?>/<?php echo $user ?>/<?php echo $id ?>" class="pull-right"> 
+						<span style = "font-size: 12px; color: #3300cc;"> 
+							收藏
+						<span>
+					</a>
+				<?php
+					} else {
+				?>
+					<a href="<?php echo site_url('book_details/user_cancel_collect') ?>/<?php echo $user ?>/<?php echo $id ?>" class="pull-right"> 
+						<span style = "font-size: 12px; color: #7e7e7e;"> 
+							取消收藏
+						<span>
+					</a>
+				<?php
+					}
+				?>
+				<?php 
+				} else { 
+				?>
+						<span style = "font-size: 12px;" class="pull-right"> 
+							登陆后可收藏此书
+						<span>
+				<?php } ?>
 
 			</legend>
 			<div class = "row-fluid">
