@@ -222,12 +222,41 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model');
 		$this->admin_model->book_hasit($id);
 	}
+
 	function book_trade()
 	{
 		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$this->admin_model->book_trade($id);
+	}
+
+	function book_cancel()
+	{
+		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		$id = $this->uri->segment(3);
+		$this->load->model('admin_model');
+		$this->admin_model->book_cancel($id);
+	}
+
+	function book_pay()
+	{
+		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		$id = $this->uri->segment(3);
+		$this->load->model(order_model);
+		$this->order_model->giveMoneyToSaler($id);
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	
+	function pay_get_book()
+	{
+		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+		$id = $this->uri->segment(3);
+		$this->load->model(order_model);
+		$this->order_model->giveMoneyToSaler($id);
+		$this->book_hasit();
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	function user()
@@ -356,44 +385,86 @@ class Admin extends CI_Controller {
 
 		//导入model
 		$this->load->model('admin_model');
+		$this->load->model("order_model");
 
-		//筛选出可以交易的书的统一条件
-		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0 AND del != TRUE";
-		//卖家信息
-		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.dormitory,user.phone,user.remarks,user.id AS user_id 
-		FROM book INNER JOIN user ON 
-		book.uploader = user.username $common_condition group by uploader";
-		$saler_info = $this->db->query($query_str)->result_array();
-		//获取每个卖家的详细信息
-		$sale_book = array();
-		foreach ($saler_info as $saler) {
-			$username = $saler['uploader'];
-			$query_str = "SELECT book.id,book.name,book.price,book.subscriber,user.phone,user.dormitory,user.id AS user_id FROM book 
-			INNER JOIN user ON book.subscriber = user.username $common_condition AND uploader = '$username'";
-			$sale_book[$username] = $this->db->query($query_str)->result();
+		$condition = 'trade_method = 1 AND trade_status = 1';
+
+		$saler_query = $this->db->query("SELECT order_list.saler_id,
+			COUNT(order_list.book_id)AS book_num,SUM(book.price) AS sum_price
+			FROM order_list INNER JOIN book ON order_list.book_id = book.id WHERE $condition
+			GROUP BY saler_id");
+		$saler_list = $saler_query->result_array();
+		foreach ($saler_list as $index => $saler) {
+			$saler_id = $saler['saler_id'];
+			$order_list_query = $this->db->query("SELECT id FROM order_list WHERE $condition");
+			$saler_list[$index]['order_list'] = $order_list_query->result_array();
 		}
 
-		//买家信息
-		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.dormitory,user.phone,user.remarks,user.id AS user_id 
-		FROM book INNER JOIN user ON 
-		book.subscriber = user.username $common_condition group by subscriber";
-		$buyer_info = $this->db->query($query_str)->result_array();
-		//获取每个买家的详细信息
-		$buy_book = array();
-		foreach ($buyer_info as $buyer) {
-			$username = $buyer['subscriber'];
-			$query_str = "SELECT book.id,book.name,book.price,book.uploader,user.dormitory,user.phone,user.id AS user_id FROM book 
-			INNER JOIN user ON book.uploader = user.username $common_condition AND subscriber = '$username'";
-			$buy_book[$username] = $this->db->query($query_str)->result();
-		}
 
 		//页面显示
 		$data = array(
-			'saler_info'=>$saler_info,
-			'sale_book'=>$sale_book,
-			'buyer_info'=>$buyer_info,
-			'buy_book'=>$buy_book,
+			'saler_list'=>$saler_list,
 			);
 		$this->load->view('admin/trade',$data);
+	}
+
+	function order()
+	{
+		//权限控制
+		if ($this->session->userdata('username') != 'jtxpzyzhc') redirect('login');
+
+		//导入model
+		$this->load->model('admin_model');
+		$this->load->model('pagination_model');
+		$this->load->model('order_model');
+
+		//从页面获取数据
+		//貌似get方法获取不存在的 键，返回的值为0,
+		//所以通过判断语句设置 应该从get中得到的值
+		$saler = $this->input->get('saler')?$this->input->get('saler'):0;
+		$buyer = $this->input->get('buyer')?$this->input->get('buyer'):0;
+		$offset = $this->input->get('offset')?$this->input->get('offset'):0;
+
+		//进行搜索
+		$search_data = array(
+		"saler"=>	$saler ,
+		"buyer"=>	$buyer 
+			);
+		//参数：搜索内容，偏移量，每页显示数
+		//返回：总记录数，搜索结果数组
+		list($total,$order_list) = $this->admin_model->order_search($search_data,$offset,10);
+
+		//页码导航
+		$link_config = array(
+			'total'=>$total,
+			'offset'=>$offset,
+			'search_data'=>$search_data,
+			'pre_url'=>'admin/order',
+			);
+		$this->pagination_model->initialize($link_config);
+		$link_array = $this->pagination_model->create_link();
+
+		//页面显示
+		$data = array(
+			'order_list'=>$order_list,
+			'link_array'=>$link_array,
+			'search_data'=>$search_data,
+			'total_rows'=>$total,
+			);
+		$this->load->view('admin/order',$data);
+	}
+
+
+	function get_trade_remarks($book_id)
+	{
+		$this->load->model("order_model");
+		$remarks = $this->order_model->getTradeRemarks($book_id);
+		return $remarks;
+	}
+
+	function set_trade_remarks($book_id,$remarks)
+	{
+		$this->load->model("order_model");
+		$this->order_model->setTradeRemarks($book_id,$remarks);
 	}
 }

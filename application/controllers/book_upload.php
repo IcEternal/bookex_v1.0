@@ -225,6 +225,7 @@ class Book_upload extends CI_Controller {
 		else {
 			$err = 6;
 		}
+		
 		redirect("site/userspace/$err");
 	}
 

@@ -196,18 +196,37 @@ class Admin_model extends CI_Model {
 		$data = array('has'=>'1');
 		$this->db->where('id', $id);
 		$this->db->update('book',$data);
+		$this->load->model(order_model);
+		$this->order_model->getBookFromSaler($id);
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	function book_trade($id)
 	{
-
 		$data = array('finishtime' => date("y-m-d h:i:s"));
 		$this->db->where('id',$id);
 		$this->db->update('book',$data);
+
+		$this->load->model(order_model);
+		$this->order_model->closeOrder($id,2);
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	function book_cancel($id)
+	{
+		// $data = array(
+		// 	'finishtime' => date("y-m-d h:i:s"),
+		// 	'subscriber' => 'N'
+		// 	);
+		// $this->db->where('id',$id);
+		// $this->db->update('book',$data);
+
+		// $this->load->model(order_model);
+		// $this->order_model->closeOrder($id,3);
+		$this->load->model('book_model');
+		$this->book_model->update_subscriber($id, 'N');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
 	
 
 	function get_user($id) {
@@ -255,5 +274,26 @@ class Admin_model extends CI_Model {
 			return array('status'=>'1','message'=>'修改成功！');
 		}
 	}
+
+	function order_search($data,$offset,$limit)
+	{
+		// $this->order_search_condition($data);
+		$pre_search = $this->db->query("SELECT id FROM order_list");
+		$total_rows = $pre_search->num_rows();
+
+		$order_query = $this->db->query("SELECT * FROM order_list ORDER BY id DESC LIMIT $offset,$limit");
+		$order_result = $order_query->result_array();
+		return array($total_rows,$order_result);
+	}
+
+	// function order_search_condition($data)
+	// {
+		// $this->db->like('username',$data['username']);
+		// $this->db->like('phone',$data['phone']);
+		// $this->db->like('email',$data['email']);
+		// $this->db->like('student_number',$data['stu_num']);
+	// }
+
+	
 
 }

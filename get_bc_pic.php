@@ -1,7 +1,7 @@
 <?php  
 if(isset($_GET['id'])) {  
 	$id = $_GET['id'];
-	$connect = MYSQL_CONNECT("172.16.6.107", "bookex", "Xy!SpJZlpS2m") or die("Unable to connect to MySQL server");
+	$connect = MYSQL_CONNECT("bookex", "root", "root") or die("Unable to connect to MySQL server");
 	mysql_select_db("bookex") or die("Unable to select database");
 
 	if($id)

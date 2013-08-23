@@ -45,6 +45,13 @@
 		  		<tr><td>买家数目</td><td><?php echo $buyer_num;?></td></tr>
 		  		<tr><td>卖家数目</td><td><?php echo $saler_num;?></td></tr>
 		  	</table>
+
+		  	<a class="btn btn-primary" href="<?php echo site_url().'/admin/order';?>">order manager</a>
+		  	<table class="table table-bordered table-hover">
+		  		<tr><td>交易双方</td><td>人数</td></tr>
+		  		<tr><td>买家数目</td><td><?php echo $buyer_num;?></td></tr>
+		  		<tr><td>卖家数目</td><td><?php echo $saler_num;?></td></tr>
+		  	</table>
 		  	
 		  </div>
 		</div>
