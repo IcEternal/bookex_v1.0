@@ -10,7 +10,7 @@ class Book_details extends CI_Controller {
 		$data['info']['is_succ'] = $is_succ;
 		$data['info']['title'] = '详细书本信息';
 		$data['info']['phone'] = $this->book_model->get_phone_by_book_id($res->id);
-		$data['info']['collect'] = $this->user_collection_model->find($this->session->userdata('username'), $book_id);
+		$data['info']['collect'] = $this->user_collection_model->find($book_id);
 		$this->load->view('includes/template_book_details', $data);
 	}
 
