@@ -58,6 +58,7 @@
           	</a>
             <ul class="dropdown-menu">
 					    <li><a href="<?php echo site_url('site/userspace'); ?>">用户空间</a></li>
+					    <li><a href="<?php echo site_url('site/user_collection'); ?>">书本收藏夹</a></li>
 					    <li><a href="<?php echo site_url('login/modify') ?>">修改个人信息</a></li>
 					    <li class="divider"></li>
 					    <li><a href="<?php echo site_url('login/logout'); ?>">登出</a></li>

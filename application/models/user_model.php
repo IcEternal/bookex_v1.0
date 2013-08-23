@@ -63,4 +63,7 @@ class User_model extends CI_Model {
 		$this->db->update('user', $arr);
 	}
 
+	function is_admin() {
+		return ($this->session->userdata('username') == 'zhcpzyjtx');
+	}
 }

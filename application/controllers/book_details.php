@@ -2,7 +2,7 @@
 
 class Book_details extends CI_Controller {
 
-	function load_page($book_id, $message, $is_succ) {
+	private function load_page($book_id, $message, $is_succ) {
 		$data['page'] = 'book_details';
 		$res = $this->book_model->get_book_infomation($book_id);
 		$data['info']['info'] = $res;
@@ -10,11 +10,13 @@ class Book_details extends CI_Controller {
 		$data['info']['is_succ'] = $is_succ;
 		$data['info']['title'] = '详细书本信息';
 		$data['info']['phone'] = $this->book_model->get_phone_by_book_id($res->id);
+		$data['info']['collect'] = $this->user_collection_model->find($this->session->userdata('username'), $book_id);
 		$this->load->view('includes/template_book_details', $data);
 	}
 
 	function book($book_id) {
 		$this->load->model('book_model');
+		$this->load->model('user_collection_model');
 		if ($this->book_model->is_book_exist($book_id) <= 0) {
 			#book is not exist
 			return;
@@ -91,5 +93,17 @@ class Book_details extends CI_Controller {
 		$this->load->model('book_model');
 		$this->book_model->use_phone($book_id);
 		$this->load_page($book_id, '订购成功！手机号已在图片下方显示。', true);
+	}
+
+	function user_collect($username, $book_id) {
+		$this->load->model('user_collection_model');
+		$this->user_collection_model->collect($username, $book_id);
+		redirect("book_details/book/$book_id");
+	}
+
+	function user_cancel_collect($username, $book_id) {
+		$this->load->model('user_collection_model');
+		$this->user_collection_model->cancel_collect($username, $book_id);
+		redirect($_SERVER["HTTP_REFERER"]); 
 	}
 }
