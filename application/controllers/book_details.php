@@ -95,15 +95,15 @@ class Book_details extends CI_Controller {
 		$this->load_page($book_id, '订购成功！手机号已在图片下方显示。', true);
 	}
 
-	function user_collect($username, $book_id) {
+	function user_collect($book_id) {
 		$this->load->model('user_collection_model');
-		$this->user_collection_model->collect($username, $book_id);
+		$this->user_collection_model->collect($book_id);
 		redirect("book_details/book/$book_id");
 	}
 
-	function user_cancel_collect($username, $book_id) {
+	function user_cancel_collect($book_id) {
 		$this->load->model('user_collection_model');
-		$this->user_collection_model->cancel_collect($username, $book_id);
+		$this->user_collection_model->cancel_collect($book_id);
 		redirect($_SERVER["HTTP_REFERER"]); 
 	}
 }
