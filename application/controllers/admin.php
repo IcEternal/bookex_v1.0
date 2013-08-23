@@ -4,7 +4,7 @@ class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->auth->admin();
+		if ($this->session->userdata('username') != 'zhcpzyjtx') redirect('login');
 	}
 
 	function index()
