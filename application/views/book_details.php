@@ -175,7 +175,7 @@
 					if ($st) { 
 						if ($collect == 0) {
 				?>
-					<a href="<?php echo site_url('book_details/user_collect') ?>/<?php echo $user ?>/<?php echo $id ?>" class="pull-right"> 
+					<a href="<?php echo site_url('book_details/user_collect') ?>/<?php echo $id ?>" class="pull-right"> 
 						<span style = "font-size: 12px; color: #3300cc;"> 
 							收藏
 						<span>
@@ -183,7 +183,7 @@
 				<?php
 					} else {
 				?>
-					<a href="<?php echo site_url('book_details/user_cancel_collect') ?>/<?php echo $user ?>/<?php echo $id ?>" class="pull-right"> 
+					<a href="<?php echo site_url('book_details/user_cancel_collect') ?>/<?php echo $id ?>" class="pull-right"> 
 						<span style = "font-size: 12px; color: #7e7e7e;"> 
 							取消收藏
 						<span>
