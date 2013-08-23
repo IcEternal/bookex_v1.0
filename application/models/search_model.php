@@ -164,7 +164,7 @@
 			if ($class=="") $class="所有书本";
 			return array("result"=>$result,'class'=>$class,'page'=>$page, 'count'=>$count);
 		}
-
+		
 		function getUserCollection() {
 			$this->load->helper('safe');
 			jd_stopattack();
@@ -172,7 +172,7 @@
 			$user = $this->session->userdata('username');
 			$query = "SELECT book_id FROM user_collection WHERE (username = \"$user\" AND status = 1)";
 			$result = $this->db->query($query)->result();
-			$ans = [];
+			$ans = array();
 			foreach ($result as $row) {
 				$i = $row->book_id;
 				$query = "SELECT $fields FROM book WHERE (id = $i)";
