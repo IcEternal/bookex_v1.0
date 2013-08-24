@@ -2,6 +2,12 @@
 
 class Book_details extends CI_Controller {
 
+	function __construct() {
+		parent::__construct();
+		$this->load->model('book_model');
+		$this->load->model('user_collection_model');
+	}
+
 	function load_page($book_id, $message, $is_succ) {
 		$data['page'] = 'book_details';
 		$res = $this->book_model->get_book_infomation($book_id);
@@ -15,8 +21,6 @@ class Book_details extends CI_Controller {
 	}
 
 	function book($book_id) {
-		$this->load->model('book_model');
-		$this->load->model('user_collection_model');
 		if ($this->book_model->is_book_exist($book_id) <= 0) {
 			#book is not exist
 			return;
@@ -25,7 +29,7 @@ class Book_details extends CI_Controller {
 	}
 
 	function uploader_cancel($book_id) {
-
+		$this->auth->uploader();
 		$this->load->model('book_model');
 		if ($this->book_model->is_book_exist($book_id) <= 0) {
 			#book is not exist
@@ -46,6 +50,7 @@ class Book_details extends CI_Controller {
 	}
 
 	function user_cancel($book_id) {
+		$this->auth->subscriber();
 		$this->load->model('book_model');
 		if ($this->book_model->is_book_exist($book_id) <= 0) {
 			#book is not exist
@@ -56,6 +61,11 @@ class Book_details extends CI_Controller {
 
 		if ($user != $book_info->subscriber) {
 			$this->load_page($book_id, '您还未订购该书', false);
+			return;
+		}
+
+		if ($book_info->finishtime != 0) {
+			$this->load_page($book_id, '该书已交易', false);
 			return;
 		}
 
@@ -80,6 +90,11 @@ class Book_details extends CI_Controller {
 				return;
 			}
 
+			if ($book_info->finishtime != 0) {
+				$this->load_page($book_id, '该书已交易', false);
+				return;
+			}
+
 			$this->book_model->update_subscriber($book_id, $user);
 			$this->load_page($book_id, '订购成功！工作人员将于1天内于您联系', true);
 		}
@@ -90,6 +105,7 @@ class Book_details extends CI_Controller {
 	}
 
 	function use_phone($book_id) {
+		$this->auth->subscriber();
 		$this->load->model('book_model');
 		$this->book_model->use_phone($book_id);
 		$this->load_page($book_id, '订购成功！手机号已在图片下方显示。', true);
