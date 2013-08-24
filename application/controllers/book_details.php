@@ -29,7 +29,7 @@ class Book_details extends CI_Controller {
 	}
 
 	function uploader_cancel($book_id) {
-		$this->auth->uploader();
+		$this->auth->uploader($book_id);
 		$this->load->model('book_model');
 		if ($this->book_model->is_book_exist($book_id) <= 0) {
 			#book is not exist
@@ -50,7 +50,7 @@ class Book_details extends CI_Controller {
 	}
 
 	function user_cancel($book_id) {
-		$this->auth->subscriber();
+		$this->auth->subscriber($book_id);
 		$this->load->model('book_model');
 		if ($this->book_model->is_book_exist($book_id) <= 0) {
 			#book is not exist
@@ -105,7 +105,7 @@ class Book_details extends CI_Controller {
 	}
 
 	function use_phone($book_id) {
-		$this->auth->subscriber();
+		$this->auth->subscriber($book_id);
 		$this->load->model('book_model');
 		$this->book_model->use_phone($book_id);
 		$this->load_page($book_id, '订购成功！手机号已在图片下方显示。', true);

@@ -84,7 +84,7 @@ class Book_upload extends CI_Controller {
 	}
 
 	function modify($id) {
-		$this->auth->uploader();
+		$this->auth->uploader($id);
 		$data['main_content'] = 'book_modify';
 		$this->load->model('book_model');
 		$query = $this->book_model->get_book($id);
@@ -145,7 +145,7 @@ class Book_upload extends CI_Controller {
 	}
 
 	function modify_validation($id) {
-		$this->auth->uploader();
+		$this->auth->uploader($id);
 		$this->load->model('book_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div>', '</div>');
