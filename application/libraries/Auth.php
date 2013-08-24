@@ -24,8 +24,7 @@ class Auth {
 	}
 
 	function auth_denied() {
-		// redirect('login');
-		echo "$this->CI->session->userdata('username')";
+		redirect('login');
 	}
 
 	function admin() {
