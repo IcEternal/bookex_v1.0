@@ -302,8 +302,13 @@ class Book_model extends CI_Model {
 	function get_uploader_by_id($id) {
 		$query = $this->db->select('uploader')->from('book')->where('id', $id)->get()->result();
 		$row = $query[0];
-		$uploader = $row->uploader;
-		return $uploader;
+		return $row->uploader;
+	}
+
+	function get_subscriber_by_id($id) {
+		$query = $this->db->select('subscriber')->from('book')->where('id', $id)->get()->result();
+		$row = $query[0];
+		return $row->subscriber;
 	}
 
 	function get_phone_by_book_id($id) {
@@ -316,6 +321,11 @@ class Book_model extends CI_Model {
 
 	function is_uploader($book_id) {
 		if ($this->session->userdata('username') == $this->get_uploader_by_id($book_id)) return true;
+		return false;
+	}
+
+	function is_subscriber($book_id) {
+		if ($this->session->userdata('username') == $this->get_subscriber_by_id($book_id)) return true;
 		return false;
 	}
 	

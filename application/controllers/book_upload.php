@@ -84,6 +84,7 @@ class Book_upload extends CI_Controller {
 	}
 
 	function modify($id) {
+		$this->auth->uploader();
 		$data['main_content'] = 'book_modify';
 		$this->load->model('book_model');
 		$query = $this->book_model->get_book($id);
@@ -136,7 +137,6 @@ class Book_upload extends CI_Controller {
 	 //  {
 	 //   return true;
 	 //  }
-
 		if (($_FILES['userfile']['error'] > 0 && $_FILES['userfile']['error'] < 4) || $_FILES['userfile']['size'] > 1048576) {
 			$this->form_validation->set_message('do_modify', '图片上传失败，文件格式必须为jpg,gif,png，大小不得超过1M');
 			return false;
@@ -145,6 +145,7 @@ class Book_upload extends CI_Controller {
 	}
 
 	function modify_validation($id) {
+		$this->auth->uploader();
 		$this->load->model('book_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div>', '</div>');
@@ -205,6 +206,7 @@ class Book_upload extends CI_Controller {
 	}
 
 	function book_delete($id) {
+		$this->auth->uploader($id);
 		$this->load->model('book_model');
 		$err = $this->book_model->book_delete($id);
 		if ($err) {
@@ -217,6 +219,7 @@ class Book_upload extends CI_Controller {
 	}
 
 	function book_finish($id) {
+		$this->auth->uploader_or_subscriber($id);
 		$this->load->model('book_model');
 		$err = $this->book_model->book_finish($id);
 		if ($err) {
