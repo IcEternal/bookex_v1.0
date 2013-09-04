@@ -24,8 +24,8 @@ $count = 20;
 ?>
 
 <div class="container"  style="width:<?php echo $width * 4 + $blank * 3; ?>px;">
-	<legend>
-		<small> 推荐书目</small>
+	<legend style="text-align: left">
+		<small>推荐书目</small>
 	</legend>
 	<div id="recommend" class="carousel slide">
 		<ol class="carousel-indicators">
