@@ -117,8 +117,8 @@ $count = 20;
 
 			<?php } ?>
 		</div>
-			<a class="carousel-control left" href="#recommend" data-slide="prev">&lsaquo;</a>
-			<a class="carousel-control right" href="#recommend" data-slide="next">&rsaquo;</a>
+			<a class="carousel-control left" href="#recommend" data-slide="prev" style="left:-15px">&lsaquo;</a>
+			<a class="carousel-control right" href="#recommend" data-slide="next" style="right:-15px">&rsaquo;</a>
 		</div>
 	</div>
 </div>
