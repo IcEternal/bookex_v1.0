@@ -9,7 +9,7 @@ class Login extends CI_Controller {
 	}
 
 	function redirect_to_index() {
-		$this->load->view('index');
+		redirect('welcome/index');
 	}
 
 	function redirect_to() {

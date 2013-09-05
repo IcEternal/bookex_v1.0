@@ -70,7 +70,7 @@ function showItem($item, $blank, $width, $offset){ ?>
 		<div class="carousel-caption" style="width:<?php echo $width-30; ?>px; margin-left: <?php echo $offset ?>px;">
 			<h4 style="font-size: 13px;"><?php 
 				$text = $item->name;
-	            if (strlen($text) > 20) $text = getstr($text, 20).' ...';
+	            if (strlen($text) > 16) $text = getstr($text, 16).' ...';
 	            echo $text;?></h4>
 			<p style = "font-size: 17px; color: #ff0000;">
 					<strong> ￥<?php echo $item->price; ?> </strong>

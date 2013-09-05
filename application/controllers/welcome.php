@@ -5,8 +5,10 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data["first"] = false;
-		if (1>0) {
+		if (!$this->session->userdata('is_logged_in')) {
 			$data["first"] = true;
+		}
+		if (1>0) {
 			$this->load->model('recommend_model');
 			$data["recommend"]=$this->recommend_model->getResult();
 		}
