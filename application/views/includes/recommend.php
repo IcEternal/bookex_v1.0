@@ -66,7 +66,9 @@ function getstr($string, $length, $encoding  = 'utf-8') {
 		}
 function showItem($item, $blank, $width, $offset){ ?>
 	<div class="container" style="height:204px; width:<?php echo $width; ?>px; float:left; margin-left: <?php echo $blank; ?>px; overflow: visible; margin-bottom: 4px;">
-				<img src = "<?php echo base_url('get_data.php?id='.$item->id); ?>" style = "height:100%; margin-left:0px; " />
+		<a href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" >
+			<img src = "<?php echo base_url('get_data.php?id='.$item->id); ?>" style = "height:100%; margin-left:0px; " />
+		</a>
 		<div class="carousel-caption" style="margin-bottom: 4px;overflow: visible; width:<?php echo $width-45; ?>px; margin-left: <?php echo $offset + 8 ?>px; box-shadow: 0px 0px 8px #000; -moz-box-shadow: 0px 0px 8px #000;-webkit-box-shadow: 0px 0px 8px #000;">
 			<h4 style="font-size: 13px;"><?php 
 				$text = $item->name;
