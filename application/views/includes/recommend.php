@@ -1,6 +1,6 @@
 <?php 
-$width=190;
-$blank=30;
+$width=180;
+$blank=45;
 
 function getstr($string, $length, $encoding  = 'utf-8') {   
 		    $string = trim($string);   
@@ -67,10 +67,10 @@ function getstr($string, $length, $encoding  = 'utf-8') {
 function showItem($item, $blank, $width, $offset){ ?>
 	<div class="container" style="height:200px; width:<?php echo $width; ?>px; float:left; margin-left: <?php echo $blank; ?>px;">
 				<img src = "<?php echo base_url('get_data.php?id='.$item->id); ?>" style = "height:100%; margin-left:0px; " />
-		<div class="carousel-caption" style="width:<?php echo $width-30; ?>px; margin-left: <?php echo $offset ?>px;">
+		<div class="carousel-caption" style="width:<?php echo $width-45; ?>px; margin-left: <?php echo $offset + 8 ?>px;">
 			<h4 style="font-size: 13px;"><?php 
 				$text = $item->name;
-	            if (strlen($text) > 16) $text = getstr($text, 16).' ...';
+	            if (strlen($text) > 13) $text = getstr($text, 13).' ...';
 	            echo $text;?></h4>
 			<p style = "font-size: 17px; color: #ff0000;">
 					<strong> ￥<?php echo $item->price; ?> </strong>
@@ -106,9 +106,9 @@ $count = 20;
 					<div class="row">
 						<?php 
 							showItem($result[$i], 20, $width, 0);
-							showItem($result[$i + 1], 30, $width, ($width + $blank));;
-							showItem($result[$i + 2], 30, $width, ($width + $blank) * 2);
-							showItem($result[$i + 3], 30, $width, ($width + $blank) * 3);
+							showItem($result[$i + 1], 45, $width, ($width + $blank));;
+							showItem($result[$i + 2], 45, $width, ($width + $blank) * 2);
+							showItem($result[$i + 3], 45, $width, ($width + $blank) * 3);
 						 ?>
 					</div>
 				</div>
