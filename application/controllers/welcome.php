@@ -2,9 +2,13 @@
 
 class Welcome extends CI_Controller {
 
+	function __construct() {
+		parent::__construct();
+	}
+
 	public function index()
 	{
-		if ($this->useragent->isMobile()) {
+		if (isMobile()) {
 			$this->load->view('mobile');
 		}
 		else {
