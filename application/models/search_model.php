@@ -82,6 +82,22 @@
 			$fields = "id,name,author,price,originprice,publisher,ISBN,description,uploader,subscriber,subscribetime,finishtime,hasimg";
 			if (array_key_exists('page', $_GET)) $page = $_GET['page'];
 			if (array_key_exists('key', $_GET)) $key = $_GET['key'];
+
+			//add to Table search to record user's action
+			if ($this->session->userdata('is_logged_in')) {
+				$user = $this->session->userdata('username');
+			}
+			else {
+				$user = 'N';
+			}
+			$search_arr = array(
+				'haskey' => 1,
+				'key' => $key,
+				'searcher' => $user);
+			$this->db->insert('search', $search_arr);
+			$i = mysql_insert_id();
+			$this->db->query("UPDATE search SET searchtime = now() where id = $i");
+
 			$begin = ($page - 1) * 20;
 			$user = $this->session->userdata('username');
 			$newkey = $this->getKey($key);
@@ -156,6 +172,22 @@
 			$user = $this->session->userdata('username');
 			$order = "order by hasimg DESC, id DESC";
 			if ($class=="所有书本") $class="";
+			
+			//add to Table search to record user's action
+			if ($this->session->userdata('is_logged_in')) {
+				$user = $this->session->userdata('username');
+			}
+			else {
+				$user = 'N';
+			}
+			$search_arr = array(
+				'haskey' => 0,
+				'key' => $class,
+				'searcher' => $user);
+			$this->db->insert('search', $search_arr);
+			$i = mysql_insert_id();
+			$this->db->query("UPDATE search SET searchtime = now() where id = $i");
+
 			$condition = "(class LIKE \"%$class%\" AND del != true AND (subscriber = \"N\" OR subscriber = \"$user\" OR uploader = \"$user\") AND (id > 1) AND (finishtime = \"0000-00-00 00:00:00\"))";
 			$query = "SELECT $fields FROM book WHERE $condition $order LIMIT $begin, 21;";
 			$result = $this->db->query($query)->result();
