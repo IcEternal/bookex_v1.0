@@ -25,6 +25,9 @@ class Book_details extends CI_Controller {
 			#book is not exist
 			return;
 		}
+		$username = "N";
+		if ($this->session->userdata("is_logged_in")) $username = $this->session->userdata("username");
+		$this->book_model->record_id($book_id, $username);
 		$this->load_page($book_id, '', true);
 	}
 

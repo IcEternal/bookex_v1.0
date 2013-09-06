@@ -328,5 +328,10 @@ class Book_model extends CI_Model {
 		if ($this->session->userdata('username') == $this->get_subscriber_by_id($book_id)) return true;
 		return false;
 	}
+
+	//Record when someone see the view of a book.
+	function record_id($book_id, $username){
+		$this->db->query("INSERT INTO book_view (bookid, viewer, viewtime) VALUES (\"$book_id\", \"$username\", now());");
+	}
 	
 }
