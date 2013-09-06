@@ -8,7 +8,12 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		if (isMobile()) {
+		$first = !isset($this->session->userdata('first'));
+		if (isMobile() && $this->session->userdata('first')) {
+			$data = array(
+				'first' => true
+			);
+			$this->session->set_userdata($data);
 			$this->load->view('mobile');
 		}
 		else {
