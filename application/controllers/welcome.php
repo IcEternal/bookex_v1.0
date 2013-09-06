@@ -4,15 +4,20 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$data["first"] = false;
-		if (!$this->session->userdata('is_logged_in')) {
-			$data["first"] = true;
+		if ($this->useragent->isMobile()) {
+			$this->load->view('mobile');
 		}
-		if (1>0) {
-			$this->load->model('recommend_model');
-			$data["recommend"]=$this->recommend_model->getResult();
+		else {
+			$data["first"] = false;
+			if (!$this->session->userdata('is_logged_in')) {
+				$data["first"] = true;
+			}
+			if (1>0) {
+				$this->load->model('recommend_model');
+				$data["recommend"]=$this->recommend_model->getResult();
+			}
+			$this->load->view('index', $data);
 		}
-		$this->load->view('index', $data);
 	}
 
 	function about() {
