@@ -8,8 +8,8 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$first = !isset($this->session->userdata('first'));
-		if (isMobile() && $this->session->userdata('first')) {
+		$first = ($this->session->userdata('first') !== true);
+		if (isMobile() && $first) {
 			$data = array(
 				'first' => true
 			);
