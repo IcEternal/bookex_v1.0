@@ -10,5 +10,14 @@
 <script type="text/javascript">
   $("#phoneInfo").modal('show');
 </script>
+<script type="text/javascript">
+	if ($("#phoneInfo").size()<=0) 
+		$("#shareInfo").modal('show');
+</script>
+<script type="text/javascript">
+  $("#do_not_use_phone").click(function() {
+  	$("#shareInfo").modal('show');
+  });
+</script>
 </body>
 </html>

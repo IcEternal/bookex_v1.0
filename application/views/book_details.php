@@ -55,6 +55,27 @@
 			<?php
 		}
 ?>
+<?php if (($err == '订购成功！工作人员将于1天内于您联系') || ($err == '订购成功！手机号已在图片下方显示。')) { ?>
+	<div class="modal hide fade" id="shareInfo">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h4>订购成功~喜欢这个网站的话请分享一下哈~</h4>
+	  </div>
+	  <div class="modal-body">
+		<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare" style="margin: auto">
+			<a class="bds_renren"></a>
+			<a class="bds_tsina"></a>
+			<a class="bds_qzone"></a>
+			<a class="bds_tqq"></a>
+			<a class="bds_t163"></a>
+			<span class="bds_more"></span>
+		</div>
+	  </div>
+	  <div class="modal-footer">
+	    <a class="btn" data-dismiss="modal" aria-hidden="true">我就不分享！</a>
+	  </div>
+	</div>
+<?php } ?> 
 
 <?php if ($show == true && $err == '订购成功！工作人员将于1天内于您联系') { ?>
 	<div class="modal hide fade" id="phoneInfo">
@@ -69,7 +90,7 @@
 	    <p>如果您不想当面交易,请点击下方的 <strong>委托交易</strong> 按钮, 我们会联系您并送书上门。</p>
 	  </div>
 	  <div class="modal-footer">
-	    <a class="btn" data-dismiss="modal" aria-hidden="true">委托交易</a>
+	    <a class="btn" data-dismiss="modal" aria-hidden="true" id="do_not_use_phone">委托交易</a>
 	    <a href='<?php echo site_url("book_details/use_phone/$id") ?>' class="btn btn-primary">自行当面交易</a>
 	  </div>
 	</div>
@@ -251,11 +272,21 @@
 <script language="javascript" type="text/javascript" src="http://js.users.51.la/15806741.js"></script>
 </div>
 
+
 <!-- Baidu Button BEGIN -->
-<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=2&amp;pos=right&amp;uid=4388338" ></script> 
-<script type="text/javascript" id="bdshell_js"></script> 
-<script type="text/javascript">
+<!-- <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=2&amp;pos=right&amp;uid=4388338" ></script> 
+ 	<script type="text/javascript" id="bdshell_js"></script> 
+ 	<script type="text/javascript">
 	//在这里定义bds_config
 	var bds_config = {'bdText':'<?php echo '我在交大校内二手书交易平台BookEx上找到了一本好书～书名:  '.$name.';     作者:  '.$author.';     原价:  '.$originprice.'元;     现在只要 '.$price.'元 哦！'?>','bdDesc':'BookEx - 交大校内二手书交易平台。可以自己随心定价，不必再被二手书店赚取差价啦！迎合书本循环利用理念，为同学们创造方便舒适的使用环境！现在网站上资源不少，可以去看看哦～','bdPic':'<?php echo base_url();?>get_data.php?id=<?php echo $id?>'};
 	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
 </script>
+-->
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=4388338" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	var bds_config = {'bdText':'BookEx - 交大校内二手书交易平台。网站今年5月上线，现在共有近2000本书，价格十分优惠~还有工作人员免费送书~学长学姐说不定还会留下精致的笔记哈~快来看看吧','bdDesc':'交大校内二手书交易网站','bdComment':'以后有想卖掉的书就可以传在BookEx上咯，很多教材也能在平台上轻松找到哦~!','bdPic':'<?php echo base_url() ?>public/img/logo.jpg'};
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
