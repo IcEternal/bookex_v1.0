@@ -111,8 +111,7 @@
 <?php endif; ?>
 <div class="alert alert-info fade in">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <div>已成交<strong>198</strong>本,共为同学们省下了<strong>5431</strong>元!
-喜欢这个网站的话请在右边分享哦~</div>
+  <div>已成交<strong>198</strong>本,共为同学们省下了<strong>5431</strong>元!喜欢这个网站的话请在右边分享哦~</div>
 </div>
 </div>
 
