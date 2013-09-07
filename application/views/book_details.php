@@ -95,10 +95,10 @@
 	  </div>
 	</div>
 <?php } ?> 
-	<div class="alert alert-info fade in">
+<!-- 	<div class="alert alert-info fade in">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	点击右侧 <strong>分享</strong> 按钮即可选择将本书信息分享到人人、微博、QQ空间等平台。   好书就要让更多人看到！
-	</div>
+	</div> -->
 
 	<div class = "row">
 		<div id = "left" class = "span4 text-center">
