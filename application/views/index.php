@@ -45,6 +45,7 @@
         <ul class="nav">
           <li><a href="<?php echo site_url('welcome/about') ?>"><b>如何使用?</b></a></li>
           <li><a href="<?php echo site_url('welcome/contact') ?>">联系我们</a></li>
+          <li><a href="<?php echo site_url('welcome/tips_for_internet_connection') ?>" style="color:red"><strong>新生上网方法</strong></a></li>
         </ul>
       </div><!--/.nav-collapse -->
       	<?php 

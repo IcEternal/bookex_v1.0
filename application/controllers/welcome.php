@@ -48,7 +48,23 @@ class Welcome extends CI_Controller {
 	}
 
 	function norespon() {
-                $this->load->view("norespon");
-        }
+        $this->load->view("norespon");
+    }
+
+    function tips_for_internet_connection() {
+        $this->load->view("tips_for_internet_connection");
+    }
+
+    function chrome_connection() {
+        $this->load->view("chrome_connection");
+    }
+
+    function ie_connection() {
+        $this->load->view("ie_connection");
+    }
+
+    function firefox_connection() {
+        $this->load->view("firefox_connection");
+    }
 
 }
