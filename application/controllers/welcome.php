@@ -18,6 +18,7 @@ class Welcome extends CI_Controller {
 		}
 		else {
 			$data["first"] = false;
+			$data['no_recommend'] = isMobile();
 			if (!$this->session->userdata('is_logged_in')) {
 				$data["first"] = true;
 			}
