@@ -84,6 +84,9 @@ class Admin_model extends CI_Model {
 		if ($data['no_reserve'] == 0 && $data['reserved'] == 0) {
 			$this->db->order_by('finishtime', 'DESC');
 		}
+		if ($data['no_reserve'] == 0 && $data['traded'] == 0) {
+			$this->db->order_by('subscribetime', 'DESC');
+		}
 	}
 
 	function user_search($data,$offset,$limit)
