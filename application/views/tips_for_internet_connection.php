@@ -44,7 +44,7 @@
         </table>
         <p>如果有提示要输入用户名密码，就输入你的 <strong>jAccount</strong></p>
 		<p><strong>PS:</strong> 应该有不少同学已经知道这个方法了吧= = 我们就做个科普~</p>
-		<p>请根据浏览器点击下方图标，如果教程看了有什么问题的话，可以发邮件到 <strong>bookex@163.com</strong> </p>
+		<p>请根据浏览器点击下方图标，如果教程看了有什么问题的话，可以添加飞信 <strong>572773152</strong> </p>
 		<legend></legend>
 		<div class="row">
 			<div class="span4" style="width:200px; height:200px; margin-left:80px;">

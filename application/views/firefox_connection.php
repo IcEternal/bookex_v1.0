@@ -15,25 +15,26 @@
 				</div>
 			</legend>
 		    <dl class="dl-horizontal">
+		    <dt>PreStep</dt>
+			<dd>连接无线网 <strong>SJTU@DORM</strong> 或者 <strong>SJTU-WEB@DORM</strong><br/>这一步看RP，不一定能连上，提示输入用户名密码的时候就输入<strong>jAccount</strong></dd>
+			 <br />
 			<dt>Step 1</dt>
-			<dd>点击右上方的<b>注册</b>按钮，按提示注册一个新账号</dd>
+			<dd>点击左上方<strong>Firefox</strong>,点击<strong>选项</strong></dd>
 			 <br />
 			<dt>Step 2</dt>
-		    	<dd>登录后点击右上方的<b>上传书本</b>按钮，按提示填写书本信息</dd>
-		    	<br />
+		    <dd> <strong>高级</strong>-<strong>网络</strong>-<strong>连接</strong>-<strong>设置</strong></dd>
+		    <br />
 		    	<dt>Step 3</dt>
 		    	<dd>
-		    		<p>坐等看中您这本书的同学预订，预订1天内工作人员会拨打您的电话。</p>
-		    		<p>工作人员在取走书本的同时会将书费交予您。</p>
-		    		<p>整个过程让你足不出寝，享受五星级服务哈~</p>
-						<p class="text-info"> (仅限交大闵行校区同学)</p>
-		    		<h4 class="text-info">您也可以选择在书本简介处留下手机号，这样预订方可以与您电话联系，直接商议当面交易的时间地点。</h4>
+		    		点击<strong>手动配置代理</strong> <br />
+		    		在HTTP代理中输入 <strong>cache.sjtu.edu.cn</strong> 端口输入<strong>8080</strong> <br />
+		    		或 <br />
+		    		在HTTP代理中输入<strong>inproxy.sjtu.edu.cn</strong> 端口输入<strong>80</strong> <br />
+		    		勾选 <strong>为所有协议使用相同代理</strong>
 		    	</dd>
 			<dt>Step 4</dt>
-                        <dd>
-				<p>交易完成后，请在 <b>用户空间</b> 中点击 <b>完成交易</b>.</p>
-				<h4 class="text-error"><strong>这样可以防止有其他想购买此书的用户打扰到您.</strong></h4>
-				<p>谢谢您的支持！</p>
+            <dd>
+                点击确定，完工~
 			</dd>
                         <br />
 		    </dl>
