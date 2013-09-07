@@ -15,6 +15,10 @@
 				</div>
 			</legend>
 		    <dl class="dl-horizontal">
+		    <dt>PreStep</dt>
+			<dd><p>连接无线网 <strong>SJTU@DORM</strong> 或者 <strong>SJTU-WEB@DORM</strong></p>
+				<p>这一步看RP，不一定能连上，提示输入用户名密码的时候就输入<strong>jAccount</strong></p>
+			</dd>
 			<dt>Step 1</dt>
 			<dd>
 				<p>进入chrome的 <b>设置->网络->更改代理服务器设置</b></p>
@@ -31,8 +35,8 @@
 		    	</dd>
 			<dt>Step 4</dt>
                         <dd>
-				<p>用浏览器随便上一个外网，有可能弹出窗口输入JaAccount，输入自己的JaAccount。</p>
-				<p>尽情享受网络吧。</p>
+				<p>用浏览器随便上一个外网，有可能弹出窗口输入 <strong>jAccount</strong>，输入自己的 <strong>jAccount</strong>。</p>
+				<p>完工~</p>
 			</dd>
                         <br />
 		    </dl>
