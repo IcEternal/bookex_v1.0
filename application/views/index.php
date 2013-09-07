@@ -123,7 +123,7 @@
 		<input class="submit" type="submit" name="submit" value="">
 	</form>
 	<div id="indexlist"></div>
-	<?php include('includes/recommend.php') ?>
+	<?php if (!$no_recommend) { include('includes/recommend.php'); } ?>
 </div>
 
 <div id="index_footer">
