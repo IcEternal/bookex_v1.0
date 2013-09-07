@@ -116,7 +116,7 @@
 </div>
 </div>
 
-<div class="container" id="index">
+<div class="container" id="index" <?php if ($no_recommend) echo 'style="padding-bottom:250px"' ?>>
 	<h1><a href="<?php echo site_url(); ?>">BookEX</a></h1>
 	<form action="<?php echo site_url('search') ?>" method="get" accept-charset="utf-8">
 		<input class="text" type="text" name="key" value placeholder="输入书名,作者或上传用户, 若无关键字则显示所有书本">
