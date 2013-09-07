@@ -123,7 +123,7 @@
 		<input class="submit" type="submit" name="submit" value="">
 	</form>
 	<div id="indexlist"></div>
-	<?php if (!$no_recommend) { include('includes/recommend.php'); } ?>
+	<?php if (!$no_recommend) { $this->load->view('includes/recommend');} ?>
 </div>
 
 <div id="index_footer">
