@@ -26,6 +26,16 @@ class Welcome extends CI_Controller {
 				$this->load->model('recommend_model');
 				$data["recommend"]=$this->recommend_model->getResult();
 			}
+			$this->db->where('finishtime > 0 AND subscriber != "N"');
+			$arr = $this->db->get('book')->result();
+			$tot = 0;
+			$save = 0;
+			foreach ($arr as $row) {
+				$tot += $row->price;
+				$save += $row->originprice - $row->price;
+			}
+			$data['tot'] = $tot;
+			$data['save'] = $save;
 			$this->load->view('index', $data);
 		}
 	}
