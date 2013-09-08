@@ -9,7 +9,12 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$first = ($this->session->userdata('first') !== true);
-		if (isMobile() && $first) {
+		$this->session->userdata('test') = true;
+		$no_cookie = false;
+		if ($this->session->userdata('test') != true) {
+			$no_cookie = true;
+		}
+		if (isMobile() && $first && !$no_cookie) {
 			$data = array(
 				'first' => true
 			);
