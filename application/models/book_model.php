@@ -333,5 +333,90 @@ class Book_model extends CI_Model {
 	function record_id($book_id, $username){
 		$this->db->query("INSERT INTO book_view (bookid, viewer, viewtime) VALUES (\"$book_id\", \"$username\", now());");
 	}
-	
+
+	//Change the status of a book.	
+	function status_update($id, $status){
+		$this->db->query("UPDATE book SET status = $status WHERE id = $id;");
+	}
+
+
+	function get_result($id){
+		return $this->db->select('*')->from('book')->where("id=\"$id\"")->get()->result();
+	}
+
+	function next_operation($id){
+		if (!$this->session->userdata('is_logged_in')) return "失败";
+		$username = $this->session->userdata('username');
+		$result = get_result($id);
+		if (!array_key_exists($result, 0)) return "失败";
+		$status = $result[0]->status;
+		if ($status == 0){
+			status_update($id, $status + 1);
+			$this->db->query("UPDATE book SET receiver = \"$username\" WHERE id = $id;");
+		}
+		elseif ($status == 1){
+			if ($username != $result[0]->receiver) return "失败";
+			status_update($id, $status + 1);
+		}
+		elseif ($status == 2){
+			status_update($id, $status + 1);
+			$this->db->query("UPDATE book SET sender = \"$username\" WHERE id = $id;");
+		}
+		else if ($status == 3){
+			if ($username != $result[0]->sender) return "失败";
+			status_update($id, $status + 1);
+		}
+		return "失败";
+	}
+
+	function prev_operation($id){
+		if (!$this->session->userdata('is_logged_in')) return "失败";
+		$username = $this->session->userdata('username');
+		$result = get_result($id);
+		if (!array_key_exists($result, 0)) return "失败";
+		$status = $result[0]->status;
+		if ($status == 1){
+			if ($username != $result[0]->receiver) return "失败";
+			status_update($id, $status - 1);
+		}
+		elseif ($status == 2){
+			if ($username != $result[0]->receiver) return "失败";
+			status_update($id, $status - 1);
+		}
+		else if ($status == 3){
+			if ($username != $result[0]->sender) return "失败";
+			status_update($id, $status - 1);
+		}
+		return "失败";
+	}
+
+	function deal_done($id){
+		if (!$this->session->userdata('is_logged_in')) return "失败";
+		$username = $this->session->userdata('username');
+		$result = get_result($id);
+		if (!array_key_exists($result, 0)) return "失败";
+		$status = $result[0]->status;
+		if ($status == 2 || $status == 3){
+			status_update($id, 4);
+		}
+		return "失败";
+	}
+
+	function book_deleted($id){
+		if (!$this->session->userdata('is_logged_in')) return "失败";
+		$username = $this->session->userdata('username');
+		$result = get_result($id);
+		if (!array_key_exists($result, 0)) return "失败";
+		if ($status == 1){
+			status_update($id, 5);
+		}
+		return "失败";
+	}
+
+	function deal_canceled($id){
+		$this->db->query("UPDATE book set subscriber = \"N\", subscribetime = NULL, status = 0 WHERE id = $id");
+	}	
+
+
+
 }

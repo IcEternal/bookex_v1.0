@@ -386,4 +386,36 @@ class Admin extends CI_Controller {
 			);
 		$this->load->view('admin/trade',$data);
 	}
+
+	//New functions for receiver, sender and status for a book.
+	function next_operation(){
+		$id = $_GET['book_id'];
+		$this->load->model('book_model');
+		echo $this->book_model->next_operation($id);
+	}
+
+	function prev_operation(){
+		$id = $_GET['book_id'];
+		$this->load->model('book_model');
+		echo $this->book_model->prev_operation($id);
+	}
+
+	function deal_done(){
+		$id = $_GET['book_id'];
+		$this->load->model('book_model');
+		echo $this->book_model->deal_done($id);
+	}
+
+	function book_deleted(){
+		$id = $_GET['book_id'];
+		$this->load->model('book_model');
+		echo $this->book_model->book_deleted($id);
+	}
+	
+	function deal_canceled(){
+		$id = $_GET['book_id'];
+		$this->load->model('book_model');
+		echo $this->book_model->deal_canceled($id);
+	}
+
 }
