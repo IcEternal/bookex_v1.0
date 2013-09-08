@@ -393,7 +393,7 @@ class Book_model extends CI_Model {
 		}
 		elseif ($status == 2){
 			if ($username != $result[0]->receiver) return "失败";
-			return $this->status_update($id, $status - 1, $result[0]->receiver);
+			return $this->status_update($id, $status - 1, $result[0]->receiver );
 		}
 		else if ($status == 3){
 			if ($username != $result[0]->sender) return "失败";
@@ -419,6 +419,7 @@ class Book_model extends CI_Model {
 		$username = $this->session->userdata('username');
 		$result = $this->get_result($id);
 		if (!array_key_exists(0, $result)) return "失败";
+		$status = $result[0]->status;
 		if ($status == 1){
 			return $this->status_update($id, 5, $result[0]->receiver);
 		}
