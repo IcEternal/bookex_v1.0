@@ -59,7 +59,6 @@ if ($err != "")
 
             <div id = "left" class = "span3 text-center">
               <div class="thumbnail">
-                <a href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" >
                   <div class="image" style = "width:100%">
                   
 
@@ -68,7 +67,6 @@ if ($err != "")
 
 
                   </div>
-                </a>
               </div>
             </div>
 
@@ -160,7 +158,6 @@ if ($err != "")
           <div class = "row-fluid">
             <div id = "left" class = "span3 text-center">
               <div class="thumbnail">
-                <a href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" >
                   <div class="image" style = "width:100%">
                     
                     <img src = "<?php echo base_url('get_data.php?id='.$item->id); ?>" style = "width:70%" />
@@ -168,7 +165,6 @@ if ($err != "")
 
 
                   </div>
-                </a>
               </div>
             </div>
 
@@ -217,7 +213,7 @@ if ($err != "")
                 详细页面
               </a>
             </p>
-            <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p>
+            <!-- <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p> -->
             <div id="myModal1<?php echo $item->id ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModal1Label" aria-hidden="true">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -336,7 +332,7 @@ if ($err != "")
             </p>
             <p><a href="#myModal<?php echo $item->id ?>" role="button" data-toggle="modal">删除本书</a></p>
             <p><a href="<?php echo site_url('book_upload/modify') ?>/<?php echo $item->id ?>">修改信息</a></p>
-            <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p>
+            <!-- <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p> -->
 	    <!-- Modal -->
             <div id="myModal<?php echo $item->id ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-header">
@@ -380,9 +376,7 @@ if ($err != "")
 
       <div class = "row-fluid"> 
         <div class = "image" style = "width:100%;">
-           <a href="<?php echo site_url('welcome/act_detail') ?>">
 	<img src = "<?php echo base_url('public/img/notFound.jpg'); ?>" style = "width:100%;" />
-	</a> 
         </div>
       </div>
 
@@ -480,9 +474,7 @@ if ($err != "")
 
       <div class = "row-fluid"> 
         <div class = "image" style = "width:100%;">
-	<a href="<?php echo site_url('welcome/act_detail') ?>">
-	<img src = "<?php echo base_url('public/img/notFound.jpg'); ?>" style = "width:100%;" />
-	</a>          
+	<img src = "<?php echo base_url('public/img/notFound.jpg'); ?>" style = "width:100%;" />         
         </div>
       </div>
 
