@@ -167,47 +167,48 @@
 		var clicknext = function(event){
 			$.get(
 	            "<?php echo site_url();?>/admin/next_operation",
-	            {"book_id":span.attr("book_id")},
+	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
-	            	$(this).parent('td').children('.status').text(data);
+	            	console.log(data);
+	            	$(".status[book_id='"+$(this).attr("book_id")+"']").text(data);
 	            });
 		}
 
 		var clickprev = function(event){
 			$.get(
 	            "<?php echo site_url();?>/admin/prev_operation",
-	            {"book_id":span.attr("book_id")},
+	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
-	            	$(this).parent('td').children('.status').text(data);
+	            	$(".status[book_id='"+$(this).attr("book_id")+"']").text(data);
 	            });
 		}
 
 		var clickdone = function(event){
 			$.get(
 	            "<?php echo site_url();?>/admin/deal_done",
-	            {"book_id":span.attr("book_id")},
+	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
-	            	$(this).parent('td').children('.status').text(data);
+	            	$(".status[book_id='"+$(this).attr("book_id")+"']").text(data);
 	            });
 		}
 
 		var clickdelete = function(event){
 			$.get(
 	            "<?php echo site_url();?>/admin/book_deleted",
-	            {"book_id":span.attr("book_id")},
+	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
-	            	$(this).parent('td').children('.status').text(data);
+	            	$(".status[book_id='"+$(this).attr("book_id")+"']").text(data);
 	            });
 		}
 
 		var clickcancel = function(event){
 			$.get(
 	            "<?php echo site_url();?>/admin/deal_canceled",
-	            {"book_id":span.attr("book_id")},
+	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
 	            	$(this).parent('td').children('.status').text(data);
