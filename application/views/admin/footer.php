@@ -165,53 +165,62 @@
 
 
 		var clicknext = function(event){
+			event.stopPropagation();
+			span = $(this);
 			$.get(
 	            "<?php echo site_url();?>/admin/next_operation",
-	            {"book_id":$(this).attr("book_id")},
+	            {"book_id":span.attr("book_id")},
 	            function(data)
 	            {
-	            	console.log(data);
-	            	$(".status[book_id='"+$(this).attr("book_id")+"']").text(data);
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
 	            });
 		}
 
 		var clickprev = function(event){
+			event.stopPropagation();
+			span = $(this);
 			$.get(
 	            "<?php echo site_url();?>/admin/prev_operation",
 	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
-	            	$(".status[book_id='"+$(this).attr("book_id")+"']").text(data);
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
 	            });
 		}
 
 		var clickdone = function(event){
+			event.stopPropagation();
+			span = $(this);
 			$.get(
 	            "<?php echo site_url();?>/admin/deal_done",
 	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
-	            	$(".status[book_id='"+$(this).attr("book_id")+"']").text(data);
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
 	            });
 		}
 
 		var clickdelete = function(event){
+			event.stopPropagation();
+			span = $(this);
 			$.get(
 	            "<?php echo site_url();?>/admin/book_deleted",
 	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
-	            	$(".status[book_id='"+$(this).attr("book_id")+"']").text(data);
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
 	            });
 		}
 
 		var clickcancel = function(event){
+			event.stopPropagation();
+			span = $(this);
 			$.get(
 	            "<?php echo site_url();?>/admin/deal_canceled",
 	            {"book_id":$(this).attr("book_id")},
 	            function(data)
 	            {
-	            	$(this).parent('td').children('.status').text(data);
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
 	            });
 		}
 		//给下一步按钮绑定点击事件

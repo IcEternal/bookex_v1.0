@@ -38,7 +38,7 @@
 				?>
 				<tr>
 		  			<td width=100% colspan="5">		  				
-					  	<span class="label label-info status" book_id="<?php echo $book->id ?>">当前状态</span>
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1">当前状态</span>
 					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>">下一步操作</span>
 					  	<span class="label label-info prev_operation" book_id="<?php echo $book->id ?>">上一步操作</span>
 					  	<span class="label label-info deal_done" book_id="<?php echo $book->id ?>">完成交易</span>
@@ -87,7 +87,7 @@
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;?>
 				<tr>
 		  			<td width=100% colspan="5">		  				
-					  	<span class="label label-info status" book_id="<?php echo $book->id ?>">当前状态</span>
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1">当前状态</span>
 					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>">下一步操作</span>
 					  	<span class="label label-info prev_operation" book_id="<?php echo $book->id ?>">上一步操作</span>
 					  	<span class="label label-info deal_done" book_id="<?php echo $book->id ?>">完成交易</span>
