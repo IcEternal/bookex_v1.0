@@ -31,7 +31,7 @@ class Welcome extends CI_Controller {
 			$tot = 0;
 			$save = 0;
 			foreach ($arr as $row) {
-				$tot += $row->price;
+				$tot += 1;
 				$save += $row->originprice - $row->price;
 			}
 			$data['tot'] = $tot;
