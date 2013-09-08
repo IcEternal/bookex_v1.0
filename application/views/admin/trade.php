@@ -37,12 +37,23 @@
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;
 				?>
 				<tr>
+		  			<td width=100% colspan="5">		  				
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>">当前状态</span>
+					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>">下一步操作</span>
+					  	<span class="label label-info prev_operation" book_id="<?php echo $book->id ?>">上一步操作</span>
+					  	<span class="label label-info deal_done" book_id="<?php echo $book->id ?>">完成交易</span>
+					  	<span class="label label-info book_deleted" book_id="<?php echo $book->id ?>">卖家那儿取不到书</span>
+					  	<span class="label label-info deal_canceled" book_id="<?php echo $book->id ?>">取消此订单</span>
+		  			</td>
+		  		</tr>
+				<tr>
 					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
 					<td width=10%>￥<?php echo $book->price;?></td>
 					<td width=35%>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?></a>(<?php echo $book->phone;?>)</td>
 					<td width=10%><?php echo $book->dormitory; ?></td>
 					<td width=5%><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
 				</tr>
+
 				<?php endforeach;?>
 			</table>
 		    <?php endforeach;?>
@@ -75,6 +86,16 @@
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;?>
 				<tr>
+		  			<td width=100% colspan="5">		  				
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>">当前状态</span>
+					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>">下一步操作</span>
+					  	<span class="label label-info prev_operation" book_id="<?php echo $book->id ?>">上一步操作</span>
+					  	<span class="label label-info deal_done" book_id="<?php echo $book->id ?>">完成交易</span>
+					  	<span class="label label-info book_deleted" book_id="<?php echo $book->id ?>">卖家那儿取不到书</span>
+					  	<span class="label label-info deal_canceled" book_id="<?php echo $book->id ?>">取消此订单</span>
+		  			</td>
+		  		</tr>
+				<tr>
 					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
 					<td width=10%>￥<?php echo $book->price;?></td>
 					<td width=35%>卖家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->uploader;?></a>(<?php echo $book->phone;?>)</td>
@@ -87,7 +108,6 @@
 		  </div>
 		</div>
 	</div>
-</body>
-</html>
+<?php $this->load->view('admin/footer') ?>
 
 

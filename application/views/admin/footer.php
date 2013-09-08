@@ -162,6 +162,72 @@
 		//给input框绑定点击事件
 		$('#class_name').css({"cursor":"pointer"}).bind("click",clickFunc);
 
+
+
+		var clicknext = function(event){
+			$.get(
+	            "<?php echo site_url();?>/admin/next_operation",
+	            {"book_id":span.attr("book_id")},
+	            function(data)
+	            {
+	            	$(this).parent('td').children('.status').text(data);
+	            });
+		}
+
+		var clickprev = function(event){
+			$.get(
+	            "<?php echo site_url();?>/admin/prev_operation",
+	            {"book_id":span.attr("book_id")},
+	            function(data)
+	            {
+	            	$(this).parent('td').children('.status').text(data);
+	            });
+		}
+
+		var clickdone = function(event){
+			$.get(
+	            "<?php echo site_url();?>/admin/deal_done",
+	            {"book_id":span.attr("book_id")},
+	            function(data)
+	            {
+	            	$(this).parent('td').children('.status').text(data);
+	            });
+		}
+
+		var clickdelete = function(event){
+			$.get(
+	            "<?php echo site_url();?>/admin/book_deleted",
+	            {"book_id":span.attr("book_id")},
+	            function(data)
+	            {
+	            	$(this).parent('td').children('.status').text(data);
+	            });
+		}
+
+		var clickcancel = function(event){
+			$.get(
+	            "<?php echo site_url();?>/admin/deal_canceled",
+	            {"book_id":span.attr("book_id")},
+	            function(data)
+	            {
+	            	$(this).parent('td').children('.status').text(data);
+	            });
+		}
+		//给下一步按钮绑定点击事件
+		$(".next_operation").css({"cursor":"pointer"}).bind("click", clicknext);
+
+		//给上一步按钮绑定点击事件
+		$(".prev_operation").css({"cursor":"pointer"}).bind("click", clickprev);
+
+		//给完成交易按钮绑定点击事件
+		$(".deal_done").css({"cursor":"pointer"}).bind("click", clickdone);
+
+		//给标记删除按钮绑定点击事件
+		$(".book_deleted").css({"cursor":"pointer"}).bind("click", clickdelete);
+
+		//给取消订单按钮绑定点击事件
+		$(".deal_canceled").css({"cursor":"pointer"}).bind("click", clickcancel);
+
 	});
 	</script>
 
