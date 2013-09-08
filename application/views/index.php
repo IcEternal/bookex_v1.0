@@ -27,6 +27,7 @@
 </head>
 <body>
 
+<?php if (!$notshowAppo) { ?>
 <div class="modal hide fade" id="apologize">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -41,7 +42,7 @@
     <p>最后，BookEx是公益平台，我们希望能用专长为同学提供志愿服务，也期待您加入我们的服务的团队！详情请见 <b>联系我们</b></p>
   </div>
 </div>
-
+<?php } ?>
 <?php if (isset($first)): ?>
 <?php if ($first) :?>
 <?php endif; ?>

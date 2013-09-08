@@ -42,7 +42,12 @@ class Welcome extends CI_Controller {
 			}
 			$data['tot'] = $tot;
 			$data['save'] = $save;
+			$data['notshowAppo'] = $this->session->userdata('first');
 			$this->load->view('index', $data);
+			$data = array(
+				'first' => true
+			);
+			$this->session->set_userdata($data);
 		}
 	}
 
