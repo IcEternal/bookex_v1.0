@@ -347,24 +347,24 @@ class Book_model extends CI_Model {
 	function next_operation($id){
 		if (!$this->session->userdata('is_logged_in')) return "失败";
 		$username = $this->session->userdata('username');
-		$result = get_result($id);
+		$result = $this->get_result($id);
 		if (!array_key_exists($result, 0)) return "失败";
 		$status = $result[0]->status;
 		if ($status == 0){
-			status_update($id, $status + 1);
+			$this->status_update($id, $status + 1);
 			$this->db->query("UPDATE book SET receiver = \"$username\" WHERE id = $id;");
 		}
 		elseif ($status == 1){
 			if ($username != $result[0]->receiver) return "失败";
-			status_update($id, $status + 1);
+			$this->status_update($id, $status + 1);
 		}
 		elseif ($status == 2){
-			status_update($id, $status + 1);
+			$this->status_update($id, $status + 1);
 			$this->db->query("UPDATE book SET sender = \"$username\" WHERE id = $id;");
 		}
 		else if ($status == 3){
 			if ($username != $result[0]->sender) return "失败";
-			status_update($id, $status + 1);
+			$this->status_update($id, $status + 1);
 		}
 		return "失败";
 	}
@@ -372,20 +372,20 @@ class Book_model extends CI_Model {
 	function prev_operation($id){
 		if (!$this->session->userdata('is_logged_in')) return "失败";
 		$username = $this->session->userdata('username');
-		$result = get_result($id);
+		$result = $this->get_result($id);
 		if (!array_key_exists($result, 0)) return "失败";
 		$status = $result[0]->status;
 		if ($status == 1){
 			if ($username != $result[0]->receiver) return "失败";
-			status_update($id, $status - 1);
+			$this->status_update($id, $status - 1);
 		}
 		elseif ($status == 2){
 			if ($username != $result[0]->receiver) return "失败";
-			status_update($id, $status - 1);
+			$this->status_update($id, $status - 1);
 		}
 		else if ($status == 3){
 			if ($username != $result[0]->sender) return "失败";
-			status_update($id, $status - 1);
+			$this->status_update($id, $status - 1);
 		}
 		return "失败";
 	}
@@ -393,11 +393,11 @@ class Book_model extends CI_Model {
 	function deal_done($id){
 		if (!$this->session->userdata('is_logged_in')) return "失败";
 		$username = $this->session->userdata('username');
-		$result = get_result($id);
+		$result = $this->get_result($id);
 		if (!array_key_exists($result, 0)) return "失败";
 		$status = $result[0]->status;
 		if ($status == 2 || $status == 3){
-			status_update($id, 4);
+			$this->status_update($id, 4);
 		}
 		return "失败";
 	}
@@ -405,10 +405,10 @@ class Book_model extends CI_Model {
 	function book_deleted($id){
 		if (!$this->session->userdata('is_logged_in')) return "失败";
 		$username = $this->session->userdata('username');
-		$result = get_result($id);
+		$result = $this->get_result($id);
 		if (!array_key_exists($result, 0)) return "失败";
 		if ($status == 1){
-			status_update($id, 5);
+			$this->status_update($id, 5);
 		}
 		return "失败";
 	}
