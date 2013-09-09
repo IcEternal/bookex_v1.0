@@ -335,9 +335,9 @@ class Book_model extends CI_Model {
 	}
 
 	//Change the status of a book.	
-	function status_update($id, $status, $username){
+	function status_update($id, $status){
 		$this->db->query("UPDATE book SET status = $status WHERE id = $id;");
-		return $this->get_status_string($status, $username);
+		return $this->get_status_string($id);
 	}
 
 
@@ -345,11 +345,14 @@ class Book_model extends CI_Model {
 		return $this->db->select('*')->from('book')->where('id', $id)->get()->result();
 	}
 
-	function get_status_string($status, $username){
+	function get_status_string($id){
+		$result = $this->get_result($id);
+		if (!array_key_exists(0, $result)) return "失败";
+		$status = $result[0]->status;
 		if ($status == 0) return "未取书";
-		elseif ($status == 1) return $username."正在取书";
+		elseif ($status == 1) return $result[0]->receiver."正在取书";
 		elseif ($status == 2) return "在易班";
-		elseif ($status == 3) return $username."正在送书";
+		elseif ($status == 3) return $result[0]->sender."正在送书";
 		elseif ($status == 4) return "交易成功";
 		elseif ($status == 5) return "书本卖家找不到";
 	}
@@ -361,22 +364,21 @@ class Book_model extends CI_Model {
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
 		if ($status == 0){
-			$message = $this->status_update($id, $status + 1, $result[0]->receiver);
 			$this->db->query("UPDATE book SET receiver = \"$username\" WHERE id = $id;");
-			return $message;
+			return $this->status_update($id, $status + 1);
+
 		}
 		elseif ($status == 1){
 			if ($username != $result[0]->receiver) return "失败";
-			return $this->status_update($id, $status + 1, $result[0]->receiver);
+			return $this->status_update($id, $status + 1);
 		}
 		elseif ($status == 2){
-			$message = $this->status_update($id, $status + 1, $result[0]->sender);
 			$this->db->query("UPDATE book SET sender = \"$username\" WHERE id = $id;");
-			return $message;
+			return $this->status_update($id, $status + 1);
 		}
 		else if ($status == 3){
 			if ($username != $result[0]->sender) return "失败";
-			return $this->status_update($id, $status + 1, $result[0]->sender);
+			return $this->status_update($id, $status + 1);
 		}
 		return "失败";
 	}
@@ -389,15 +391,15 @@ class Book_model extends CI_Model {
 		$status = $result[0]->status;
 		if ($status == 1){
 			if ($username != $result[0]->receiver) return "失败";
-			return $this->status_update($id, $status - 1, $result[0]->receiver);
+			return $this->status_update($id, $status - 1);
 		}
 		elseif ($status == 2){
 			if ($username != $result[0]->receiver) return "失败";
-			return $this->status_update($id, $status - 1, $result[0]->receiver );
+			return $this->status_update($id, $status - 1);
 		}
 		else if ($status == 3){
 			if ($username != $result[0]->sender) return "失败";
-			return $this->status_update($id, $status - 1, $result[0]->sender);
+			return $this->status_update($id, $status - 1);
 		}
 		return "失败";
 	}
@@ -409,7 +411,7 @@ class Book_model extends CI_Model {
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
 		if ($status == 2 || $status == 3){
-			return $this->status_update($id, 4, $result[0]->receiver);
+			return $this->status_update($id, 4);
 		}
 		return "失败";
 	}
@@ -421,7 +423,7 @@ class Book_model extends CI_Model {
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
 		if ($status == 1){
-			return $this->status_update($id, 5, $result[0]->receiver);
+			return $this->status_update($id, 5);
 		}
 		return "失败";
 	}
