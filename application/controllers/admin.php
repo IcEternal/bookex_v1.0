@@ -4,7 +4,7 @@ class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->auth->admin();
+		$this->auth->normal_admin();
 	}
 
 	function index()
@@ -113,7 +113,7 @@ class Admin extends CI_Controller {
 	//修改书本分类，
 	function book_classify()
 	{
-
+		$this->auth->super_admin();
 		//导入model
 		$this->load->model('admin_model');
 		$this->load->model('pagination_model');
@@ -160,6 +160,7 @@ class Admin extends CI_Controller {
 	//url 传递书本id
 	function book_modify()
 	{
+		$this->auth->super_admin();
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$data = array();
@@ -210,6 +211,7 @@ class Admin extends CI_Controller {
 
 	function book_delete()
 	{
+		$this->auth->super_admin();
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$this->admin_model->book_delete($id);
@@ -217,6 +219,7 @@ class Admin extends CI_Controller {
 
 	function book_hasit()
 	{
+		$this->auth->super_admin();
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$this->admin_model->book_hasit($id);
@@ -229,7 +232,8 @@ class Admin extends CI_Controller {
 	}
 
 	function user()
-	{
+	{		
+		$this->auth->super_admin();
 
 		//导入model
 		$this->load->model('admin_model');
@@ -278,6 +282,7 @@ class Admin extends CI_Controller {
 	}
 
 	function user_modify(){
+		$this->auth->super_admin();
 		$id = $this->uri->segment(3);
 		$this->load->model('admin_model');
 		$data = array();
@@ -325,6 +330,7 @@ class Admin extends CI_Controller {
 	}
 
 	function modify_book_class(){
+		$this->auth->super_admin();
 		$book_id = $_GET['book_id'];
 		$this->db->set('class',$_GET['classname']);
 		$this->db->where('id',$book_id);
@@ -346,6 +352,7 @@ class Admin extends CI_Controller {
 
 		//导入model
 		$this->load->model('admin_model');
+		$this->load->model('book_model');
 
 		//筛选出可以交易的书的统一条件
 		$common_condition = "WHERE subscriber != 'N' AND finishtime = 0 AND use_phone = 0 AND del != TRUE";

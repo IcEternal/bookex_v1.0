@@ -1,6 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Auth {
 
+	private $sender = array('zukou','etc');
+	private $receiver = array('zukou','etc');
+
 	var $CI;
 
 	public function __construct()
@@ -42,4 +45,39 @@ class Auth {
 	function uploader_or_subscriber($book_id) {
 		if (!$this->is_subscriber($book_id) && !$this->is_uploader($book_id) && !$this->is_admin()) $this->auth_denied();
 	}
+
+ 	//管理员
+	function is_super_admin()
+	{
+		return ($this->CI->session->userdata('username') == 'zhcpzyjtx');
+	}
+
+	function is_sender()
+	{
+		$username = $this->CI->session->userdata('username');
+		return in_array($username,$this->sender);
+	}
+
+	function is_receiver()
+	{
+		$username = $this->CI->session->userdata('username');
+		return in_array($username,$this->receiver);
+	}
+
+	function super_admin()
+	{
+		if(!$this->is_super_admin() )
+		{
+			$this->auth_denied();
+		}
+	}
+
+	function normal_admin()
+	{
+		if(!$this->is_super_admin() && !$this->is_receiver() && !$this->is_sender() )
+		{
+			$this->auth_denied();
+		}
+	}
+
 }
