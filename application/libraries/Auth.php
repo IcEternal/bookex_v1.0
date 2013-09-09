@@ -1,8 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Auth {
 
-	private $sender = array('zukou','etc');
-	private $receiver = array('zukou','etc');
+	private $admin = array('zukou', 'haichongfu2003', 'devillaw_zhc', 'zhcpzyjtx');
+	private $sender = array();
+	private $receiver = array();
 
 	var $CI;
 
@@ -49,7 +50,7 @@ class Auth {
  	//管理员
 	function is_super_admin()
 	{
-		return ($this->CI->session->userdata('username') == 'zhcpzyjtx');
+		return (in_array($this->CI->session->userdata('username'), $this->admin));
 	}
 
 	function is_sender()
