@@ -337,7 +337,17 @@ class Book_model extends CI_Model {
 	//Change the status of a book.	
 	function status_update($id, $status){
 		$this->db->query("UPDATE book SET status = $status WHERE id = $id;");
+		if ($status == 4) $this->db->query("UPDATE book SET finishtime = now() WHERE id = $id;");
 		return $this->get_status_string($id);
+	}
+
+	function operator_update($id, $op) {
+		if ($op == 'rec') 
+			$str = 'receiver';
+		else 
+			$str = 'sender'; 
+		$username = $this->session->userdata('username');
+		$this->db->query("UPDATE book SET $str = '$username' WHERE id = $id");
 	}
 
 
@@ -351,10 +361,10 @@ class Book_model extends CI_Model {
 		$status = $result[0]->status;
 		if ($status == 0) return "未取书";
 		elseif ($status == 1) return $result[0]->receiver."正在取书";
-		elseif ($status == 2) return "在易班";
+		elseif ($status == 2) return $result[0]->receiver."送到易班";
 		elseif ($status == 3) return $result[0]->sender."正在送书";
-		elseif ($status == 4) return "交易成功";
-		elseif ($status == 5) return "书本卖家找不到";
+		elseif ($status == 4) return $result[0]->sender."交易成功";
+		elseif ($status == 5) return $result[0]->receiver."书本卖家找不到";
 	}
 
 	function next_operation($id){
@@ -410,7 +420,8 @@ class Book_model extends CI_Model {
 		$result = $this->get_result($id);
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
-		if ($status == 2 || $status == 3){
+		if ($status == 2 || ($status == 3 && $username == $result[0]->sender)){
+			$this->operator_update($id, 'sen');
 			return $this->status_update($id, 4);
 		}
 		return "失败";
@@ -422,13 +433,15 @@ class Book_model extends CI_Model {
 		$result = $this->get_result($id);
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
-		if ($status == 1){
+		if (($status == 1 && $username == $result[0]->receiver) || $status == 0){
+			$this->operator_update($id, 'rec');
 			return $this->status_update($id, 5);
 		}
 		return "失败";
 	}
 
 	function deal_canceled($id){
+		$this->operator_update($id, 'rec');
 		$this->db->query("UPDATE book set subscriber = \"N\", subscribetime = NULL, status = 0 WHERE id = $id");
 	}	
 

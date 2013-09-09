@@ -15,7 +15,7 @@
 		  	
 			<table class="table table-bordered table-hover">
 				<tr class="success">
-					<td width=50% colspan="5"><?php 
+					<td width=50% colspan="6"><?php 
 				  	printf(
 				  		'卖书者：<a target="_blank" href="%s"><span class="label label-info">%s</span></a>
 				  		电话：<span>%s</span>
@@ -29,7 +29,7 @@
 		  		</tr>
 				<?php if ($saler['remarks']!="") { ?>
 		  		<tr class="alert">
-		  			<td width=100% colspan="5"><?php echo $saler['remarks'] ?></td>
+		  			<td width=100% colspan="6"><?php echo $saler['remarks'] ?></td>
 		  		</tr>
 				<?php } ?>
 				<?php foreach ($sale_book[$saler['uploader']] as $book) :
@@ -37,21 +37,32 @@
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;
 				?>
 				<tr>
-		  			<td width=100% colspan="5">		  				
-					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1">当前状态</span>
-					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>">下一步操作</span>
-					  	<span class="label label-info prev_operation" book_id="<?php echo $book->id ?>">上一步操作</span>
-					  	<span class="label label-info deal_done" book_id="<?php echo $book->id ?>">完成交易</span>
-					  	<span class="label label-info book_deleted" book_id="<?php echo $book->id ?>">卖家那儿取不到书</span>
+		  			<td width=20%>		  				
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px;"><?php echo $this->book_model->get_status_string($book->id); ?></span>
+					</td>
+					<td width=10%>  	
+					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>" style="margin-right:20px;">下一步操作</span>
+					</td>
+					<td width=35%>  	
+					  	<span class="label label-info prev_operation" book_id="<?php echo $book->id ?>" style="margin-right:20px;">上一步操作</span>
+					</td>
+					<td width=10%>  	
+					  	<span class="label label-info deal_done" book_id="<?php echo $book->id ?>" style="margin-right:20px;">完成交易</span>
+					</td>
+					<td>  	
+					  	<span class="label label-info book_deleted" book_id="<?php echo $book->id ?>" style="margin-right:20px;">卖家说书没了</span>
+					</td>
+					<td>  	
 					  	<span class="label label-info deal_canceled" book_id="<?php echo $book->id ?>">取消此订单</span>
 		  			</td>
 		  		</tr>
 				<tr>
 					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
-					<td width=10%>￥<?php echo $book->price;?></td>
-					<td width=35%>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?></a>(<?php echo $book->phone;?>)</td>
-					<td width=10%><?php echo $book->dormitory; ?></td>
-					<td width=5%><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
+					<td>￥<?php echo $book->price;?></td>
+					<td>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?></a>(<?php echo $book->phone;?>)</td>
+					<td><?php echo $book->dormitory; ?></td>
+					<td></td>
+					<td></td>
 				</tr>
 
 				<?php endforeach;?>
@@ -64,7 +75,7 @@
 		  	
 			<table class="table table-bordered table-hover">
 				<tr class="success">
-					<td width=50% colspan="5">
+					<td width=50% colspan="6">
 						<?php 
 					  	printf(
 					  		'买书者：<a target="_blank" href="%s"><span class="label label-success">%s</span></a>
@@ -79,28 +90,39 @@
 		  		</tr>
 				<?php if ($buyer['remarks']!="") { ?>
 		  		<tr class="alert">
-		  			<td width=100% colspan=5><?php echo $buyer['remarks'] ?></td>
+		  			<td width=100% colspan=6><?php echo $buyer['remarks'] ?></td>
 		  		</tr>
 				<?php } ?>
 				<?php foreach ($buy_book[$buyer['subscriber']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;?>
 				<tr>
-		  			<td width=100% colspan="5">		  				
-					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1">当前状态</span>
+		  			<td width=20%>		  				
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1"><?php echo $this->book_model->get_status_string($book->id); ?></span>
+					</td>
+					<td  width=10%>  	
 					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>">下一步操作</span>
+					</td>
+					<td width=35%>  	
 					  	<span class="label label-info prev_operation" book_id="<?php echo $book->id ?>">上一步操作</span>
+					</td>
+					<td width=10%>  	
 					  	<span class="label label-info deal_done" book_id="<?php echo $book->id ?>">完成交易</span>
-					  	<span class="label label-info book_deleted" book_id="<?php echo $book->id ?>">卖家那儿取不到书</span>
+					</td>  	
+					<td>
+						<span class="label label-info book_deleted" book_id="<?php echo $book->id ?>">卖家说书没了</span>
+					</td>
+					<td>  	
 					  	<span class="label label-info deal_canceled" book_id="<?php echo $book->id ?>">取消此订单</span>
 		  			</td>
 		  		</tr>
 				<tr>
-					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
-					<td width=10%>￥<?php echo $book->price;?></td>
-					<td width=35%>卖家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->uploader;?></a>(<?php echo $book->phone;?>)</td>
-					<td width=10%><?php echo $book->dormitory?></td>
-					<td width=5%><?php echo anchor(site_url('admin/book_trade/'.$book->id),'<i class="icon-ok"></i>');?></td>
+					<td >#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
+					<td>￥<?php echo $book->price;?></td>
+					<td>卖家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->uploader;?></a>(<?php echo $book->phone;?>)</td>
+					<td><?php echo $book->dormitory?></td>
+					<td></td>
+					<td></td>
 				</tr>
 				<?php endforeach;?>
 			</table>
