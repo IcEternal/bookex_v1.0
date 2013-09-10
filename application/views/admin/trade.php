@@ -35,6 +35,8 @@
 				<?php foreach ($sale_book[$saler['uploader']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;
+				$book_status_string = $this->book_model->get_status_string($book->id);
+				$current_user = $this->session->userdata('username');
 				?>
 				<tr>
 		  			<td width=20%>		  				
