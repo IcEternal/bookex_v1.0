@@ -386,7 +386,7 @@ class Book_model extends CI_Model {
 
 		}
 		elseif ($status == 1){
-			if ($username != $result[0]->receiver) return "失败";
+			if ($username != $result[0]->receiver) return "失败, ".$this->get_status_string($id);
 			return $this->status_update($id, $status + 1);
 		}
 		elseif ($status == 2){
@@ -394,10 +394,10 @@ class Book_model extends CI_Model {
 			return $this->status_update($id, $status + 1);
 		}
 		else if ($status == 3){
-			if ($username != $result[0]->sender) return "失败";
+			if ($username != $result[0]->sender) return "失败, ".$this->get_status_string($id);
 			return $this->status_update($id, $status + 1);
 		}
-		return "失败";
+		return "失败, ".$this->get_status_string($id);
 	}
 
 	function prev_operation($id){
@@ -407,18 +407,22 @@ class Book_model extends CI_Model {
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
 		if ($status == 1){
-			if ($username != $result[0]->receiver) return "失败";
+			if ($username != $result[0]->receiver) return "失败, ".$this->get_status_string($id);
 			return $this->status_update($id, $status - 1);
 		}
 		elseif ($status == 2){
-			if ($username != $result[0]->receiver) return "失败";
+			if ($username != $result[0]->receiver) return "失败, ".$this->get_status_string($id);
 			return $this->status_update($id, $status - 1);
 		}
 		else if ($status == 3){
-			if ($username != $result[0]->sender) return "失败";
+			if ($username != $result[0]->sender) return "失败, ".$this->get_status_string($id);
 			return $this->status_update($id, $status - 1);
 		}
-		return "失败";
+		else if ($status == 5) {
+			$this->operator_update($id, 'rec');
+			return $this->status_update($id, 2);
+		}
+		return "失败, ".$this->get_status_string($id);
 	}
 
 	function deal_done($id){
@@ -427,11 +431,8 @@ class Book_model extends CI_Model {
 		$result = $this->get_result($id);
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
-		if ($status == 2 || ($status == 3 && $username == $result[0]->sender)){
-			$this->operator_update($id, 'sen');
-			return $this->status_update($id, 4);
-		}
-		return "失败";
+		$this->operator_update($id, 'sen');
+		return $this->status_update($id, 4);
 	}
 
 	function book_deleted($id){
@@ -440,11 +441,8 @@ class Book_model extends CI_Model {
 		$result = $this->get_result($id);
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
-		if (($status == 1 && $username == $result[0]->receiver) || $status == 0){
-			$this->operator_update($id, 'rec');
-			return $this->status_update($id, 5);
-		}
-		return "失败";
+		$this->operator_update($id, 'rec');
+		return $this->status_update($id, 5);
 	}
 
 	function deal_canceled($id){
