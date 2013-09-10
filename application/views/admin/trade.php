@@ -39,8 +39,9 @@
 				$current_user = $this->session->userdata('username');
 				?>
 				<tr>
-		  			<td width=20%>		  				
-					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px;"><?php echo $this->book_model->get_status_string($book->id); ?></span>
+		  			<td width=20%>
+		  				<?php $str = $this->book_model->get_status_string($book->id); ?>		  				
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px; <?php if (strpos($str, '.')) echo 'background-color: #99FF00;'; ?>"><?php echo $str; ?></span>
 					</td>
 					<td width=10%>  	
 					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>" style="margin-right:20px;">下一步操作</span>
@@ -99,8 +100,9 @@
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;?>
 				<tr>
-		  			<td width=20%>		  				
-					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1"><?php echo $this->book_model->get_status_string($book->id); ?></span>
+		  			<td width=20%>
+		  				<?php $str = $this->book_model->get_status_string($book->id); ?>		  				
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px; <?php if (strpos($str, '.')) echo 'background-color: #99FF00;'; ?>"><?php echo $str; ?></span>
 					</td>
 					<td  width=10%>  	
 					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>">下一步操作</span>
