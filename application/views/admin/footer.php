@@ -173,6 +173,8 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
+	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
+	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
 	            });
 		}
 
@@ -185,6 +187,8 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
+	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
+	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
 	            });
 		}
 
@@ -197,6 +201,8 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
+	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
+	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
 	            });
 		}
 
@@ -209,6 +215,8 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
+	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
+	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
 	            });
 		}
 
@@ -221,6 +229,8 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
+	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
+	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
 	            });
 		}
 		//给下一步按钮绑定点击事件

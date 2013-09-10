@@ -359,10 +359,17 @@ class Book_model extends CI_Model {
 		$result = $this->get_result($id);
 		if (!array_key_exists(0, $result)) return "失败";
 		$status = $result[0]->status;
+		$current_user = $this->session->userdata("username");
 		if ($status == 0) return "未取书";
-		elseif ($status == 1) return $result[0]->receiver."正在取书";
+		elseif ($status == 1) {
+			if ($current_user != $result[0]->receiver) return $result[0]->receiver."正在取书";
+			return $result[0]->receiver."正在取书.";
+		}
 		elseif ($status == 2) return $result[0]->receiver."送到易班";
-		elseif ($status == 3) return $result[0]->sender."正在送书";
+		elseif ($status == 3) {
+			if ($current_user != $result[0]->sender) return $result[0]->sender."正在送书";
+			return $result[0]->sender."正在送书.";
+		}
 		elseif ($status == 4) return $result[0]->sender."交易成功";
 		elseif ($status == 5) return $result[0]->receiver."书本卖家找不到";
 	}
