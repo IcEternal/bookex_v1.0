@@ -27,22 +27,7 @@
 </head>
 <body>
 
-<?php if (!$notshowAppo) { ?>
-<div class="modal hide fade" id="apologize">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>亲们真的很抱歉。。。</h3>
-  </div>
-  <div class="modal-body">
-    <p>我们之前没有接受过这么大的订单量。。有些生疏和忙乱</p>
-    <p>在联系买卖家方面会有许多问题。。所以希望大家能够尽量选择自行交易~</p>
-    <p>也希望卖家在上传书的时候能选择公开手机号码~</p>
-    <p>近期订单处理速度比较慢。。如果有紧急的订单不想买了的话请取消吧。。非常抱歉。。请谅解。。</p>
-    <p>我们会尽量处理好订单的流程，谢谢大家的支持！</p>
-    <p>最后，BookEx是公益平台，我们希望能用专长为同学提供志愿服务，也期待您加入我们的服务的团队！详情请见 <b>联系我们</b></p>
-  </div>
-</div>
-<?php } ?>
+
 <?php if (isset($first)): ?>
 <?php if ($first) :?>
 <?php endif; ?>
@@ -205,9 +190,6 @@ $(document).ready(function(){
 	        }
 	    });
 	});
-</script>
-<script type="text/javascript">
-	$("#apologize").modal('show');
 </script>
 </body>
 </html>
