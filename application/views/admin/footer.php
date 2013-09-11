@@ -250,6 +250,39 @@
 
 	});
 	</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("input").focus(function(){
+    $(this).css("background-color","#FFFFCC");
+  });
+  $("input").blur(function(){
+  	var input = $(this);
+  	var user_id = $(this).parent().attr('user_id');
+  	var remark = $(this).val();
+  	var post_data = 'user_id='+user_id+'&remark'+remark;
+  	$.ajax({
+  		type:'POST',
+  		url:"<?php echo site_url();?>/admin/change_remark",
+  		data:{'user_id':user_id,'remark':remark},
+  		success:function(data){
+  			if(data == 1)
+  			{
+  				input.css("background-color","#79FF79");
+  			}
+  			else
+  			{
+  				input.css("background-color","#FFD2D2");
+  			}
+  		},
+  		error:function(){
+			input.css("background-color","#FFD2D2");
+  		}
+  	});
+    
+  });
+});
+</script>
+
 
 </body>
 </html>
