@@ -108,6 +108,7 @@
 	});
 </script>
 
+
 <script type="text/javascript">
   $("#isbn_btn").click(function(){$("#dataLoad").modal('show');});
   $("#q_btn").click(function(){$("#dataLoad").modal('show');}); //为指定按钮添加数据加载动态显示：即将DIV显示出来
