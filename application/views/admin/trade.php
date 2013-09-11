@@ -1,23 +1,4 @@
 <?php $this->load->view('includes/header') ?>
-<style type="text/css">
-input[type="text"]
-{
-	margin-bottom: 0px;
-	padding: 0px;
-	float: right;
-	width: 350px;
-	height: 30px;
-}
-table .person-info
-{
-	padding: 0px;
-	padding-left: 5px;
-}
-table .person-info span
-{
-	margin-top:8px;
-}
-</style>
 	<div class="container">
 		
 		<div class="alert alert-error fade in">

@@ -14,6 +14,25 @@
 			right: 23px;
 		}
 	</style>
+<style type="text/css">
+input[type="text"] .i_remark
+{
+	margin-bottom: 0px;
+	padding: 0px;
+	float: right;
+	width: 350px;
+	height: 30px;
+}
+table .person-info
+{
+	padding: 0px;
+	padding-left: 5px;
+}
+table .person-info span
+{
+	margin-top:8px;
+}
+</style>
 </head>
 <body>
 
