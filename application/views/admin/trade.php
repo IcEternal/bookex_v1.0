@@ -1,4 +1,23 @@
 <?php $this->load->view('includes/header') ?>
+<style type="text/css">
+input[type="text"]
+{
+	margin-bottom: 0px;
+	padding: 0px;
+	float: right;
+	width: 350px;
+	height: 30px;
+}
+table .person-info
+{
+	padding: 0px;
+	padding-left: 5px;
+}
+table .person-info span
+{
+	margin-top:8px;
+}
+</style>
 	<div class="container">
 		
 		<div class="alert alert-error fade in">
@@ -14,8 +33,8 @@
 		  	$user_url = site_url().'/admin/user_modify/'.$saler['user_id'];?>
 		  	
 			<table class="table table-bordered table-hover">
-				<tr class="success">
-					<td width=50% colspan="6"><?php 
+				<tr class="success ">
+					<td width=50% colspan="6" user_id="<?php echo $saler['user_id'];?>" class="person-info"><span><?php 
 				  	printf(
 				  		'卖书者：<a target="_blank" href="%s"><span class="label label-info">%s</span></a>
 				  		电话：<span>%s</span>
@@ -24,14 +43,10 @@
 				  		书本金额：<span class="label label-info">%s元</span>
 				  		',$user_url,$saler['uploader'],$saler['phone'],$saler['dormitory'],$saler['book_num'],$saler['book_money']
 				  		);
-				  	?>
+				  	?></span>
+				  	<input class="i_remark" type="text" value="<?php echo $saler['remarks'];?>" placeholder="备注">
 				    </td>
 		  		</tr>
-				<?php if ($saler['remarks']!="") { ?>
-		  		<tr class="alert">
-		  			<td width=100% colspan="6"><?php echo $saler['remarks'] ?></td>
-		  		</tr>
-				<?php } ?>
 				<?php foreach ($sale_book[$saler['uploader']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;
