@@ -15,7 +15,7 @@ class Welcome extends CI_Controller {
 		if ($this->session->userdata('test') != true) {
 			$has_cookie = false;
 		}
-		if (isMobile() && $first && $has_cookie) {
+		if (isMobile() && $first) {
 			$data = array(
 				'first' => true
 			);
@@ -23,6 +23,7 @@ class Welcome extends CI_Controller {
 			$this->load->view('mobile');
 		}
 		else {
+			$data["first"] = false;
 			$data['no_recommend'] = isMobile();
 			if (!$this->session->userdata('is_logged_in')) {
 				$data["first"] = true;
@@ -41,7 +42,12 @@ class Welcome extends CI_Controller {
 			}
 			$data['tot'] = $tot;
 			$data['save'] = $save;
+			$data['notshowAppo'] = $this->session->userdata('first');
 			$this->load->view('index', $data);
+			$data = array(
+				'first' => true
+			);
+			$this->session->set_userdata($data);
 		}
 	}
 

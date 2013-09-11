@@ -425,4 +425,11 @@ class Admin extends CI_Controller {
 		echo $this->book_model->deal_canceled($id);
 	}
 
+	function change_remark()
+	{
+		$id = $_POST['user_id'];
+		$remark = $_POST['remark'];
+		echo $this->book_model->change_remark($id,$remark);
+	}
+
 }

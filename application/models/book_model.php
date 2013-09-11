@@ -448,8 +448,19 @@ class Book_model extends CI_Model {
 	function deal_canceled($id){
 		$this->operator_update($id, 'rec');
 		$this->db->query("UPDATE book set subscriber = \"N\", subscribetime = NULL, status = 0 WHERE id = $id");
-	}	
+	}
 
-
-
+	function change_remark($id,$remark)
+	{
+		$this->db->query("UPDATE user set remarks = '$remark' WHERE id = $id");
+		if($this->db->affected_rows())
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+		
+	}
 }
