@@ -18,8 +18,24 @@
 					$err = $err_mes;
 					$del = $info->del;
 					$is_success = $is_succ;
+					$status = $info->status;
+
+
+
 ?>
 
+
+<?php 
+	function get_status_string($status){
+		if ($status == 0) return "未取书";
+		elseif ($status == 1) return "正在取书";
+		elseif ($status == 2) return "书本已到达BookEx";
+		elseif ($status == 3) return "正在送书";
+		elseif ($status == 4) return "交易成功";
+		elseif ($status == 5) return "卖家找不到该书本";
+	}
+
+ ?>
 <style type="text/css">
 	p {
 		word-break: break-all;
@@ -130,10 +146,17 @@
 
 								<?php
 							}
-							else {
+							else if ($status == 0) {
 								?>
 
 								<a class = "btn" href = "<?php echo site_url('book_details/uploader_cancel/'.$id); ?>"> 已预订，取消该订单 </a>
+
+								<?php
+							}
+							else {
+								?>
+
+								<a class = "btn disabled"> <?php echo get_status_string($status); ?> </a>
 
 								<?php
 							}
@@ -147,11 +170,18 @@
 						}
 						else {
 							if ($subscriber == $user) {
+								if ($status == 0){
 								?>
 
 								<a class = "btn" href = "<?php echo site_url('book_details/user_cancel/'.$id); ?>"> 取消订单 </a>
 
-								<?php
+								<?php }
+								else {
+								?>
+
+								<a class = "btn disabled" > <?php echo get_status_string($status); ?> </a>
+
+								<?php }
 							}
 							else {
 								?>
