@@ -40,7 +40,16 @@ if ($err != "")
 <?php
   if (count($result1) > 0) {
     ?>
-
+<?php 
+  function get_status_string($status){
+    if ($status == 0) return "未取书";
+    elseif ($status == 1) return "正在取书";
+    elseif ($status == 2) return "书本已到达BookEx";
+    elseif ($status == 3) return "正在送书";
+    elseif ($status == 4) return "交易成功";
+    elseif ($status == 5) return "卖家找不到该书本";
+  }
+ ?>
 
 <?php $first = true; ?>
       <div style = "font-family: verdana">
@@ -112,6 +121,11 @@ if ($err != "")
             <p>
               <a href="<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>">
                 详细页面
+              </a>
+            </p>
+            <p>
+              <a href="#">
+                <?php echo get_status_string($item->id); ?>
               </a>
             </p>
           </div>

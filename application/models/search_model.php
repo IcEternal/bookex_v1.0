@@ -118,7 +118,7 @@
 		function getUserspaceResult($err = 0){
 			$this->load->helper('safe');
 			jd_stopattack();
-			$fields = "id,name,author,price,originprice,publisher,ISBN,description,uploader,subscriber,subscribetime,finishtime,hasimg";
+			$fields = "id,name,author,price,originprice,publisher,ISBN,description,uploader,subscriber,subscribetime,finishtime,hasimg,status";
 			$user = $this->session->userdata('username');
 			$query = "SELECT $fields FROM book WHERE (subscriber = \"$user\" AND del != true AND finishtime = \"0000-00-00 00:00:00\");";
 			$result1 = $this->db->query($query)->result();
