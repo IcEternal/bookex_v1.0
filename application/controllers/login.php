@@ -9,7 +9,41 @@ class Login extends CI_Controller {
 	}
 
 	function redirect_to_index() {
-		redirect('welcome/index');
+		$first = ($this->session->userdata('first') !== true);
+		$arr = array('test' => true);
+		$this->session->set_userdata($arr);
+		$has_cookie = true;
+		if ($this->session->userdata('test') != true) {
+			$has_cookie = false;
+		}
+		if (isMobile() && $first && $has_cookie) {
+			$data = array(
+				'first' => true
+			);
+			$this->session->set_userdata($data);
+			$this->load->view('mobile');
+		}
+		else {
+			$data['no_recommend'] = isMobile();
+			if (!$this->session->userdata('is_logged_in')) {
+				$data["first"] = true;
+			}
+			if (1>0) {
+				$this->load->model('recommend_model');
+				$data["recommend"]=$this->recommend_model->getResult();
+			}
+			$this->db->where('finishtime > 0 AND subscriber != "N"');
+			$arr = $this->db->get('book')->result();
+			$tot = 0;
+			$save = 0;
+			foreach ($arr as $row) {
+				$tot += 1;
+				$save += $row->originprice - $row->price;
+			}
+			$data['tot'] = $tot;
+			$data['save'] = $save;
+			$this->load->view('index', $data);
+		}	
 	}
 
 	function redirect_to() {
