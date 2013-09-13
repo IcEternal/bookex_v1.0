@@ -46,7 +46,10 @@ class Book_details extends CI_Controller {
 			$this->load_page($book_id, '您不是本书的上传者', false);
 			return;
 		}
-
+		if ($book_info->status > 1){
+			$this->load_page($book_id, '书本已经送出，不能取消订单。', false);
+			return;
+		}
 		$this->book_model->update_subscriber($book_id, 'N');
 
 		$this->load_page($book_id, '成功取消订单！', true);
@@ -66,7 +69,10 @@ class Book_details extends CI_Controller {
 			$this->load_page($book_id, '您还未订购该书', false);
 			return;
 		}
-
+		if ($book_info->status > 1){
+			$this->load_page($book_id, '书本已经送出，不能取消订单。', false);
+			return;
+		}
 		if ($book_info->finishtime != 0) {
 			$this->load_page($book_id, '该书已交易', false);
 			return;

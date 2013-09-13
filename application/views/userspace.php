@@ -330,7 +330,9 @@ if ($err != "")
                 详细页面
               </a>
             </p>
+            <?php if ($item->subscriber == 'N') { ?>
             <p><a href="#myModal<?php echo $item->id ?>" role="button" data-toggle="modal">删除本书</a></p>
+            <?php } ?>
             <p><a href="<?php echo site_url('book_upload/modify') ?>/<?php echo $item->id ?>">修改信息</a></p>
             <!-- <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p> -->
 	    <!-- Modal -->

@@ -26,7 +26,7 @@ class Book_model extends CI_Model {
 			$arr['use_phone'] = false;
 		}
 		$this->db->update('book', $arr);
-		$this->db->query("UPDATE book SET subscribetime = now() WHERE id = \"$book_id\"");
+		$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
 	}
 
 	function use_phone($book_id) {
@@ -89,8 +89,8 @@ class Book_model extends CI_Model {
 	}
 
 	function book_delete($id) {
-		$this->db->where('id', $id);
-		$this->db->query("UPDATE book SET deltime = now() WHERE id = \"$id\"");
+		$this->db->where('id', $id)->where('subscriber', 'N');
+		$this->db->query("UPDATE book SET deltime = now() WHERE (id = \"$id\" and subscriber=\"N\")");
 		$arr = array('del' => true);
 		return $this->db->update('book', $arr);
 	}
