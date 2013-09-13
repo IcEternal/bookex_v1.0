@@ -79,7 +79,7 @@ if ($err != "")
               </div>
             </div>
 
-            <div id = "right" class = "span7 offset1">
+            <div id = "right" class = "span6 offset1" style="margin-right: 30px;">
               <div class = "row-fluid">
                 <p class = "span2"> <strong> 图书名 </strong> </p>
                 <p class = "span10"> <?php echo $item->name; ?> </p>
@@ -124,9 +124,7 @@ if ($err != "")
               </a>
             </p>
             <p>
-              <a href="#">
-                <?php echo get_status_string($item->id); ?>
-              </a>
+              <?php echo get_status_string($item->status); ?>
             </p>
           </div>
         <?php endforeach;?>
