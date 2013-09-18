@@ -115,7 +115,12 @@
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <div>当前平台上可交易书本数量为<strong><?php echo $tot_book ?></strong>本,共为同学们省下了<strong><?php echo $save ?></strong>元!喜欢这个网站的话请在右边分享哦~</div>
 </div>
+<div class="alert alert-info fade in">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <div><b>BookEx</b>祝同学们中秋节快乐~~~^ ^</div>
 </div>
+</div>
+
 
 <div class="container" id="index" <?php if ($no_recommend) echo 'style="padding-bottom:250px"' ?>>
 	<h1><a href="<?php echo site_url(); ?>">BookEX</a></h1>
