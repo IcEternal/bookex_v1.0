@@ -113,7 +113,7 @@
 <?php endif; ?>
 <div class="alert alert-info fade in">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <div>已成交<strong><?php echo $tot ?></strong>本,共为同学们省下了<strong><?php echo $save ?></strong>元!喜欢这个网站的话请在右边分享哦~</div>
+  <div>当前平台上可交易书本数量为<strong><?php echo $tot_book ?></strong>本,共为同学们省下了<strong><?php echo $save ?></strong>元!喜欢这个网站的话请在右边分享哦~</div>
 </div>
 </div>
 
