@@ -303,20 +303,19 @@
 </div>
 
 
-<!-- Baidu Button BEGIN -->
-<!-- <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=2&amp;pos=right&amp;uid=4388338" ></script> 
+<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=2&amp;mini=1&amp;pos=right&amp;uid=4388338" ></script> 
  	<script type="text/javascript" id="bdshell_js"></script> 
  	<script type="text/javascript">
 	//在这里定义bds_config
 	var bds_config = {'bdText':'<?php echo '我在交大校内二手书交易平台BookEx上找到了一本好书～书名:  '.$name.';     作者:  '.$author.';     原价:  '.$originprice.'元;     现在只要 '.$price.'元 哦！'?>','bdDesc':'BookEx - 交大校内二手书交易平台。可以自己随心定价，不必再被二手书店赚取差价啦！迎合书本循环利用理念，为同学们创造方便舒适的使用环境！现在网站上资源不少，可以去看看哦～','bdPic':'<?php echo base_url();?>get_data.php?id=<?php echo $id?>'};
 	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
 </script>
--->
+
 <!-- Baidu Button BEGIN -->
 <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=4388338" ></script>
 <script type="text/javascript" id="bdshell_js"></script>
 <script type="text/javascript">
-	var bds_config = {'bdText':'BookEx - 交大校内二手书交易平台。网站今年5月上线，现在共有近2000本书，价格十分优惠~还有工作人员免费送书~学长学姐说不定还会留下精致的笔记哈~快来看看吧','bdDesc':'交大校内二手书交易网站','bdComment':'以后有想卖掉的书就可以传在BookEx上咯，很多教材也能在平台上轻松找到哦~!','bdPic':'<?php echo base_url() ?>public/img/advertise.png'};
+	var bds_config = {'bdText':'BookEx - 交大校内二手书交易平台。网站今年5月上线，现在共有近2000本书，价格十分优惠~学长学姐说不定还会留下精致的笔记哈~快来看看吧','bdDesc':'交大校内二手书交易网站','bdComment':'以后有想卖掉的书就可以传在BookEx上咯，很多教材也能在平台上轻松找到哦~!','bdPic':'<?php echo base_url() ?>public/img/advertise.png'};
 document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
 </script>
 <!-- Baidu Button END -->
