@@ -8,7 +8,16 @@ class Book_upload extends CI_Controller {
 		$data['main_content'] = 'book_upload';
 		$data['data']['title'] = '上传书本';
 		$this->load->model('user_model');  
-    $data['use_or_not'] = $this->user_model->get_use_phone();  
+    	$data['use_or_not'] = $this->user_model->get_use_phone();  
+		$this->load->view('includes/template', $data);
+	}
+
+	function upload_other() {
+		if ($this->session->userdata('is_logged_in') != true) {
+			redirect('login');
+		}
+		$data['main_content'] = 'upload_other';
+		$data['data']['title'] = '上传其他二手物品或Service';
 		$this->load->view('includes/template', $data);
 	}
 

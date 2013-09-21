@@ -17,6 +17,7 @@ class Book_details extends CI_Controller {
 		$data['info']['title'] = '详细书本信息';
 		$data['info']['phone'] = $this->book_model->get_phone_by_book_id($res->id);
 		$data['info']['collect'] = $this->user_collection_model->find($book_id);
+		$data['info']['mustphone'] = (strpos($res->class, '二手物品')!==false) || (strpos($res->class, 'Service')!==false);
 		$this->load->view('includes/template_book_details', $data);
 	}
 

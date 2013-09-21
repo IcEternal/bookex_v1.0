@@ -33,7 +33,7 @@
 
 <div id="book_upload" class="container">
 <fieldset>
-	<legend>快速上传</legend>
+	<legend>快速上传书本</legend>
 	<div class="row">
 		<div class="span5">
 			<form class="form-search" action="<?php echo site_url('book_upload/book_isbn') ?>" method="get" accept-charset="utf-8">
@@ -48,6 +48,8 @@
 			</form>
 		</div>
 	</div>
+	<legend>上传 其他二手物品 或 Service 请<a href=" <?php echo site_url().'/book_upload/upload_other' ?>">点击此处</a>
+	</legend>
 	<legend>或 自行填写书本信息</legend>
 	<?php $this->load->view('includes/book_upload_form'); ?>
 </fieldset>
