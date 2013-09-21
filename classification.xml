@@ -34,6 +34,12 @@
 	</class>
 	<class lv="1" value="2" name="成功学与哲学"></class>
 	<class lv="1" value="3" name="休闲与杂志"></class>
-	<class lv="1" value="4" name="Service"></class>
-	<class lv="1" value="5" name="其他"></class>
+	<class lv="1" value="4" name="其他书本"></class>
+	<class lv="1" value="5" name="二手物品">
+		<class lv="2" name="电子数码"></class>
+		<class lv="2" name="美妆用品"></class>
+		<class lv="2" name="自行车"></class>
+		<class lv="2" name="其他生活用品"></class>
+	</class>
+	<class lv="1" value="6" name="Service"></class>
 </table>
