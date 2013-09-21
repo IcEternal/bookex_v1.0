@@ -79,7 +79,7 @@ if ($err != "")
               </div>
             </div>
 
-            <div id = "right" class = "span7 offset1">
+            <div id = "right" class = "span6 offset1" style="margin-right: 30px;">
               <div class = "row-fluid">
                 <p class = "span2"> <strong> 图书名 </strong> </p>
                 <p class = "span10"> <?php echo $item->name; ?> </p>
@@ -124,9 +124,7 @@ if ($err != "")
               </a>
             </p>
             <p>
-              <a href="#">
-                <?php echo get_status_string($item->status); ?>
-              </a>
+              <?php echo get_status_string($item->status); ?>
             </p>
           </div>
         <?php endforeach;?>
@@ -149,6 +147,7 @@ if ($err != "")
     <?php
   }
 ?>
+
 
 
     </div><!-- tab1 -->
@@ -227,7 +226,11 @@ if ($err != "")
                 详细页面
               </a>
             </p>
-            <!-- <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p> -->
+            <?php 
+              if ($item->use_phone == 1){
+             ?>
+                <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p>
+            <?php } ?>
             <div id="myModal1<?php echo $item->id ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModal1Label" aria-hidden="true">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
