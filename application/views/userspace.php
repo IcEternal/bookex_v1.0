@@ -125,7 +125,7 @@ if ($err != "")
             </p>
             <p>
               <a href="#">
-                <?php echo get_status_string($item->id); ?>
+                <?php echo get_status_string($item->status); ?>
               </a>
             </p>
           </div>
