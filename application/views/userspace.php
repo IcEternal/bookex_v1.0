@@ -149,6 +149,7 @@ if ($err != "")
 ?>
 
 
+
     </div><!-- tab1 -->
 
     <div class="tab-pane fade" id="tab2">
@@ -225,7 +226,11 @@ if ($err != "")
                 详细页面
               </a>
             </p>
-            <!-- <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p> -->
+            <?php 
+              if ($item->use_phone == 1){
+             ?>
+                <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p>
+            <?php } ?>
             <div id="myModal1<?php echo $item->id ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModal1Label" aria-hidden="true">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
