@@ -1,4 +1,4 @@
-<?php header('Cache-Control: max-age=8'); ?>
+<?php header('Location: '.site_url()); ?>
 <?php include("includes/header.php"); ?>
 	<div class="container">
 		<div class="well">
