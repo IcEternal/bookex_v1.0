@@ -133,7 +133,7 @@
 			$result3 = $this->db->query($query)->result();
 			$query = "SELECT $fields FROM book WHERE ((uploader = \"$user\" OR subscriber = \"$user\") AND del != true AND finishtime != \"0000-00-00 00:00:00\") ;";
 			$result4 = $this->db->query($query)->result();
-
+			$user_phone = array();
 			foreach ($result2 as $book){
 				if ($book->use_phone == 1){
 					$user_phone["$book->id"] = $this->getUserPhone($book->subscriber);
