@@ -208,6 +208,19 @@ if ($err != "")
               </div>
 
               <div class = "row-fluid">
+                <p class = "span2"> <strong>  <?php echo "交易类型:"; ?></strong></p>
+                <p class = "span10"><?php
+                  if ($item->use_phone == 1){
+                    $subscriber_phone = $user_phone["$item->id"][0]->phone;
+                    echo "自行交易（买家手机：$subscriber_phone ）";
+                  }
+                  else {
+                    echo "委托交易";
+                  }
+                ?></p>
+              </div>
+
+              <div class = "row-fluid">
                 <p class = "span2"> <strong> 简介 </strong> </p>
                 <p class = "span10">
                   <?php
