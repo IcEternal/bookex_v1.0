@@ -1,11 +1,49 @@
 <?php $this->load->view('includes/header') ?>
+
 	<div class="container">
 		
 		<div class="alert alert-error fade in">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
 		  <div>等待交易的书籍，不包括选择自行交易的图书</div>
 		</div>
+		<script type="text/javascript">
+			function copyToClipboard(txt) {
+                if (window.clipboardData) {
+                    window.clipboardData.clearData();
+                    window.clipboardData.setData("Text", txt);
+                } else if (navigator.userAgent.indexOf("Opera") != -1) {
+                    window.location = txt;
+                } else if (window.netscape) {
+                    try {
+                        netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                    } catch (e) {
+                        alert("复制失败! \n请在浏览器地址栏输入'about:config'并回车\n然后将'signed.applets.codebase_principal_support'设置为'true'");
+                    }
+                    var clip = Components.classes['@mozilla.org/widget/clipboard;1']
+                            .createInstance(Components.interfaces.nsIClipboard);
+                    if (!clip)
+                        return;
+                    var trans = Components.classes['@mozilla.org/widget/transferable;1']
+                            .createInstance(Components.interfaces.nsITransferable);
+                    if (!trans)
+                        return;
+                    trans.addDataFlavor('text/unicode');
+                    var str = new Object();
+                    var len = new Object();
+                    var str = Components.classes["@mozilla.org/supports-string;1"]
+                            .createInstance(Components.interfaces.nsISupportsString);
+                    var copytext = txt;
+                    str.data = copytext;
+                    trans.setTransferData("text/unicode", str, copytext.length * 2);
+                    var clipid = Components.interfaces.nsIClipboard;
+                    if (!clip)
+                        return false;
+                    clip.setData(trans, null, clipid.kGlobalClipboard);
+                    //alert("复制成功！")   
+                }
+			}
 
+		</script>
 		<a class="btn btn-primary" href="<?php echo site_url().'/admin';?>"/>返回管理主页</a>
 		<div class="row">
 		  <div class="span12">
@@ -26,6 +64,36 @@
 				  		);
 				  	?></span>
 				  	<input class="i_remark" type="text" value="<?php echo $saler['remarks'];?>" placeholder="备注">
+				  	<?php 
+				  		$message = "同学你好，您的";
+				  		$bookmessage = "";
+		  				foreach ($sale_book[$saler['uploader']] as $book){
+		  					$bookname = $book->name;
+		  					$bookmessage = "$bookmessage 《$bookname 》,￥$book->price";
+		  				}
+					  	$message = "$message $bookmessage 被预定了。您可以在晚上7点-10点半 在逸夫楼圆厅易班工作室交易。<br /> <br />由于BookEx是促进书籍循环的公益组织，由交大学生志愿服务，时间精力有限。所以送书时间改为每星期三与星期六晚，我们真诚的希望您能到固定地点完成交易，谢谢！"; 
+					  ?>
+					<a  href="javascript:void(0)">
+				  		<span id="createText<?php echo $saler['user_id']; ?>" class="label label-info">生成短信</span>
+				  	</a>
+				  	<script type="text/javascript" src="<?php echo base_url() ?>public/js/ZeroClipboard.js"></script>
+				  	<script language="javascript" type="text/javascript">
+					  		document.getElementById("createText<?php echo $saler['user_id']; ?>").onclick=function(){
+
+					  			var str = "<?php echo $message ?>";
+								var clip = new ZeroClipboard.Client();
+
+								clip.setHandCursor( true );
+								clip.setText(str);      
+
+								clip.addEventListener('complete', function (client, text) {
+								        alert("复制成功!!");
+								});
+
+								clip.glue(str);
+					  		}
+
+					</script>
 				    </td>
 		  		</tr>
 				<?php foreach ($sale_book[$saler['uploader']] as $book) :
