@@ -26,13 +26,14 @@
 		<class lv="2" name="考研资料"></class>
 		<class lv="2" name="其他"></class>
 	</class>
-	<class lv="1" value="1" name="文学">
+	<class lv="1" value="1" name="文学与哲学">
+		<class lv="2" name="哲学"></class>
 		<class lv="2" name="小说"></class>
 		<class lv="2" name="传记"></class>
 		<class lv="2" name="散文"></class>
 		<class lv="2" name="其他"></class>
 	</class>
-	<class lv="1" value="2" name="成功学与哲学"></class>
+	<class lv="1" value="2" name="成功学"></class>
 	<class lv="1" value="3" name="休闲与杂志"></class>
 	<class lv="1" value="4" name="其他书本"></class>
 	<class lv="1" value="5" name="二手物品">
