@@ -40,6 +40,10 @@ class Login extends CI_Controller {
 				$tot += 1;
 				$save += $row->originprice - $row->price;
 			}
+			$this->db->where('del != true AND finishtime = 0 AND subscriber = "N"');
+			$arr = $this->db->select('COUNT(*) AS total_rows')->get('book')->result();
+			$row = $arr[0];
+			$data['tot_book'] = $row->total_rows;
 			$data['tot'] = $tot;
 			$data['save'] = $save;
 			$this->load->view('index', $data);
