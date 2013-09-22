@@ -92,7 +92,6 @@
 	  </div>
 	</div>
 <?php } ?> 
-
 <?php if ($show == true && $err == '订购成功！工作人员将于1天内于您联系') { ?>
 	<div class="modal hide fade" id="phoneInfo">
 	  <div class="modal-header">
@@ -103,10 +102,11 @@
 	    <p>对方支持当面交易,手机号为 <?php echo $phone ?>.</p>
 	    <p>点击下方的 <strong>自行当面交易</strong> 后，手机号会在书本图片下方显示。</p>
 	    <p>推荐使用 <strong>自行当面交易</strong>，可以出去走走并且认识新同学哈~</p>
-	    <p>如果您不想当面交易,请点击下方的 <strong>委托交易</strong> 按钮, 我们会联系您并送书上门。</p>
+	    <p>如果您不想当面交易,请点击下方的 <strong>委托交易</strong> 按钮, 我们会短信联系您。</p>
+	    <p>PS: 若您订购的是二手书以外的物品，则只能当面交易~</p>
 	  </div>
 	  <div class="modal-footer">
-	    <a class="btn" data-dismiss="modal" aria-hidden="true" id="do_not_use_phone">委托交易</a>
+	    <?php if (!$mustphone) {?><a class="btn" data-dismiss="modal" aria-hidden="true" id="do_not_use_phone">委托交易</a><?php } ?>
 	    <a href='<?php echo site_url("book_details/use_phone/$id") ?>' class="btn btn-primary">自行当面交易</a>
 	  </div>
 	</div>
@@ -122,7 +122,7 @@
 
 				<img src = "<?php echo base_url('get_data.php?id='.$id); ?>" style = "width:80%" />
 				<p></p>
-				<p> <strong> 上传人: </strong> &nbsp <?php echo $uploader; ?> </p>
+				<p> <strong> 上传人: </strong> &nbsp <?php echo $uploader; ?></p>
 			  <?php if ($user == $subscriber && $use == true) { ?>
 			  	<p> <strong> 手机号: </strong> &nbsp <?php echo $phone; ?> </p>
 			  <?php } ?>
@@ -164,7 +164,8 @@
 						else if ($subscriber == 'N') {
 							?>
 
-								<a class = "btn" href = "<?php echo site_url('book_details/order/'.$id); ?>"> 预订 </a>
+									<a class = "btn" href = "<?php echo site_url('book_details/order/'.$id); ?>"> 预订 </a>
+
 
 							<?php
 						}
