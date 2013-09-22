@@ -160,6 +160,7 @@
 
 								<?php
 							}
+
 						}
 						else if ($subscriber == 'N') {
 							?>
@@ -279,7 +280,20 @@
 				</p>
 			
 			</div>
-
+			<?php if ($uploader == $user && $subscriber!='N') { ?>
+				<div class = "row-fluid">
+                <p class = "span2"> <strong>  <?php echo "交易类型:"; ?></strong> </p>
+                <p class = "span10"><?php
+                  if ($use == 1){
+                    $subscriber_phone = $user_phone[0]->phone;
+                    echo "自行交易（买家手机：$subscriber_phone ）";
+                  }
+                  else {
+                    echo "委托交易";
+                  }
+                ?></p>
+              </div>
+             <?php } ?>
 			<div class = "row-fluid">
 				<p class = "span2"> <strong> 豆瓣链接 </strong> </p>
 				<p class = "span10"> 

@@ -115,6 +115,11 @@
 			//return array("result"=>$result,'key'=>$key,'page'=>$page);
 		}
 
+		function getUserPhone($user){
+			$query = "SELECT phone FROM user WHERE (username = \"$user\") ;";
+			return $this->db->query($query)->result();
+		}
+
 		function getUserspaceResult($err = 0){
 			$this->load->helper('safe');
 			jd_stopattack();
@@ -129,7 +134,13 @@
 			$query = "SELECT $fields FROM book WHERE ((uploader = \"$user\" OR subscriber = \"$user\") AND del != true AND finishtime != \"0000-00-00 00:00:00\") ;";
 			$result4 = $this->db->query($query)->result();
 
-			$data = array("result1"=>$result1, "result2"=>$result2, "result3"=>$result3, "result4"=>$result4);
+			foreach ($result2 as $book){
+				if ($book->use_phone == 1){
+					$user_phone["$book->id"] = $this->getUserPhone($book->subscriber);
+				}
+			}
+			$data = array("result1"=>$result1, "result2"=>$result2, "result3"=>$result3, "result4"=>$result4, "user_phone"=>$user_phone);
+			
 			if ($err == 0) $data['err'] = '';
 			if ($err == 1) { 
 				$data['err'] = '删除成功!';
