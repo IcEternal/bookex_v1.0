@@ -208,7 +208,7 @@ if ($err != "")
               </div>
 
               <div class = "row-fluid">
-                <p class = "span2"> <strong>  <?php echo "交易类型:"; ?></strong> </p>
+                <p class = "span2"> <strong>  <?php echo "交易类型:"; ?></strong></p>
                 <p class = "span10"><?php
                   if ($item->use_phone == 1){
                     $subscriber_phone = $user_phone["$item->id"][0]->phone;
