@@ -93,6 +93,7 @@
 	</div>
 <?php } ?> 
 <?php if ($show == true && $err == '订购成功！工作人员将于1天内于您联系') { ?>
+	<?php if ($mustphone) redirect("book_details/use_phone/$id"); ?>
 	<div class="modal hide fade" id="phoneInfo">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
