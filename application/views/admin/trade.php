@@ -37,9 +37,9 @@
 				  		$bookmessage = "";
 		  				foreach ($sale_book[$saler['uploader']] as $book){
 		  					$bookname = $book->name;
-		  					$bookmessage = "$bookmessage 《$bookname 》,￥$book->price";
+		  					$bookmessage = $bookmessage."《".$bookname."》,￥$book->price"." ";
 		  				}
-					  	$message = "$message $bookmessage 被预定了。您可以在晚上7点-10点半 在逸夫楼圆厅易班工作室交易。 "; 
+					  	$message = "$message $bookmessage 被预定了。您可以在晚上8点半-10点 在逸夫楼圆厅易班工作室交易。 "; 
 					  	$postfix = "由于BookEx是促进书籍循环的公益组织，由交大学生志愿服务，时间精力有限。现在全校推广期提供一个月的免费送书服务，时间为每星期三与星期六晚，我们仍然真诚的希望您能到固定地点完成交易，谢谢！";
 					  ?>
 					<a  href="javascript:void(0)">
@@ -48,7 +48,7 @@
 				  	<script language="javascript" type="text/javascript">
 					  		document.getElementById("createSalerText<?php echo $saler['user_id']; ?>").onclick=function(){
 					  			
-					  			var str = "<?php echo $message ?>" + "\r\n" + "<?php echo $postfix ?>" ;
+					  			var str = "<?php echo $message ?>" + "\r\n" + "\r\n" + "<?php echo $postfix ?>" ;
 								var clip = new ZeroClipboard.Client();
 								var id = $(this).attr("id");  
 
@@ -123,7 +123,7 @@
 					  		);
 		  			?>
 		  			<a  href="javascript:void(0)">
-				  		<span id="createBuyerText<?php echo $saler['user_id']; ?>" class="label label-info">生成短信</span>
+				  		<span id="createBuyerText<?php echo $buyer['user_id']; ?>" class="label label-info">生成短信</span>
 				  	</a>
 		  			</td>
 		  			<?php 
@@ -131,15 +131,15 @@
 				  		$bookmessage = "";
 		  				foreach ($buy_book[$buyer['subscriber']]  as $book){
 		  					$bookname = $book->name;
-		  					$bookmessage = "$bookmessage 《$bookname 》,￥$book->price";
+		  					$bookmessage = "$bookmessage"."《".$bookname."》,￥$book->price"." ";
 		  				}
-					  	$message = "$message $bookmessage 已经到货。您可以在晚上7点-10点半 在逸夫楼圆厅易班工作室取书。 "; 
+					  	$message = "$message $bookmessage 已经到货。您可以在晚上8点半-10点 在逸夫楼圆厅易班工作室取书。 "; 
 					?>
 		  			
 				  	<script language="javascript" type="text/javascript">
-					  		document.getElementById("createBuyerText<?php echo $saler['user_id']; ?>").onclick=function(){
+					  		document.getElementById("createBuyerText<?php echo $buyer['user_id']; ?>").onclick=function(){
 					  			
-					  			var str = "<?php echo $message ?>" + "\r\n" + "<?php echo $postfix ?>" ;
+					  			var str = "<?php echo $message ?>" + "\r\n" + "\r\n" + "<?php echo $postfix ?>" ;
 								var clip = new ZeroClipboard.Client();
 								var id = $(this).attr("id");  
 
