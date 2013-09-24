@@ -118,7 +118,7 @@
 </div>
 <div class="alert alert-info fade in">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <div><b>BookEx</b>祝同学们中秋节快乐~~~^ ^</div>
+  <div><b>BookEx</b>有主页菌啦～<b><a href="http://www.renren.com/558600685/profile" target=_blank>博易BookEx</a></b>～每天都会推送一些BookEx上的新物品哦～</div>
 </div>
 </div>
 

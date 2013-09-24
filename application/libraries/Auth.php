@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Auth {
 
-	private $admin = array('zukou', 'haichongfu2003', 'devillaw_zhc', 'zhcpzyjtx','Metamorphosis','gengyan');
+	private $admin = array('zukou', 'haichongfu2003', 'devillaw_zhc', 'zhcpzyjtx','Metamorphosis','gengyan','西南某馒头','jennasongsong','huanghaixin008','yellowoo');
 	private $sender = array('Gone-zenith','西南某馒头','jennasongsong');
 	private $receiver = array('Gone-zenith','西南某馒头','jennasongsong');
 
