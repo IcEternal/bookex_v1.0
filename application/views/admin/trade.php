@@ -40,7 +40,7 @@
 		  					$bookmessage = "$bookmessage 《$bookname 》,￥$book->price";
 		  				}
 					  	$message = "$message $bookmessage 被预定了。您可以在晚上7点-10点半 在逸夫楼圆厅易班工作室交易。 "; 
-					  	$postfix = "由于BookEx是促进书籍循环的公益组织，由交大学生志愿服务，时间精力有限。所以送书时间改为每星期三与星期六晚，我们真诚的希望您能到固定地点完成交易，谢谢！";
+					  	$postfix = "由于BookEx是促进书籍循环的公益组织，由交大学生志愿服务，时间精力有限。现在全校推广期提供一个月的免费送书服务，时间为每星期三与星期六晚，我们仍然真诚的希望您能到固定地点完成交易，谢谢！";
 					  ?>
 					<a  href="javascript:void(0)">
 				  		<span id="createSalerText<?php echo $saler['user_id']; ?>" class="label label-info">生成短信</span>
