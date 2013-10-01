@@ -114,11 +114,15 @@
 <?php endif; ?>
 <div class="alert alert-info fade in">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <div>当前平台上可交易书本数量为<strong><?php echo $tot_book ?></strong>本,共为同学们省下了<strong><?php echo $save ?></strong>元!喜欢这个网站的话请在右边分享哦~</div>
+  <div>当前平台上可交易书本数量为<strong><?php echo $tot_book ?></strong>本,共交易<strong><?php echo $tot ?></strong>本,为同学们省下了<strong><?php echo $save ?></strong>元!喜欢这个网站的话请在右边分享哦~</div>
 </div>
 <div class="alert alert-info fade in">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <div><b>BookEx</b>有主页菌啦～<b><a href="http://www.renren.com/558600685/profile" target=_blank>博易BookEx</a></b>～每天都会推送一些BookEx上的新物品哦～</div>
+</div>
+<div class="alert alert-info fade in">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <div><b>BookEx</b>全体成员祝大家国庆快乐～～～（国庆节小伙伴们都出去玩了...暂停送书服务...请谅解哈～～）</div>
 </div>
 </div>
 
