@@ -7,18 +7,31 @@ class User_model extends CI_Model {
 	}
 
 	function username_check() {
-		$this->db->where('username', $this->input->post('username'));
+		$username = $this->input->post('username');
+		$condition = "username = \"$username\" OR email = \"$username\"";
+		$this->db->or_where($condition);
 		$query = $this->db->get('user');
 
 		return $query->num_rows;
 	}
 
 	function password_check() {
-		$this->db->where('username', $this->input->post('username'));
+		$username = $this->input->post('username');
+		$condition = "(username = \"$username\" OR email = \"$username\")";
+		$this->db->where($condition);
 		$this->db->where('password', md5($this->input->post('password')));
 		$query = $this->db->get('user');
 		
 		return $query->num_rows;
+	}
+
+	function get_username(){
+		$username = $this->input->post('username');
+		$condition = "(username = \"$username\" OR email = \"$username\")";
+		$this->db->where($condition);
+		$query = $this->db->get('user')->result();
+		
+		return $query[0]->username;
 	}
 
 	function get_user() {
