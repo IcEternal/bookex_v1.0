@@ -124,8 +124,8 @@ class Login extends CI_Controller {
 
 		$this->form_validation->set_rules('password', '密码', 'trim|required|min_length[6]|max_length[32]');
 		$this->form_validation->set_rules('password_confirm', '确认密码', 'trim|required|matches[password]');
-        $this->form_validation->set_rules('student_number', '', 'trim');
-        $this->form_validation->set_rules('dormitory', '寝室', 'trim|required');
+        	$this->form_validation->set_rules('student_number', '', 'trim');
+        	$this->form_validation->set_rules('dormitory', '寝室', 'trim|required');
 	
 		if ($this->input->post('student_number') != '') 
 			$this->form_validation->set_rules('student_number', '学号', 'trim|exact_length[10]|is_numeric|is_unique[user.student_number]');
@@ -141,8 +141,7 @@ class Login extends CI_Controller {
 					'is_logged_in' => true
 				);
 				$this->session->set_userdata($data);
-				$arr["nobook"] = true;
-				$this->load->view("index", $arr);
+				$this->redirect_to_index();
 			}
 			else {
 				$this->signup();
