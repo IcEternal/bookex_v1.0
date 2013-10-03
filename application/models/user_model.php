@@ -34,11 +34,14 @@ class User_model extends CI_Model {
 			'password' => md5($this->input->post('password', true)),
 			'phone' => htmlspecialchars($this->input->post('phone', true)),
 			'email' => htmlspecialchars($this->input->post('email', true)),
-            'student_number' => htmlspecialchars($this->input->post('student_number', true)),
-            'dormitory' => htmlspecialchars($this->input->post('dormitory', true))
+            		'student_number' => htmlspecialchars($this->input->post('student_number', true)),
+            		'dormitory' => htmlspecialchars($this->input->post('dormitory', true))
 		);
 
-		return $this->db->insert('user', $new_user_insert_data);
+		$flag = $this->db->insert('user', $new_user_insert_data);
+		$username = htmlspecialchars($this->input->post('username', true));
+		$this->db->query("UPDATE user SET registertime = now() where username = ?", array($username));
+		return $flag;
 	}
 
 	function update($username, $arr) {
