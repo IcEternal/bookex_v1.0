@@ -21,7 +21,7 @@
 			<div class="control-group">
 				<label class="control-label" for="username">用户名</label>
 				<div class="controls">
-						<input type="text" id="username" name="username" value="<?php echo set_value('username'); ?>" placeholder="用户名">
+						<input type="text" id="username" name="username" value="<?php echo set_value('username'); ?>" placeholder="用户名/邮箱名">
 				</div>
 			</div>
 			<div class="control-group">

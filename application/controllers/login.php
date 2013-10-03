@@ -65,7 +65,7 @@ class Login extends CI_Controller {
 
 		if ($this->form_validation->run() == true) {
 			$data = array(
-				'username' => $this->input->post('username'),
+				'username' => $this->user_model->get_username(),
 				'is_logged_in' => true
 			);
 
