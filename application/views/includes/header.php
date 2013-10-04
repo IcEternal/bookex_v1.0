@@ -59,7 +59,7 @@ table .person-info span
 					if (!isset($is_logged_in) || $is_logged_in != true): 
 				?>
 	        <form class="navbar-form pull-right" action="<?php echo site_url('login/validate_credentials') ?>" method="post" accept-charset="utf-8">
-						<input class="span2" type="text" id="username" name="username" value="<?php echo set_value('username'); ?>" placeholder="用户名">
+						<input class="span2" type="text" id="username" name="username" value="<?php echo set_value('username'); ?>" placeholder="用户名/邮箱名">
 
 						<input class="span2" type="password" id="password" name="password" placeholder="密码">
 
