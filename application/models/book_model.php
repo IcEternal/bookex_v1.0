@@ -27,6 +27,26 @@ class Book_model extends CI_Model {
 		}
 		$this->db->update('book', $arr);
 		$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
+
+		//delivery system
+		$this->load->model('delivery_model','delivery');
+		if($new_sub == 'N')
+		{
+			$query_submit = $this->db->query("SELECT * FROM delegation_list 
+				WHERE book_id = $book_id ORDER BY create_time DESC");
+			$row = $query_submit->first_row();
+			$submit_id = $row->id;
+			$this->delivery->user_cancel($submit_id);
+		}
+		else
+		{
+			$book_query = $this->db->query("SELECT * FROM book WHERE id = $book_id");
+			$row = $book_query->first_row();
+			$uploader = $row->uploader;
+			$seller_id = $this->delivery->get_userid_from_username($uploader);
+			$buyer_id = $this->delivery->get_userid_from_username($new_sub);
+			$this->delivery->create_submit($buyer_id,$seller_id,$book_id);
+		}
 	}
 
 	function use_phone($book_id) {
@@ -35,6 +55,15 @@ class Book_model extends CI_Model {
 			'use_phone' => true
 		);
 		$this->db->update('book', $arr);
+
+		//delivery system
+		//use phone mean the delegation is canceled
+		$this->load->model('delivery_model','delivery');
+		$query_submit = $this->db->query("SELECT * FROM delegation_list 
+				WHERE book_id = $book_id ORDER BY create_time DESC");
+		$row = $query_submit->first_row();
+		$submit_id = $row->id;
+		$this->delivery->user_cancel($submit_id);
 	}
 
 	function add_book() {
