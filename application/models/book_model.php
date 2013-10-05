@@ -30,6 +30,7 @@ class Book_model extends CI_Model {
 
 
 		//delivery system
+		
 		$this->load->model('delivery_model','delivery');
 		if($new_sub == 'N')
 		{
@@ -48,6 +49,7 @@ class Book_model extends CI_Model {
 			$buyer_id = $this->delivery->get_userid_from_username($new_sub);
 			$this->delivery->create_submit($buyer_id,$seller_id,$book_id);
 		}
+		
 	}
 
 	function use_phone($book_id) {
@@ -66,6 +68,7 @@ class Book_model extends CI_Model {
 		$row = $query_submit->first_row();
 		$submit_id = $row->id;
 		$this->delivery->user_cancel($submit_id);
+		
 	}
 
 	function add_book() {
@@ -493,5 +496,52 @@ class Book_model extends CI_Model {
 			return FALSE;
 		}
 		
+	}
+
+	//ticket functions
+	function check_discount_ticket($id, $ticket){
+		if ($ticket == '') return "输入不能为空。";
+		$user = $this->session->userdata('username');
+		$result = $this->db->select('used_ticket')->from('user')->where('username',$user)->get()->result();
+		if ($result[0]->used_ticket == 5) return "用户已经使用了5张券了。";
+		$result = $this->db->select('discounted')->from('book')->where('id', $id)->get()->result();
+		if ($result[0]->discounted == 1) return "该书本已经使用抵价券了。";
+		$result = $this->db->select('used')->from('discount_ticket')->where('ticket_id', $ticket)->get();
+		if ($result->num_rows == 0) return "该号码不存在。";
+		$result = $result->result();
+		if ($result[0]->used == 1) return "该号码已经被使用。";
+		$this->use_discount_ticket($id, $ticket);
+		return "使用成功";
+	}
+
+	function check_free_ticket($id, $ticket){
+		if ($ticket == '') return "输入不能为空。";
+		$user = $this->session->userdata('username');
+		$result = $this->db->select('used_ticket')->from('user')->where('username',$user)->get()->result();
+		if ($result[0]->used_ticket == 5) return "用户已经使用了5张券了。";
+		$result = $this->db->select('freed')->from('book')->where('id', $id)->get()->result();
+		if ($result[0]->freed == 1) return "该书本已经使用免费券了。";
+		$result = $this->db->select('used')->from('free_ticket')->where('ticket_id', $ticket)->get();
+		if ($result->num_rows == 0) return "该号码不存在。";
+		$result = $result->result();
+		if ($result[0]->used == 1) return "该号码已经被使用。";
+		$this->use_free_ticket($id, $ticket);
+		return "使用成功";
+	}
+
+	function use_discount_ticket($id, $ticket){
+		$user = $this->session->userdata('username');
+		$this->db->query("UPDATE discount_ticket SET used = 1 WHERE ticket_id = \"$ticket\";");
+		$this->db->query("UPDATE user SET used_ticket = used_ticket + 1 WHERE username = \"$user\";");
+		$this->db->query("UPDATE book SET discounted = 1 WHERE id = $id;");
+
+	}
+
+	function use_free_ticket($id, $ticket){
+		$user = $this->session->userdata('username');
+		$this->db->query("UPDATE free_ticket SET used = 1 WHERE ticket_id = \"$ticket\";");
+		$this->db->query("UPDATE user SET used_ticket = used_ticket + 1 WHERE username = \"$user\";");
+		$this->db->query("UPDATE book SET freed = 1 WHERE id = $id;");
+
 	}
 }

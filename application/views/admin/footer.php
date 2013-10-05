@@ -248,6 +248,7 @@
 		//给取消订单按钮绑定点击事件
 		$(".deal_canceled").css({"cursor":"pointer"}).bind("click", clickcancel);
 
+	
 	});
 	</script>
 <script type="text/javascript">
