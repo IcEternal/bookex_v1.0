@@ -283,7 +283,33 @@ $(document).ready(function(){
 });
 </script>
 
+<!-- ajax for generating tickets -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#generate_discount").bind("click", function() {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo site_url(); ?>/admin/generate_ticket/1",
+				dataType: 'text',
+				success:function(msg) {
+					$("#discount_ticket").attr('value', msg);
+				} 
+			});
+		});
 
+		$("#generate_free").bind("click", function() {
+			$.ajax({
+				type: 'GET',
+				url: "<?php echo site_url(); ?>/admin/generate_ticket/2",
+				dataType: 'text',
+				success:function(msg) {
+					$("#free_ticket").attr('value', msg);
+				} 
+			});
+		});
+	});
+</script>
+<!-- end -->
 </body>
 </html>
 
