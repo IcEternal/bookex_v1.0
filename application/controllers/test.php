@@ -22,7 +22,6 @@ class Test extends CI_Controller {
 		echo "total sold:  ".$tot."!!<br/>";
 		echo "total sold:  ".$num."books!";
 	}
-
 	/*
 	function generate_ticket() {
 		$arr = array();

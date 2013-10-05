@@ -27,7 +27,10 @@ class Book_model extends CI_Model {
 		}
 		$this->db->update('book', $arr);
 		$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
+<<<<<<< HEAD
 
+=======
+>>>>>>> 871c839537cfdfb6e5d5994b58335730b39252fb
 
 		//delivery system
 		
@@ -49,7 +52,10 @@ class Book_model extends CI_Model {
 			$buyer_id = $this->delivery->get_userid_from_username($new_sub);
 			$this->delivery->create_submit($buyer_id,$seller_id,$book_id);
 		}
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 871c839537cfdfb6e5d5994b58335730b39252fb
 	}
 
 	function use_phone($book_id) {
@@ -58,7 +64,10 @@ class Book_model extends CI_Model {
 			'use_phone' => true
 		);
 		$this->db->update('book', $arr);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 871c839537cfdfb6e5d5994b58335730b39252fb
 
 		//delivery system
 		//use phone mean the delegation is canceled
@@ -68,7 +77,10 @@ class Book_model extends CI_Model {
 		$row = $query_submit->first_row();
 		$submit_id = $row->id;
 		$this->delivery->user_cancel($submit_id);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 871c839537cfdfb6e5d5994b58335730b39252fb
 	}
 
 	function add_book() {
