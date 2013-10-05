@@ -167,14 +167,14 @@ if (strpos($url, 'order') != false && $info->discounted == 0 && $info->freed == 
             {
             	
             	$("#ticket_message").text(data);
-            	if (data.indexOf("使用") >= 0) location.reload();
+            	if (data.indexOf("使用成功") >= 0) location.reload();
             });
 	}
 
 	$("#discount_button").css({"cursor":"pointer"}).bind("click", discount_ticket);
 
 	$("#free_button").css({"cursor":"pointer"}).bind("click", free_ticket);
-	
+
 </script>
 	<div class="alert alert-info fade in">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
