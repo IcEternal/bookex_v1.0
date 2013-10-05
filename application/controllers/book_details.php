@@ -136,4 +136,19 @@ class Book_details extends CI_Controller {
 		$this->user_collection_model->cancel_collect($book_id);
 		redirect($_SERVER["HTTP_REFERER"]); 
 	}
+
+	//use ticket function
+	function use_discount_ticket(){
+		$ticket = $this->input->get("ticket");
+		$book_id = $this->input->get("book_id");
+		$this->load->model('book_model');
+		echo $this->book_model->check_discount_ticket($book_id, $ticket);
+	}
+
+	function use_free_ticket(){
+		$ticket = $this->input->get("ticket");
+		$book_id = $this->input->get("book_id");
+		$this->load->model('book_model');
+		echo $this->book_model->check_free_ticket($book_id, $ticket);
+	}
 }
