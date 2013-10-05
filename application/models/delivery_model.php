@@ -449,7 +449,7 @@ class Delivery_model extends CI_Model {
 	{
 		$order_query = $this->db->query("SELECT order_list.* FROM order_list
 			INNER JOIN user ON user.id = order_list.buyer_id
-			WHERE status = 1 ORDER BY order_list.id DESC");
+			WHERE status = 1 ORDER BY order_list.id ASC");
 		$order_list = $order_query->result_array();
 		foreach ($order_list as $key => $order) {
 			$order_id = $order['id'];

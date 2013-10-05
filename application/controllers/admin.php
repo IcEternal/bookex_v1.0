@@ -432,4 +432,20 @@ class Admin extends CI_Controller {
 		echo $this->book_model->change_remark($id,$remark);
 	}
 
+	//2013.10.7 generate discount and free ticket
+	function generate_ticket($type) {
+		if ($type == 1) 
+			$database = "discount_ticket";
+		else 
+			$database = "free_ticket";
+		$arr = $this->db->query('SELECT 1 from $database WHERE activated = 0')->result();
+		$row = $arr[0]
+		$id = $row->id;
+		$this->db->query("UPDATE $database SET activated=1 WHERE id=$id");
+		echo $row->ticket_id;
+	}
+
+
+
+	//end
 }
