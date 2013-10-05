@@ -19,21 +19,24 @@ class Book_model extends CI_Model {
 
 	function update_subscriber($book_id, $new_sub) {
 		$this->db->where('id', $book_id);
+		$result = $this->db->select('*')->from("book")->where('id', $book_id)->get()->result();
+		$old_sub = $result[0]->subscriber;
+		if ($result[0]->discounted == 1 || $result[0]->freed == 1){
+			$this->db->query("UPDATE user SET used_ticket = used_ticket - 1 WHERE username = \"$old_sub\";");
+		}
 		$arr = array(
 			'subscriber' => $new_sub
 		);
 		if ($new_sub == 'N') {
 			$arr['use_phone'] = false;
+			$arr['discounted'] = 0;
+			$arr['freed'] = 0;
 		}
 		$this->db->update('book', $arr);
 		$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
-<<<<<<< HEAD
-
-=======
->>>>>>> 871c839537cfdfb6e5d5994b58335730b39252fb
 
 		//delivery system
-		
+		/*
 		$this->load->model('delivery_model','delivery');
 		if($new_sub == 'N')
 		{
@@ -52,10 +55,7 @@ class Book_model extends CI_Model {
 			$buyer_id = $this->delivery->get_userid_from_username($new_sub);
 			$this->delivery->create_submit($buyer_id,$seller_id,$book_id);
 		}
-<<<<<<< HEAD
-		
-=======
->>>>>>> 871c839537cfdfb6e5d5994b58335730b39252fb
+		*/
 	}
 
 	function use_phone($book_id) {
@@ -64,23 +64,17 @@ class Book_model extends CI_Model {
 			'use_phone' => true
 		);
 		$this->db->update('book', $arr);
-<<<<<<< HEAD
-
-=======
->>>>>>> 871c839537cfdfb6e5d5994b58335730b39252fb
 
 		//delivery system
 		//use phone mean the delegation is canceled
+		/*
 		$this->load->model('delivery_model','delivery');
 		$query_submit = $this->db->query("SELECT * FROM delegation_list 
 				WHERE book_id = $book_id ORDER BY create_time DESC");
 		$row = $query_submit->first_row();
 		$submit_id = $row->id;
 		$this->delivery->user_cancel($submit_id);
-<<<<<<< HEAD
-		
-=======
->>>>>>> 871c839537cfdfb6e5d5994b58335730b39252fb
+		*/
 	}
 
 	function add_book() {
