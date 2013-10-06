@@ -3,6 +3,7 @@ class Delivery_model extends CI_Model {
 	function __construct() {
 		parent::__construct();
 		//get op_di from session
+		$this->load->model('book_model');
 		$this->op_id = $this->get_userid_from_username($this->session->userdata('username') );
 	}
 
@@ -72,7 +73,16 @@ class Delivery_model extends CI_Model {
 		//12-审核前用户取消
 		$status = 12;
 		$this->record($submit_id,$status);
+
+		/////////////
+		//change the book table status using book model
+		$submit_detail = $this->get_submit_detail($submit_id);
+		$book_id = $submit_detail['book_id'];
+		$this->book_model->user_cancel($book_id);
+		/////////////
+
 		return $this->change_submit_status($submit_id,$status);
+
 	}
 
 	function pass_submit($submit_id)
@@ -120,6 +130,13 @@ class Delivery_model extends CI_Model {
 		//41-超时取消（卖家迟迟不给书，买家通过管理员取消委托）
 		$status = 41;
 		$this->record($submit_id,$status);
+		/////////////
+		//管理员取消。在买家长期收不到书的情况下联系管理员取消。
+		//没有验证身份，也不管书是否已送出,将书籍释放，可被搜索和再次预定
+		$submit_detail = $this->get_submit_detail($submit_id);
+		$book_id = $submit_detail['book_id'];
+		$this->book_model->update_subscriber($book_id, 'N');
+		/////////////
 		return $this->change_submit_status($submit_id,$status);
 	}
 
@@ -133,6 +150,11 @@ class Delivery_model extends CI_Model {
 		//42-卖家无书取消
 		$status = 42;
 		$this->record($submit_id,$status);
+		/////////////
+		$submit_detail = $this->get_submit_detail($submit_id);
+		$book_id = $submit_detail['book_id'];
+		$this->book_model->book_deleted($book_id);
+		/////////////
 		return $this->change_submit_status($submit_id,$status);
 	}
 
@@ -146,6 +168,12 @@ class Delivery_model extends CI_Model {
 		//51-委托方已收到书 
 		$status = 51;
 		$this->record($submit_id,$status);
+		/////////////
+		$submit_detail = $this->get_submit_detail($submit_id);
+		$book_id = $submit_detail['book_id'];
+		// 2 表示书送到易班
+		$this->book_model->status_update($book_id,2);
+		/////////////
 		return $this->change_submit_status($submit_id,$status);
 	}
 
@@ -156,6 +184,11 @@ class Delivery_model extends CI_Model {
 		{
 			//61-订单完成，订单中这本书买家已收到
 			$this->record($submit_id,61);
+			/////////////
+			$submit_detail = $this->get_submit_detail($submit_id);
+			$book_id = $submit_detail['book_id'];
+			$this->book_model->deal_done($book_id);
+			/////////////
 			return $this->change_submit_status($submit_id,61);
 		}
 		//41-超时取消（卖家迟迟不给书，买家通过管理员取消委托）42-卖家无书取消
@@ -334,6 +367,43 @@ class Delivery_model extends CI_Model {
 		//set revocation status to record
 		$update_record = $this->db->query("UPDATE delegation_record SET revocation = 1 WHERE id = $current_id");
 		$update_submit = $this->db->query("UPDATE delegation_list SET status = $last_status WHERE id = $submit_id");
+		/////////////
+		$current_status = $row_first->submit_status;
+		if($current_status == 12 OR $current_status == 41)//用户取消,超时取消，book表中subscriber 已为N   
+		{
+
+			$submit_id = $row_first->submit_id;
+			$submit_detail = $this->get_submit_detail($submit_id);
+			$book_id = $submit_detail->book_id;
+			$buyer_id = $submit_detail->buyer_id;
+			$buyer_username = $this->get_username_from_userid($buyer_id);
+
+			//如果撤销操作前，这本释放了的书，有被人预定了，怎么办？不执行操作
+			$query_book = $this->db->query("SELECT * FROM book WHERE id = $book_id");
+			$row = $query_book->first_row();
+			if($row->subscriber == 'N')
+			{
+				$this->db->query("UPDATE book SET subscribetime = now(), status = 0,subscriber = '$buyer_username' WHERE id = \"$book_id\"");
+			}
+			else
+			{
+				$update_record = $this->db->query("UPDATE delegation_record SET revocation = 0 WHERE id = $current_id");
+				$update_submit = $this->db->query("UPDATE delegation_list SET status = $current_status WHERE id = $submit_id");
+			}
+		}
+		if($current_status == 42)//卖家无书,book表中为status = 5
+		{
+			$this->book_model->status_update($id, 1);//正在取书
+		}
+		if ($current_status == 51) //已从卖家拿到书
+		{
+			$this->book_model->status_update($id, 2);//返回正在取书状态
+		}
+		if($current_status == 61)//交易完成
+		{
+			$this->book_model->status_update($id, 3);//返回正在取书状态
+		}
+		/////////////
 		return TRUE;
 	}
 
@@ -449,7 +519,7 @@ class Delivery_model extends CI_Model {
 	{
 		$order_query = $this->db->query("SELECT order_list.* FROM order_list
 			INNER JOIN user ON user.id = order_list.buyer_id
-			WHERE status = 1 ORDER BY order_list.id DESC");
+			WHERE status = 1 ORDER BY order_list.id ASC");
 		$order_list = $order_query->result_array();
 		foreach ($order_list as $key => $order) {
 			$order_id = $order['id'];
@@ -529,5 +599,13 @@ class Delivery_model extends CI_Model {
 		}
 	}
 	
+	function get_submit_detail($submit_id)
+	{
+		$query = $this->db->query("SELECT * FROM delegation_list WHERE id = $submit_id");
+		if($query->num_rows() )
+			return $query->first_row('array');
+		else
+			return FALSE;
+	}
 
 }
