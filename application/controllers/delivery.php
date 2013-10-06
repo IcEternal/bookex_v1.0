@@ -3,6 +3,7 @@ class Delivery extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model("delivery_model",'delivery');
+		$this->auth->normal_admin();
 	}
 
 	function index()
