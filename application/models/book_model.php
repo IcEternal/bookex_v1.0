@@ -36,7 +36,7 @@ class Book_model extends CI_Model {
 		$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
 
 		//delivery system
-		
+		/*
 		$this->load->model('delivery_model','delivery');
 		if($new_sub == 'N')
 		{
@@ -55,7 +55,7 @@ class Book_model extends CI_Model {
 			$buyer_id = $this->delivery->get_userid_from_username($new_sub);
 			$this->delivery->create_submit($buyer_id,$seller_id,$book_id);
 		}
-		
+		*/
 	}
 
 	function use_phone($book_id) {
@@ -67,14 +67,14 @@ class Book_model extends CI_Model {
 
 		//delivery system
 		//use phone mean the delegation is canceled
-		
+		/*
 		$this->load->model('delivery_model','delivery');
 		$query_submit = $this->db->query("SELECT * FROM delegation_list 
 				WHERE book_id = $book_id ORDER BY create_time DESC");
 		$row = $query_submit->first_row();
 		$submit_id = $row->id;
 		$this->delivery->user_cancel($submit_id);
-		
+		*/
 	}
 
 	function add_book() {
@@ -512,7 +512,7 @@ class Book_model extends CI_Model {
 		if ($result[0]->used_ticket == 5) return "用户已经使用了5张券了。";
 		$result = $this->db->select('discounted')->from('book')->where('id', $id)->get()->result();
 		if ($result[0]->discounted == 1) return "该书本已经使用抵价券了。";
-		$result = $this->db->select('used')->from('discount_ticket')->where('ticket_id', $ticket)->get();
+		$result = $this->db->select('used')->from('discount_ticket')->where('ticket_id', $ticket)->where('activated', 1)->get();
 		if ($result->num_rows == 0) return "该号码不存在。";
 		$result = $result->result();
 		if ($result[0]->used == 1) return "该号码已经被使用。";
@@ -527,7 +527,7 @@ class Book_model extends CI_Model {
 		if ($result[0]->used_ticket == 5) return "用户已经使用了5张券了。";
 		$result = $this->db->select('freed')->from('book')->where('id', $id)->get()->result();
 		if ($result[0]->freed == 1) return "该书本已经使用免费券了。";
-		$result = $this->db->select('used')->from('free_ticket')->where('ticket_id', $ticket)->get();
+		$result = $this->db->select('used')->from('free_ticket')->where('ticket_id', $ticket)->where('activated', 1)->get();
 		if ($result->num_rows == 0) return "该号码不存在。";
 		$result = $result->result();
 		if ($result[0]->used == 1) return "该号码已经被使用。";
