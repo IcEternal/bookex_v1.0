@@ -18,7 +18,6 @@ class Book_model extends CI_Model {
 	}
 
 	function update_subscriber($book_id, $new_sub) {
-		$this->db->where('id', $book_id);
 		$result = $this->db->select('*')->from("book")->where('id', $book_id)->get()->result();
 		$old_sub = $result[0]->subscriber;
 		if ($result[0]->discounted == 1 || $result[0]->freed == 1){
@@ -32,6 +31,7 @@ class Book_model extends CI_Model {
 			$arr['discounted'] = 0;
 			$arr['freed'] = 0;
 		}
+		$this->db->where('id', $book_id);
 		$this->db->update('book', $arr);
 		$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
 
