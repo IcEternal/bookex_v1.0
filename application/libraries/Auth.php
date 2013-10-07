@@ -2,8 +2,8 @@
 class Auth {
 
 	private $admin = array('zukou', 'haichongfu2003', 'devillaw_zhc', 'zhcpzyjtx','Metamorphosis','gengyan','西南某馒头','jennasongsong','huanghaixin008','yellowoo');
-	private $sender = array('Gone-zenith','西南某馒头','jennasongsong');
-	private $receiver = array('Gone-zenith','西南某馒头','jennasongsong');
+	private $sender = array();
+	private $receiver = array();
 
 	var $CI;
 
