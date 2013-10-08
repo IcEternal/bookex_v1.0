@@ -126,11 +126,13 @@ if (strpos($url, 'order') != false && $info->discounted == 0 && $info->freed == 
 	  <div class="modal-body">
 	  	<?php if ($info->discount_sup == 1){ ?>
 	    <p>该书支持抵价券，你可以在下面的输入框输入使用。</p>
+	    <p>抵价券一旦使用后，即使取消订单该券也将视为已使用。</p>
 	    <input class="span3" type="text" id="discount_ticket_input" name="discount_ticket" placeholder="输入抵价码">
 	    <a class="btn btn-primary" data-dismiss="" aria-hidden="true" id="discount_button">确定</a>
 	    <?php } ?>
 	    <?php if ($info->free_sup == 1){ ?>
 	    <p>该书支持免费券，你可以在下面的输入框输入使用。</p>
+	    <p>免费券一旦使用后，即使取消订单该券也将视为已使用。</p>
 	    <input class="span3" type="text" id="free_ticket_input" name="free_ticket" placeholder="输入免费码">
 	    <a class="btn btn-primary" data-dismiss="" aria-hidden="true" id="free_button">确定</a>
 	    <?php } ?>
