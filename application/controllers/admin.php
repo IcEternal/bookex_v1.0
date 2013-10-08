@@ -438,8 +438,8 @@ class Admin extends CI_Controller {
 			$database = "discount_ticket";
 		else 
 			$database = "free_ticket";
-		$arr = $this->db->query('SELECT 1 from $database WHERE activated = 0')->result();
-		$row = $arr[0]
+		$arr = $this->db->query("SELECT * from $database WHERE activated = 0 LIMIT 1")->result();
+		$row = $arr[0];
 		$id = $row->id;
 		$this->db->query("UPDATE $database SET activated=1 WHERE id=$id");
 		echo $row->ticket_id;
