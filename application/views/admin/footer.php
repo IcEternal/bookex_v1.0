@@ -253,10 +253,10 @@
 	</script>
 <script type="text/javascript">
 $(document).ready(function(){
-  $("input").focus(function(){
+  $("input.i_remark").focus(function(){
     $(this).css("background-color","#FFFFCC");
   });
-  $("input").blur(function(){
+  $("input.i_remark").blur(function(){
   	var input = $(this);
   	var user_id = $(this).parent().attr('user_id');
   	var remark = $(this).val();
