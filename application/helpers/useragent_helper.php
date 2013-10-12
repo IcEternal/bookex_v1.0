@@ -24,7 +24,7 @@ function send_mail($to,$title,$content)
 	$ci->email->initialize($config);
 	
 	//以下设置Email内容
-	$ci->email->from('tangqi00mail@163.com', 'fanteathy');
+	$ci->email->from('bookex@163.com', 'BookEx');
 	$ci->email->to($to);
 	$ci->email->subject($title);
 	$ci->email->message($content);
