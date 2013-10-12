@@ -71,9 +71,14 @@ class Test extends CI_Controller {
 
 	//for 10/10 - 10/13 registered users
 	function send_email_once() {
-		$data = $this->db->query('select email from user where registertime > "2013-10-10 00:00:00" AND registertime < "2013-10-13 23:59:59"')->result();
+		$data = $this->db->query('select id,email,register_ticket from user where registertime > "2013-10-10 00:00:00" AND registertime < "2013-10-13 23:59:59"')->result();
 		foreach ($data as $row) {
-			send_mail($row->email,$this->title, $this->content.$this->generate_ticket(1).$this->content2.$this->content3);
+			if ($row->register_ticket != true) {
+				if (send_mail($row->email,$this->title, $this->content.$this->generate_ticket(1).$this->content2.$this->content3)) {
+					$id = $row->id;
+					$this->db->query("update user set register_ticket = true where id=$id");
+				}
+			}
 		}
 	}
 
@@ -89,9 +94,10 @@ class Test extends CI_Controller {
 					$tickets = $tickets.$this->generate_ticket(2).'<br/>';
 				}			
 				if ($user_row->email == 'devillaw_zhc@163.com' || $user_row->email == 'bookex@163.com') {
-					send_mail($user_row->email,$this->title, $this->content1.$tickets.$this->content2.$this->content3);
-					$sent_ticket = $need + $user_row->sent_ticket;
-					$this->db->query("update user set sent_ticket = $sent_ticket where username = '$username'");
+					if (send_mail($user_row->email,$this->title, $this->content1.$tickets.$this->content2.$this->content3)) {
+						$sent_ticket = $need + $user_row->sent_ticket;
+						$this->db->query("update user set sent_ticket = $sent_ticket where username = '$username'");
+					}
 				}
 			}
 		}

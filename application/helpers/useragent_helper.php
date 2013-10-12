@@ -29,6 +29,6 @@ function send_mail($to,$title,$content)
 	$ci->email->subject($title);
 	$ci->email->message($content);
 
-	$ci->email->send();
+	return $ci->email->send();
 	//echo $ci->email->print_debugger();
 }
