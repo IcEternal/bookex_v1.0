@@ -4,6 +4,7 @@ class Test extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
+		$this->Auth->super_admin();
 		$this->load->helper(array('form', 'url'));
 	}
 
