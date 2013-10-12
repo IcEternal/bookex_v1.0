@@ -55,7 +55,7 @@
 	          	</a>
 	            <ul class="dropdown-menu">
 				    <li><a href="<?php echo site_url('book_view/discount'); ?>">抵价券使用区</a></li>
-				    <li><a href="<?php echo site_url('book_view/free'); ?>">送书券使用区</a></li>
+				    <li><a href="<?php echo site_url('book_view/free'); ?>">兑书券使用区</a></li>
 				    <li class="divider"></li>
 				    <li><a href="<?php echo site_url('welcome/act_detail'); ?>">活动规则说明</a></li>
 				</ul>
