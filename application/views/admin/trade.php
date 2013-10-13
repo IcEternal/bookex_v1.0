@@ -70,9 +70,21 @@
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;
 				$book_status_string = $this->book_model->get_status_string($book->id);
 				$current_user = $this->session->userdata('username');
+				$free_model = NULL;
+				$free_color = NULL;
+				if($book->freed)
+				{
+					$free_model = "<span class='label label-warning'>兑</span>";
+					$free_color = "class='error'";
+				}
+				else if($book->discounted)
+				{
+					$free_model = "<span class='label label-warning'>抵</span>";
+					$free_color = "class='error'";
+				}
 				?>
-				<tr>
-		  			<td width=20%>
+				<tr <?php echo $free_color;?>>
+		  			<td  width=20%>
 		  				<?php $str = $this->book_model->get_status_string($book->id); ?>		  				
 					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px; <?php if (strpos($str, '.')) echo 'background-color: #99FF00;'; ?>"><?php echo $str; ?></span>
 					</td>
@@ -92,8 +104,8 @@
 					  	<span class="label label-info deal_canceled" book_id="<?php echo $book->id ?>">取消此订单</span>
 		  			</td>
 		  		</tr>
-				<tr>
-					<td>#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
+				<tr <?php echo $free_color;?>>
+					<td>#<?php echo $free_model; ?><a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
 					<td>￥<?php echo $book->price;?></td>
 					<td>买家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->subscriber;?></a>(<?php echo $book->phone;?>)</td>
 					<td><?php echo $book->dormitory; ?></td>
@@ -163,9 +175,22 @@
 				<?php } ?>
 				<?php foreach ($buy_book[$buyer['subscriber']] as $book) :
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
-				$user_url = site_url().'/admin/user_modify/'.$book->user_id;?>
-				<tr>
-		  			<td width=20%>
+				$user_url = site_url().'/admin/user_modify/'.$book->user_id;
+				$free_model = NULL;
+				$free_color = NULL;
+				if($book->freed)
+				{
+					$free_model = "<span class='label label-warning'>兑</span>";
+					$free_color = "class='error'";
+				}
+				else if($book->discounted)
+				{
+					$free_model = "<span class='label label-warning'>抵</span>";
+					$free_color = "class='error'";
+				}
+				?>
+				<tr <?php echo $free_color;?> >
+		  			<td  width=20%>
 		  				<?php $str = $this->book_model->get_status_string($book->id); ?>		  				
 					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px; <?php if (strpos($str, '.')) echo 'background-color: #99FF00;'; ?>"><?php echo $str; ?></span>
 					</td>
@@ -185,8 +210,8 @@
 					  	<span class="label label-info deal_canceled" book_id="<?php echo $book->id ?>">取消此订单</span>
 		  			</td>
 		  		</tr>
-				<tr>
-					<td >#<a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
+				<tr <?php echo $free_color;?> >
+					<td >#<?php echo $free_model; ?><a target="_blank" href="<?php echo $book_url;?>"><?php echo $book->name;?></a></td>
 					<td>￥<?php echo $book->price;?></td>
 					<td>卖家@<a target="_blank" href="<?php echo $user_url;?>"><?php echo $book->uploader;?></a>(<?php echo $book->phone;?>)</td>
 					<td><?php echo $book->dormitory?></td>
