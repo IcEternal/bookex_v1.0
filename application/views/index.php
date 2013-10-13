@@ -48,6 +48,7 @@
         <ul class="nav">
 	        <li><a href="<?php echo site_url('welcome/about') ?>"><b>如何使用?</b></a></li>
 	        <li><a href="<?php echo site_url('welcome/contact') ?>">联系我们</a></li>
+	        <!-- coming soon 
 	        <li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	            	<b style="color:red">活动区书本</b>
@@ -60,6 +61,7 @@
 				    <li><a href="<?php echo site_url('welcome/act_detail'); ?>">活动规则说明</a></li>
 				</ul>
 	        </li>
+	        -->
         </ul>
       </div><!--/.nav-collapse -->
       	<?php 
