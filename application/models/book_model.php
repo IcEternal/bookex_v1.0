@@ -18,15 +18,44 @@ class Book_model extends CI_Model {
 	}
 
 	function update_subscriber($book_id, $new_sub) {
-		$this->db->where('id', $book_id);
+		$result = $this->db->select('*')->from("book")->where('id', $book_id)->get()->result();
+		$old_sub = $result[0]->subscriber;
+		if ($result[0]->discounted == 1 || $result[0]->freed == 1){
+			$this->db->query("UPDATE user SET used_ticket = used_ticket - 1 WHERE username = \"$old_sub\";");
+		}
 		$arr = array(
 			'subscriber' => $new_sub
 		);
 		if ($new_sub == 'N') {
 			$arr['use_phone'] = false;
+			$arr['discounted'] = 0;
+			$arr['freed'] = 0;
 		}
+		$this->db->where('id', $book_id);
 		$this->db->update('book', $arr);
 		$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
+
+		//delivery system
+		/*
+		$this->load->model('delivery_model','delivery');
+		if($new_sub == 'N')
+		{
+			$query_submit = $this->db->query("SELECT * FROM delegation_list 
+				WHERE book_id = $book_id ORDER BY create_time DESC");
+			$row = $query_submit->first_row();
+			$submit_id = $row->id;
+			$this->delivery->user_cancel($submit_id);
+		}
+		else
+		{
+			$book_query = $this->db->query("SELECT * FROM book WHERE id = $book_id");
+			$row = $book_query->first_row();
+			$uploader = $row->uploader;
+			$seller_id = $this->delivery->get_userid_from_username($uploader);
+			$buyer_id = $this->delivery->get_userid_from_username($new_sub);
+			$this->delivery->create_submit($buyer_id,$seller_id,$book_id);
+		}
+		*/
 	}
 
 	function use_phone($book_id) {
@@ -35,6 +64,17 @@ class Book_model extends CI_Model {
 			'use_phone' => true
 		);
 		$this->db->update('book', $arr);
+
+		//delivery system
+		//use phone mean the delegation is canceled
+		/*
+		$this->load->model('delivery_model','delivery');
+		$query_submit = $this->db->query("SELECT * FROM delegation_list 
+				WHERE book_id = $book_id ORDER BY create_time DESC");
+		$row = $query_submit->first_row();
+		$submit_id = $row->id;
+		$this->delivery->user_cancel($submit_id);
+		*/
 	}
 
 	function add_book() {
@@ -462,5 +502,52 @@ class Book_model extends CI_Model {
 			return FALSE;
 		}
 		
+	}
+
+	//ticket functions
+	function check_discount_ticket($id, $ticket){
+		if ($ticket == '') return "输入不能为空。";
+		$user = $this->session->userdata('username');
+		$result = $this->db->select('used_ticket')->from('user')->where('username',$user)->get()->result();
+		if ($result[0]->used_ticket == 5) return "用户已经使用了5张券了。";
+		$result = $this->db->select('discounted')->from('book')->where('id', $id)->get()->result();
+		if ($result[0]->discounted == 1) return "该书本已经使用抵价券了。";
+		$result = $this->db->select('used')->from('discount_ticket')->where('ticket_id', $ticket)->where('activated', 1)->get();
+		if ($result->num_rows == 0) return "该号码不存在。";
+		$result = $result->result();
+		if ($result[0]->used == 1) return "该号码已经被使用。";
+		$this->use_discount_ticket($id, $ticket);
+		return "使用成功";
+	}
+
+	function check_free_ticket($id, $ticket){
+		if ($ticket == '') return "输入不能为空。";
+		$user = $this->session->userdata('username');
+		$result = $this->db->select('used_ticket')->from('user')->where('username',$user)->get()->result();
+		if ($result[0]->used_ticket == 5) return "用户已经使用了5张券了。";
+		$result = $this->db->select('freed')->from('book')->where('id', $id)->get()->result();
+		if ($result[0]->freed == 1) return "该书本已经使用免费券了。";
+		$result = $this->db->select('used')->from('free_ticket')->where('ticket_id', $ticket)->where('activated', 1)->get();
+		if ($result->num_rows == 0) return "该号码不存在。";
+		$result = $result->result();
+		if ($result[0]->used == 1) return "该号码已经被使用。";
+		$this->use_free_ticket($id, $ticket);
+		return "使用成功";
+	}
+
+	function use_discount_ticket($id, $ticket){
+		$user = $this->session->userdata('username');
+		$this->db->query("UPDATE discount_ticket SET used = 1 WHERE ticket_id = \"$ticket\";");
+		$this->db->query("UPDATE user SET used_ticket = used_ticket + 1 WHERE username = \"$user\";");
+		$this->db->query("UPDATE book SET discounted = 1 WHERE id = $id;");
+
+	}
+
+	function use_free_ticket($id, $ticket){
+		$user = $this->session->userdata('username');
+		$this->db->query("UPDATE free_ticket SET used = 1 WHERE ticket_id = \"$ticket\";");
+		$this->db->query("UPDATE user SET used_ticket = used_ticket + 1 WHERE username = \"$user\";");
+		$this->db->query("UPDATE book SET freed = 1 WHERE id = $id;");
+
 	}
 }

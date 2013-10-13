@@ -51,7 +51,12 @@ table .person-info span
           <li><a href="<?php echo site_url('welcome/contact') ?>">联系我们</a></li>
         </ul>
       </div><!--/.nav-collapse -->
-      <form class="navbar-search pull-left" action="<?php echo site_url('search') ?>" method="get" accept-charset="utf-8">
+      <form class="navbar-search pull-left" action='<?php 
+      	$scope = $this->uri->segment(2);
+      	if ($scope == 'discount' || $scope == 'free') 
+      		echo site_url("book_view/$scope");
+      	else 
+      		echo site_url('search'); ?>' method="get" accept-charset="utf-8">
 			  <input id="key" name="key" type="text" class="search-query" value = "<?php echo isset($key)?$key:'';?>" placeholder="搜索">
 			</form>
       	<?php 

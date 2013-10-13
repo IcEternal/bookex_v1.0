@@ -46,10 +46,14 @@
 		  		<tr><td>卖家数目</td><td><?php echo $saler_num;?></td></tr>
 		  	</table>
 		  	
+		  	<!-- 生成抵价券 -->
+		  	<a class="btn btn-primary" id="generate_discount" style="margin-bottom: 10px">生成抵价券</a>
+		  	<input type="text" id="discount_ticket" /><br/>
+		  	<a class="btn btn-primary" id="generate_free" style="margin-bottom: 10px">生成赠书券</a>
+		  	<input type="text" id="free_ticket" /><br/>
+		  	<!-- end of generating -->
 		  </div>
 		</div>
 	</div>
-</body>
-</html>
 
 <?php $this->load->view('admin/footer') ?>

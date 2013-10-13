@@ -44,6 +44,7 @@
 </style>
 
 
+<script src="<?php echo base_url() ?>public/js/jquery-1.9.1.min.js"></script>
 <div class = "container" style = "font-family: verdana">
 
 <?php
@@ -92,6 +93,7 @@
 	  </div>
 	</div>
 <?php } ?> 
+
 <?php if ($show == true && $err == '订购成功！工作人员将于1天内于您联系') { ?>
 	<?php if ($mustphone) redirect("book_details/use_phone/$id"); ?>
 	<div class="modal hide fade" id="phoneInfo">
@@ -111,7 +113,71 @@
 	    <a href='<?php echo site_url("book_details/use_phone/$id") ?>' class="btn btn-primary">自行当面交易</a>
 	  </div>
 	</div>
-<?php } ?> 
+<?php } ?>
+
+<?php 
+	$url = $_SERVER['PHP_SELF'];
+if (strpos($url, 'order') != false && $info->discounted == 0 && $info->freed == 0 && ($info->discount_sup == 1 || $info->free_sup == 1)){ ?>
+	<div class="modal hide fade" id="ticketInput">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h3>订购成功，提示</h3>
+	  </div>
+	  <div class="modal-body">
+	  	<?php if ($info->discount_sup == 1){ ?>
+	    <p>该书支持抵价券，你可以在下面的输入框输入使用。</p>
+	    <p>抵价券一旦使用后，即使取消订单该券也将视为已使用。</p>
+	    <input class="span3" type="text" id="discount_ticket_input" name="discount_ticket" placeholder="输入抵价码">
+	    <a class="btn btn-primary" data-dismiss="" aria-hidden="true" id="discount_button">确定</a>
+	    <?php } ?>
+	    <?php if ($info->free_sup == 1){ ?>
+	    <p>该书支持免费券，你可以在下面的输入框输入使用。</p>
+	    <p>免费券一旦使用后，即使取消订单该券也将视为已使用。</p>
+	    <input class="span3" type="text" id="free_ticket_input" name="free_ticket" placeholder="输入免费码">
+	    <a class="btn btn-primary" data-dismiss="" aria-hidden="true" id="free_button">确定</a>
+	    <?php } ?>
+	    <p id="ticket_message"></p>
+	  </div>
+	  <div class="modal-footer">
+	    <a class="btn" data-dismiss="modal" aria-hidden="true" id="do_not_use_ticket">不使用</a>
+	  </div>
+	</div>
+<?php }  ?>
+<script type="text/javascript">
+
+	var discount_ticket = function(event){
+		event.stopPropagation();
+		var ticket = document.getElementById("discount_ticket_input").value;
+		$.get(
+            "<?php echo site_url();?>/book_details/use_discount_ticket",
+            {"book_id":"<?php echo $id; ?>", "ticket": ticket},
+            function(data)
+            {
+            	
+            	$("#ticket_message").text(data);
+            	if (data.indexOf("使用成功") >= 0) location.reload();
+            });
+	}
+
+	var free_ticket = function(event){
+		event.stopPropagation();
+		var ticket = document.getElementById("free_ticket_input").value;
+		$.get(
+            "<?php echo site_url();?>/book_details/use_free_ticket",
+            {"book_id":"<?php echo $id; ?>", "ticket": ticket},
+            function(data)
+            {
+            	
+            	$("#ticket_message").text(data);
+            	if (data.indexOf("使用成功") >= 0) location.reload();
+            });
+	}
+
+	$("#discount_button").css({"cursor":"pointer"}).bind("click", discount_ticket);
+
+	$("#free_button").css({"cursor":"pointer"}).bind("click", free_ticket);
+
+</script>
 	<div class="alert alert-info fade in">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	 喜欢这个网站的话请分享此页面哈~好书就要让更多人看到！

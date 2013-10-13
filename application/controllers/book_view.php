@@ -15,4 +15,20 @@ class Book_view extends CI_Controller {
     $this->load->view('book_view', $data);
   }
 
+  function discount($page=1) {
+    $this->load->model('search_model');
+    $_GET['scope'] = 'discount';
+    $_GET['page'] = $page;
+    $data = $this->search_model->getResult();
+    $this->load->view('act_book_view', $data);
+  }
+
+  function free($page=1) {
+    $this->load->model('search_model');
+    $_GET['scope'] = 'free';
+    $_GET['page'] = $page;
+    $data = $this->search_model->getResult();
+    $this->load->view('act_book_view', $data);
+  }
+
 }
