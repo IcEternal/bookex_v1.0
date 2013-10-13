@@ -349,7 +349,6 @@ class Admin extends CI_Controller {
 
 	function trade()
 	{
-
 		//导入model
 		$this->load->model('admin_model');
 		$this->load->model('book_model');
@@ -365,7 +364,7 @@ class Admin extends CI_Controller {
 		$sale_book = array();
 		foreach ($saler_info as $saler) {
 			$username = $saler['uploader'];
-			$query_str = "SELECT book.id,book.name,book.price,book.subscriber,user.phone,user.dormitory,user.id AS user_id FROM book 
+			$query_str = "SELECT book.id,book.name,book.price,book.subscriber,book.discounted,book.freed,user.phone,user.dormitory,user.id AS user_id FROM book 
 			INNER JOIN user ON book.subscriber = user.username $common_condition AND uploader = '$username'";
 			$sale_book[$username] = $this->db->query($query_str)->result();
 		}
@@ -379,7 +378,7 @@ class Admin extends CI_Controller {
 		$buy_book = array();
 		foreach ($buyer_info as $buyer) {
 			$username = $buyer['subscriber'];
-			$query_str = "SELECT book.id,book.name,book.price,book.uploader,user.dormitory,user.phone,user.id AS user_id FROM book 
+			$query_str = "SELECT book.id,book.name,book.price,book.uploader,book.discounted,book.freed,user.dormitory,user.phone,user.id AS user_id FROM book 
 			INNER JOIN user ON book.uploader = user.username $common_condition AND subscriber = '$username'";
 			$buy_book[$username] = $this->db->query($query_str)->result();
 		}
@@ -444,7 +443,6 @@ class Admin extends CI_Controller {
 		$this->db->query("UPDATE $database SET activated=1 WHERE id=$id");
 		echo $row->ticket_id;
 	}
-
 
 
 	//end
