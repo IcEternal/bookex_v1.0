@@ -122,7 +122,7 @@
 </div>
 <div class="alert alert-info fade in">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <div><b>BookEx</b>全体成员祝大家国庆快乐～～～（国庆节小伙伴们都出去玩了...暂停送书服务...请谅解哈～～）</div>
+  <div>新一轮活动将在星期一正式推出～～现在注册的用户到时都能获得5元抵价券来购买活动区书本哦～</div>
 </div>
 </div>
 
