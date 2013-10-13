@@ -14,9 +14,9 @@ function send_mail($to,$title,$content)
 	
 	//以下设置Email参数
 	$config['protocol'] = 'smtp';
-	$config['smtp_host'] = 'smtp.qq.com';
-	$config['smtp_user'] = '121665841';
-	$config['smtp_pass'] = 'jtx9395';
+	$config['smtp_host'] = 'smtp.163.com';
+	$config['smtp_user'] = 'bookex';
+	$config['smtp_pass'] = '2013bookexchange';
 	$config['smtp_port'] = '25';
 	$config['charset'] = 'utf-8';
 	$config['wordwrap'] = TRUE;
