@@ -71,9 +71,12 @@ class Test extends CI_Controller {
 
 	//for 10/10 - 10/13 registered users
 	function send_email_once() {
+		$sent = 0;
 		$data = $this->db->query('select id,email,register_ticket from user where registertime > "2013-10-10 00:00:00" AND registertime < "2013-10-13 23:59:59"')->result();
 		foreach ($data as $row) {
+			if ($sent == 50) return 0;
 			if ($row->register_ticket != true) {
+				++$sent;
 				if (send_mail($row->email,$this->title, $this->content.$this->generate_ticket(1).$this->content2.$this->content3)) {
 					$id = $row->id;
 					$this->db->query("update user set register_ticket = true where id=$id");
@@ -82,13 +85,31 @@ class Test extends CI_Controller {
 		}
 	}
 
+	//test email limit
+	function test_email() {
+		$sent = 0;
+		for ($i=1;$i<500;++$i) {
+			if ($sent == 50) return 0;
+			$sent++;
+			if (send_mail("devillaw_zhc@163.com", $this->title, $this->content.$this->generate_ticket(1).$this->content2.$this->content3)) {
+				echo $i.": success<br/>";
+			}
+			else {
+				echo $i.": fail<br/>";
+			}
+		}
+	}
+
 	function send_free_ticket($time) {
+		$sent = 0;
 		$user = $this->db->query('select username,email,sent_ticket from user where student_number LIKE "510%" OR student_number LIKE "511%" OR student_number LIKE "512%" OR student_number LIKE "513%"')->result();
 		foreach ($user as $user_row) {
+			if ($sent == 50) return 0;
 			$username = $user_row->username;
 			$num = $this->db->query("select id from book where uploader='$username' AND uploadtime < '$time 00:00:00' AND del != true")->num_rows;
 			$need = floor($num/10)-$user_row->sent_ticket;
 			if ($need > 0) {
+				$sent++;
 				$tickets = '';
 				for ($i = 0;$i<$need;++$i) {
 					$tickets = $tickets.$this->generate_ticket(2).'<br/>';
