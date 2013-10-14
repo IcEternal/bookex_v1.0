@@ -132,10 +132,6 @@
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <div><b>BookEx</b>有主页菌啦～<b><a href="http://www.renren.com/558600685/profile" target=_blank>博易BookEx</a></b>～每天都会推送一些BookEx上的新物品哦～</div>
 </div>
-<div class="alert alert-info fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <div>新一轮活动将在星期一正式推出～～现在注册的用户到时都能获得5元抵价券来购买活动区书本哦～</div>
-</div>
 </div>
 
 
