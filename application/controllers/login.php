@@ -150,7 +150,7 @@ private $content3 = "<br/><b>BookEx</b>今年5月份成立，还有很大的改�
 					'is_logged_in' => true
 				);
 				$this->session->set_userdata($data);
-				send_mail($email,$this->title, $this->content1.$this->generate_ticket(1).$this->content2.$this->content3);
+			//	send_mail($email,$this->title, $this->content1.$this->generate_ticket(1).$this->content2.$this->content3);
 				$this->redirect_to_index();
 			}
 			else {
