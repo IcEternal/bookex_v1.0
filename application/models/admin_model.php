@@ -25,6 +25,7 @@ class Admin_model extends CI_Model {
 		$this->db->like('class',$data['class_name']);
 		$this->db->where('del !=',TRUE);
 
+
 		switch ($data['class_status']) {
 			case 1:
 				$this->db->where('class !=','');
@@ -67,6 +68,11 @@ class Admin_model extends CI_Model {
 		{
 			$this->db->where('del',TRUE);
 			$this->db->order_by('deltime', 'DESC');
+		}
+		//只显示自行交易的书
+		if($data['self'])
+		{
+			$this->db->where('use_phone',1);
 		}
 
 		if($data['no_reserve'] == 0)//表示未勾选时，搜索结果不包含未预定的书
