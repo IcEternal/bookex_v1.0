@@ -103,7 +103,7 @@ class Test extends CI_Controller {
 
 	function send_free_ticket($time) {
 		$sent = 0;
-		$user = $this->db->query('select username,email,sent_ticket from user where student_number LIKE "510%" OR student_number LIKE "511%" OR student_number LIKE "512%" OR student_number LIKE "513%"')->result();
+		$user = $this->db->query('select username,email,sent_ticket from user where student_number LIKE "510%" OR student_number LIKE "511%" OR student_number LIKE "512%" OR student_number LIKE "513%" OR student_number LIKE "110%" OR student_number LIKE "111%" OR student_number LIKE "112%" OR student_number LIKE "113%" OR student_number LIKE "310%" OR student_number LIKE "311%" OR student_number LIKE "312%" OR student_number LIKE "313%" OR student_number LIKE "710%" OR student_number LIKE "711%" OR student_number LIKE "712%" OR student_number LIKE "713%"')->result();
 		foreach ($user as $user_row) {
 			if ($sent == 500) return 0;
 			$username = $user_row->username;
