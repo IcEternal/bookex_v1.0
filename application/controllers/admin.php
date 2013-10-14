@@ -75,6 +75,7 @@ class Admin extends CI_Controller {
 		$del = $this->input->get('del')?$this->input->get('del'):0;
 		$traded = $this->input->get('traded')?$this->input->get('traded'):0;
 		$offset = $this->input->get('offset')?$this->input->get('offset'):0;
+		$self = $this->input->get('self')?$this->input->get('self'):0;
 
 		//进行搜索
 		$search_data = array(
@@ -85,6 +86,7 @@ class Admin extends CI_Controller {
 			'reserved' => $reserved,
 			'del'=>$del,
 			'traded' => $traded,
+			'self'=>$self
 			);
 		//参数：搜索内容，偏移量，每页显示数
 		//返回：总记录数，搜索结果数组

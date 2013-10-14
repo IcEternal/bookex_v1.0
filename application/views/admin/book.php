@@ -43,6 +43,9 @@
 			<label class="checkbox inline">
 			  <input type="checkbox" name="traded" value="1" <?php if($search_data['traded']){echo 'checked="checked"';}?> > 已交易
 			</label>
+			<label class="checkbox inline">
+			  <input type="checkbox" name="self" value="1" <?php if($search_data['self']){echo 'checked="checked"';}?> > 自行交易
+			</label>
 			<button class="btn btn-primary" type="submit" name="submit" value="1" >搜索</button>
 			<a class="btn btn-primary" href="<?php echo site_url().'/admin/book/index?no_reserve=1&reserved=1&traded=1';?>"/>重置</a>
 			<a class="btn btn-primary" href="<?php echo site_url().'/admin';?>"/>返回</a>
