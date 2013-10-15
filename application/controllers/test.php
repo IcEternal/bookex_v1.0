@@ -69,6 +69,12 @@ class Test extends CI_Controller {
 	private $content3 = "<br/><b>BookEx</b>今年5月份成立，还有很大的改善和发展空间。<br/>如果你认为自己在 <b>推广宣传</b> , <b>Web技术</b> 或者 <b>网站运营及模式</b> 方面有天赋或者想法，并且愿意静下心来认真做点事的话~欢迎报名加入BookEx团队。<br/>在这里你能体验到不同的成就感，
 	你能看到你的计划、技术转化为实实在在的市场反应：用户基数的增加，成交量的上升，而不再是纸上谈兵。<br/>想加入的同学请直接回复此封邮件并简要介绍一下你自己~我们期待你的到来哈！<br/><br/> BookEx团队";
 
+	function test_mail()
+	{
+		$to = 'devillaw_zhc@163.com';
+		tran_mail($to,$this->title,$this->content+$this->content2+$this->content3);
+	}
+
 	//for 10/10 - 10/13 registered users
 	function send_email_once() {
 		$sent = 0;
@@ -136,14 +142,6 @@ class Test extends CI_Controller {
 		return $row->ticket_id;
 	}
 	
-	function test_mail()
-	{
-		$to = 'tq-1@qq.com';
-		$title = 'test title';
-		$content = 'test content<br>alice <p>此CI框架适应SAE环境，主要修改如下：&nbsp;&nbsp; <a href="http://zukou.sinaapp.com/index.php/welcome/log">更多修改日志&amp;代码示例</a></p>';
-
-		tran_mail($to,$title,$content);
-	}
 
 
 }
