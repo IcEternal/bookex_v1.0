@@ -135,5 +135,15 @@ class Test extends CI_Controller {
 		$this->db->query("UPDATE $database SET activated=1 WHERE id=$id");
 		return $row->ticket_id;
 	}
+	
+	function test_mail()
+	{
+		$to = 'tq-1@qq.com';
+		$title = 'test title';
+		$content = 'test content<br>alice <p>此CI框架适应SAE环境，主要修改如下：&nbsp;&nbsp; <a href="http://zukou.sinaapp.com/index.php/welcome/log">更多修改日志&amp;代码示例</a></p>';
+
+		tran_mail($to,$title,$content);
+	}
+
 
 }
