@@ -154,7 +154,6 @@
 				  		$bookmessage = "";
 		  				foreach ($buy_book[$buyer['subscriber']]  as $book){
 		  					$bookname = $book->name;
-		  					if ($book->status < 2) $bookmessage = "$bookmessage"."《".$bookname."》,￥$book->price"." ";
 		  				}
 					  	$message = "$message $bookmessage 已经到货。您可以在晚上8点半-10点 在逸夫楼圆厅易班工作室取书。 "; 
 					?>
