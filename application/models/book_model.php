@@ -360,12 +360,12 @@ class Book_model extends CI_Model {
 	}
 
 	function is_uploader($book_id) {
-		if ($this->session->userdata('username') == $this->get_uploader_by_id($book_id)) return true;
+		if (strtolower($this->session->userdata('username')) == strtolower($this->get_uploader_by_id($book_id))) return true;
 		return false;
 	}
 
 	function is_subscriber($book_id) {
-		if ($this->session->userdata('username') == $this->get_subscriber_by_id($book_id)) return true;
+		if (strtolower($this->session->userdata('username')) == strtolower($this->get_subscriber_by_id($book_id))) return true;
 		return false;
 	}
 
@@ -378,6 +378,7 @@ class Book_model extends CI_Model {
 	function status_update($id, $status){
 		$this->db->query("UPDATE book SET status = $status WHERE id = $id;");
 		if ($status == 4) $this->db->query("UPDATE book SET finishtime = now() WHERE id = $id;");
+		if ($status == 5) $this->db->query("UPDATE book SET finishtime = 0 WHERE id = $id;");
 		return $this->get_status_string($id);
 	}
 
