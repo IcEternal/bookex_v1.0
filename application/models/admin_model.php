@@ -265,4 +265,10 @@ class Admin_model extends CI_Model {
 		}
 	}
 
+	//Auto-generating statistic
+	function getStatistic($days){
+		
+	}
+
+
 }

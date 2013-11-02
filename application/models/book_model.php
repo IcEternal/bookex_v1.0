@@ -434,10 +434,10 @@ class Book_model extends CI_Model {
 			$this->db->query("UPDATE book SET sender = \"$username\" WHERE id = $id;");
 			return $this->status_update($id, $status + 1);
 		}
-		else if ($status == 3){
+		/*else if ($status == 3){
 			if ($username != $result[0]->sender) return "失败, ".$this->get_status_string($id);
 			return $this->status_update($id, $status + 1);
-		}
+		}*/
 		return "失败, ".$this->get_status_string($id);
 	}
 
