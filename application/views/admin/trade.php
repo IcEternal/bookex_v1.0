@@ -1,13 +1,14 @@
+
 <?php $this->load->view('includes/header') ?>
 <?php
-
-				function getColorByStr($str){
-					if (strpos($str, '正在取书')) return '#99FF00';
-					elseif (strpos($str, '送到易班')) return '#FF0000';
-					elseif (strpos($str, '正在送书')) return '#999900';
-					elseif (strpos($str, '找不到')) return '#333333';
-					else return '#3A87AD';
-				}
+		
+		function getColorByStr($str, $currentUser){
+			if (strpos($str, '正在取书.')) return '#99FF00';
+			elseif (strpos($str, '送到易班')) return '#FF0000';
+			elseif (strpos($str, '正在送书.')!= false and strpos($str, $currentUser) >= 0) return '#999900';
+			elseif (strpos($str, '找不到')) return '#333333';
+			else return '#3A87AD';
+		}
 ?>
 	<div class="container">
 		
@@ -79,9 +80,9 @@
 				$book_url = site_url().'/admin/book_modify/'.$book->id;
 				$user_url = site_url().'/admin/user_modify/'.$book->user_id;
 				$book_status_string = $this->book_model->get_status_string($book->id);
-				$current_user = $this->session->userdata('username');
 				$free_model = NULL;
 				$free_color = NULL;
+				$currentUser = $this->session->userdata('username');
 				if($book->freed)
 				{
 					$free_model = "<span class='label label-warning'>兑</span>";
@@ -93,11 +94,12 @@
 					$free_color = "class='error'";
 				}
 
+
 				?>
 				<tr <?php echo $free_color;?>>
 		  			<td  width=20%>
 		  				<?php $str = $this->book_model->get_status_string($book->id); ?>		  				
-					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px; <?php echo 'background-color: '.getColorByStr($str).';'; ?>"><?php echo $str; ?></span>
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px; <?php echo 'background-color: '.getColorByStr($str, $currentUser).';'; ?>"><?php echo $str; ?></span>
 					</td>
 					<td width=10%>  	
 					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>" style="margin-right:20px;">下一步操作</span>
@@ -154,7 +156,7 @@
 				  		$bookmessage = "";
 		  				foreach ($buy_book[$buyer['subscriber']]  as $book){
 		  					$bookname = $book->name;
-		  					$bookmessage = $bookmessage."《".$bookname."》,￥$book->price"." ";
+		  					$bookmessage = "$bookmessage"."《".$bookname."》,￥$book->price"." ";
 		  				}
 					  	$message = "$message $bookmessage 已经到货。您可以在晚上8点半-10点 在逸夫楼圆厅易班工作室取书。 "; 
 					?>
@@ -203,7 +205,7 @@
 				<tr <?php echo $free_color;?> >
 		  			<td  width=20%>
 		  				<?php $str = $this->book_model->get_status_string($book->id); ?>		  				
-					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px; <?php echo 'background-color: '.getColorByStr($str).';'; ?>"><?php echo $str; ?></span>
+					  	<span class="label label-info status" book_id="<?php echo $book->id ?>" status="1" style="margin-right:20px; <?php echo 'background-color: '.getColorByStr($str, $currentUser).';'; ?>"><?php echo $str; ?></span>
 					</td>
 					<td  width=10%>  	
 					  	<span class="label label-info next_operation" book_id="<?php echo $book->id ?>">下一步操作</span>
@@ -235,6 +237,6 @@
 		  </div>
 		</div>
 	</div>
-<?php $this->load->view('admin/footer') ?>
+<?php $this->load->view('admin/footer'); ?>
 
 
