@@ -68,9 +68,9 @@ class Book_details extends CI_Controller {
 			return;
 		}
 		$book_info = $this->book_model->get_book_infomation($book_id);
-		$user = $this->session->userdata('username');
+		$user = strtolower($this->session->userdata('username'));
 
-		if ($user != $book_info->subscriber) {
+		if ($user != strtolower($book_info->subscriber)) {
 			$this->load_page($book_id, '您还未订购该书', false);
 			return;
 		}

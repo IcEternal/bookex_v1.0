@@ -72,19 +72,19 @@ class Test extends CI_Controller {
 	function test_mail()
 	{
 		$to = 'devillaw_zhc@163.com';
-		tran_mail($to,$this->title,$this->content+$this->content2+$this->content3);
+		batch_mail($to,$this->title,$this->content.$this->content2.$this->content3);
 	}
 
 	//for 10/10 - 10/13 registered users
 	function send_email_once() {
 		$sent = 0;
-		$data = $this->db->query('select id,email,register_ticket from user where registertime > "2013-10-10 00:00:00" AND registertime < "2013-10-13 23:59:59"')->result();
+		$data = $this->db->query('select id,email,register_ticket from user where registertime > "2013-10-10 00:00:00"')->result();
 		foreach ($data as $row) {
 			if ($sent == 100) return 0;
 			echo $sent."<br/>";
 			if ($row->register_ticket != true) {
 				++$sent;
-				if (send_mail($row->email,$this->title, $this->content.$this->generate_ticket(1).$this->content2.$this->content3)) {
+				if (batch_mail($row->email,$this->title, $this->content.$this->generate_ticket(1).$this->content2.$this->content3)) {
 					$id = $row->id;
 					$this->db->query("update user set register_ticket = true where id=$id");
 				}
@@ -109,7 +109,7 @@ class Test extends CI_Controller {
 
 	function send_free_ticket($time) {
 		$sent = 0;
-		$user = $this->db->query('select username,email,sent_ticket from user where student_number LIKE "510%" OR student_number LIKE "511%" OR student_number LIKE "512%" OR student_number LIKE "513%"')->result();
+		$user = $this->db->query('select username,email,sent_ticket from user where student_number LIKE "510%" OR student_number LIKE "511%" OR student_number LIKE "512%" OR student_number LIKE "513%" OR student_number LIKE "110%" OR student_number LIKE "111%" OR student_number LIKE "112%" OR student_number LIKE "113%" OR student_number LIKE "310%" OR student_number LIKE "311%" OR student_number LIKE "312%" OR student_number LIKE "313%" OR student_number LIKE "710%" OR student_number LIKE "711%" OR student_number LIKE "712%" OR student_number LIKE "713%"')->result();
 		foreach ($user as $user_row) {
 			if ($sent == 500) return 0;
 			$username = $user_row->username;
@@ -123,6 +123,7 @@ class Test extends CI_Controller {
 				}
 				$email = $user_row->email;
 				echo "$username"."   "."$need"."  "."$email"."<br/>";			
+				batch_mail($email, $this->title1, $this->content1.$this->generate_ticket(2).$this->content2.$this->content3);
 				$sent_ticket = $need + $user_row->sent_ticket;
 				$this->db->query("update user set sent_ticket = $sent_ticket where username = '$username'");
 			}
