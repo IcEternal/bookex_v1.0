@@ -165,8 +165,8 @@
 
 
 		function getColorByData(data){
-			if (data.indexOf("正在取书") >= 0) return "#99FF00";
-	        else if (data.indexOf("正在送书") >= 0) return "#999900";
+			if (data.indexOf("正在取书") >= 0 && data.indexOf("失败") == -1) return "#99FF00";
+	        else if (data.indexOf("正在送书") >= 0 && data.indexOf("失败") == -1) return "#999900";
 	        else if (data.indexOf("送到易班") >= 0) return "#FF0000";
 	        else if (data.indexOf("找不到") >= 0) return "#333333";
 	        else if (data.indexOf("") >= 0) return "#3A87AD";
