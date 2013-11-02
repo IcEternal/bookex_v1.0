@@ -47,8 +47,8 @@ table .person-info span
       <a class="brand" href="<?php echo site_url() ?>">BookEx</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li><a href="<?php echo site_url('welcome/about') ?>"><b>如何使用?</b></a></li>
-          <li><a href="<?php echo site_url('welcome/contact') ?>">联系我们</a></li>
+          <!-- <li><a href="<?php echo site_url('welcome/about') ?>"><b>如何使用?</b></a></li>
+          <li><a href="<?php echo site_url('welcome/contact') ?>">联系我们</a></li> -->
           <li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	            	<b style="color:white">活动区书本</b>
