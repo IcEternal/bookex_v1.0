@@ -1,4 +1,12 @@
-<?php $this->load->view('includes/header') ?>
+<?php $this->load->view('includes/header') 
+			function getColorByStr($str){
+				if (strpos($str, '正在取书')) return '#99FF00';
+				elseif (strpos($str, '送到易班')) return '#FF0000';
+				elseif (strpos($str, '正在送书')) return '#999900';
+				elseif (strpos($str, '找不到')) return '#333333';
+				else return '#3A87AD';
+			}
+?>
 
 	<div class="container">
 		
@@ -84,13 +92,7 @@
 					$free_color = "class='error'";
 				}
 
-				function getColorByStr($str){
-					if (strpos($str, '正在取书')) return '#99FF00';
-					elseif (strpos($str, '送到易班')) return '#FF0000';
-					elseif (strpos($str, '正在送书')) return '#999900';
-					elseif (strpos($str, '找不到')) return '#333333';
-					else return '#3A87AD';
-				}
+				
 				?>
 				<tr <?php echo $free_color;?>>
 		  			<td  width=20%>
@@ -152,7 +154,7 @@
 				  		$bookmessage = "";
 		  				foreach ($buy_book[$buyer['subscriber']]  as $book){
 		  					$bookname = $book->name;
-		  					if ($book->status < 2) $bookmessage = "$bookmessage"."《".$bookname."》,￥$book->price"." ";
+		  					$bookmessage = "$bookmessage"."《".$bookname."》,￥$book->price"." ";
 		  				}
 					  	$message = "$message $bookmessage 已经到货。您可以在晚上8点半-10点 在逸夫楼圆厅易班工作室取书。 "; 
 					?>
@@ -233,6 +235,6 @@
 		  </div>
 		</div>
 	</div>
-<?php $this->load->view('admin/footer') ?>
+<?php $this->load->view('admin/footer'); ?>
 
 
