@@ -1,0 +1,201 @@
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.fixed {
+  clear: both;
+}
+/* start */
+body {
+  background: #379cd1;
+  font-family: "Microsoft YaHei";
+  color: #fff;
+  min-width: 1040px;
+}
+#container {
+  width: 1000px;
+  margin: 0 auto;
+}
+#header {
+  margin: 40px 0 0 0;
+}
+#logo {
+  width: 301px;
+  height: 89px;
+  float: left;
+  background: url(../img/index-welcome.png) no-repeat;
+}
+#logo h1 {
+  display: none;
+}
+#renren {
+  width: 79px;
+  height: 41px;
+  margin: 10px 0 0 0;
+  float: right;
+}
+#renren a{
+  display: block;
+  width: 79px;
+  height: 41px;
+  background: url(../img/index-welcome.png) -301px 0 no-repeat;
+}
+#main {
+  margin: 20px 0 0 0;
+}
+#welcome {
+  width: 700px;
+  height: 520px;
+  float: left;
+  background: url(../img/index-welcome.png) 0 -89px no-repeat;
+}
+#box {
+  width: 250px;
+  height: 320px;
+  float: right;
+  overflow: hidden;
+}
+#innerbox {
+  margin-top: 1px;
+  width: 540px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+#login {
+  width: 250px;
+  float: right;
+  display: none;
+}
+.btn {
+  width: 130px !important;
+  border: 3px solid #fff;
+  background: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+.btn:hover {
+  background: none;
+  color: #fff;
+}
+.message {
+  margin: 0 0 10px 0;
+  background: #54a6d1;
+  width: 200px;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+  display: none;
+}
+#register {
+  width: 250px;
+  float: left;
+}
+#box span {
+  margin: 0 0 0 10px;
+}
+#terms {
+  width: 220px;
+  text-align: center;
+}
+#terms a,
+#terms a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+#terms a:hover {
+  text-decoration: underline;
+}
+#try {
+  width: 220px;
+  text-align: center;
+  margin-top: 60px;
+  font-size: 18px;
+}
+#try a,
+#try a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+#try a:hover {
+  text-decoration: underline;
+}
+#footer {
+  height: 90px;
+  text-align: center;
+}
+#innerfooter {
+  display: inline-block;
+}
+.footbox {
+  float: left;
+}
+.footbox {
+  font-size: 36px;
+}
+.footbox span {
+  font-size: 18px;
+}
+.footbox .footbottom {
+  text-align: center;
+}
+.line {
+  height: 90px;
+  border-left: 1px solid #fff;
+  float: left;
+  margin: 0 30px;
+}

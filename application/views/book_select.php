@@ -1,39 +1,56 @@
-<div class="container">
+<?php
+/*
+================================================================
+book_select.php
+
+include: includes/book_upload_form.php
+
+The page of book select from search results( book_upload.php ).
+
+Whenever you changed this page, please leave a log here.
+The log includes time and changed content.
+Just like the following:
+
+#---------------------------------------------------------------
+#Last updated: 11.1.2013 by Wang Sijie
+#What's new: The first vision.
+================================================================
+ */ 
+?>
 <?php if (form_error('bookname') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo form_error('bookname'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('price') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo form_error('price'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('originprice') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo form_error('originprice'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('userfile') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo form_error('userfile'); ?>
 	</div>
 <?php endif; ?>
 <?php if (isset($q_error)): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo $q_error; ?>
 	</div>
 <?php endif; ?>
-</div>
 
 
-<div id="book_upload" class="container">
-	<legend>选择书本</legend>
+<div class="content-full"><!-- structure -->
+	<h2>选择书本</h2>
 	<?php foreach ($book_list as $item): ?>
 		<div class = "row">
 			<div id = "left" class = "span3 text-center">
@@ -86,7 +103,10 @@
 			</ul>
 		</div>
 	<?php endforeach;?>
-	<legend>没有找到？试试其他搜索方式：</legend>
+</div><!-- content-full -->
+
+<div class="content-full"><!-- structure -->
+	<h2>没有找到？试试其他搜索方式：</h2>
 	<div class="row">
 		<div class="span5">
 			<form class="form-search" action="<?php echo site_url('book_upload/book_isbn') ?>" method="get" accept-charset="utf-8">
@@ -101,9 +121,13 @@
 			</form>
 		</div>
 	</div>
-	<legend>或 自行填写书本信息</legend>
+</div><!-- content-full -->
+
+<div class="content-full"><!-- structure -->
+	<h2>或 自行填写书本信息</h2>
 	<?php $this->load->view('includes/book_upload_form'); ?>
-</div>
+</div><!-- content-full -->
+
 
 <div class="modal fade hide" id="dataLoad">
   <div class="modal-header">

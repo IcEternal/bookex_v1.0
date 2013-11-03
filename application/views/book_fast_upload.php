@@ -1,42 +1,50 @@
-<div class="container">
+<?php
+/*
+================================================================
+book_fast_upload.php
+
+The page of book uploading via ISBN.
+
+Whenever you changed this page, please leave a log here.
+The log includes time and changed content.
+Just like the following:
+
+#---------------------------------------------------------------
+#Last updated: 11.1.2013 by Wang Sijie
+#What's new: The first vision.
+================================================================
+ */ 
+?>
+<?php //result alert ?>
 <?php if (form_error('bookname') != ''): ?>
-	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('bookname'); ?>
+	<div class="main-alert">
+  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<?php echo form_error('bookname'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('price') != ''): ?>
-	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('price'); ?>
+	<div class="main-alert">
+  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+  	<?php echo form_error('price'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('originprice') != ''): ?>
-	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('originprice'); ?>
+	<div class="main-alert">
+  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+  	<?php echo form_error('originprice'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('class') != ''): ?>
-	<div class="alert alert-error fade in">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <?php echo form_error('class'); ?>
+	<div class="main-alert">
+  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+  	<?php echo form_error('class'); ?>
 	</div>
 <?php endif; ?>
-</div>
 
+<div id="content"><!-- structure -->
 
-<div id="book_upload" class="container">
-<fieldset>
-	<legend>快速上传书本</legend>
+	<h2>快速上传书本</h2>
 	<div class="row">
-		<div id = "left" class = "span3 text-center">
-			<div class="thumbnail">
-				<div class="image" style = "width:100%">
-					<img src =" <?php echo base_url('get_bc_pic.php?id='.$bc_id); ?>" style = "width:100%" />
-				</div>
-			</div>
-		</div>
 		<div class="span9">
 			<form class="form-horizontal" action="<?php echo site_url('book_upload/fast_upload_validation/'.$bc_id) ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 			<div class="control-group">
@@ -120,6 +128,11 @@
 		</form>
 		</div><!-- span 8 -->
 	</div><!-- row -->
-	
-</fieldset>
-</div>
+
+</div><!-- content -->
+
+<div id="sidebar"><!-- structure -->
+	<div id="book-details-image">
+		<img src = "<?php echo base_url('get_bc_pic.php?id='.$bc_id); ?>" width="230px" />
+	</div>
+</div><!-- sidebar -->

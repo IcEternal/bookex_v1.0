@@ -1,39 +1,53 @@
-<div class="container">
+<?php
+/*
+================================================================
+upload_other.php
+
+The upload page of service or other things.
+
+Whenever you changed this page, please leave a log here.
+The log includes time and changed content.
+Just like the following:
+
+#---------------------------------------------------------------
+#Last updated: 11.1.2013 by Wang Sijie
+#What's new: The first vision.
+================================================================
+ */ 
+?>
 <?php if (form_error('bookname') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo form_error('bookname'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('price') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo form_error('price'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('originprice') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo form_error('originprice'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('userfile') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo form_error('userfile'); ?>
 	</div>
 <?php endif; ?>
 <?php if (isset($isbn_error)): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <?php echo $isbn_error; ?>
 	</div>
 <?php endif; ?>
-</div>
 
-<div id="book_upload" class="container">
-<fieldset>
-	<legend>请填写信息</legend>
+<div id="book_upload" class="content-full">
+	<h2>请填写信息</h2>
 	<form class="form-horizontal" action="<?php echo site_url('book_upload/upload_validation') ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		<div class="control-group">
 		    <label class="control-label" for="bookname">物品或服务名称</label>
@@ -105,8 +119,6 @@
 		    </div>
 		</div>
 	</form>
-
-</fieldset>
 </div>
 
 
@@ -122,9 +134,3 @@
     <a class="btn" data-dismiss="modal" aria-hidden="true">关闭提示框继续等待</a>
   </div>
 </div>
-
-<!-- 51.la script -->
-<div class="container" style="display:none">
-<script language="javascript" type="text/javascript" src="http://js.users.51.la/15806741.js"></script>
-</div>
-

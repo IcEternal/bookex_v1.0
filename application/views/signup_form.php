@@ -1,76 +1,87 @@
-<div class="container">
+<?php
+/*
+================================================================
+sighup_form.php
+
+The page of signup.
+
+Whenever you changed this page, please leave a log here.
+The log includes time and changed content.
+Just like the following:
+
+#---------------------------------------------------------------
+#Last updated: 11.1.2013 by Wang Sijie
+#What's new: The first vision.
+================================================================
+ */ 
+?>
 <?php if (form_error('username') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('username'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('password') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('password'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('password_confirm') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('password_confirm'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('email') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('email'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('phone') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('phone'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('student_number') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('student_number'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('dormitory') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('dormitory'); ?>
 	</div>
 <?php endif; ?>
+
+<div class="main-alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>友情提醒!</strong> 邮箱是找回账号密码的唯一方式，请正确填写.
 </div>
 
-
-<div class="container">
-	<div class="alert fade in">
-	  <button type="button" class="close" data-dismiss="alert">&times;</button>
-	  <strong>友情提醒!</strong> 邮箱是找回账号密码的唯一方式，请正确填写.
-	</div>
-</div>
-
-<div id="signup_form" class="container">
-<fieldset>
-	<legend>Create an Account</legend>
+<div id="signup_form" class="content-full">
+	<h2>注册</h2>
 	<form class="form-horizontal" action="<?php echo site_url('login/create_user') ?>" method="post" accept-charset="utf-8">
 		<div class="control-group">
 		    <label class="control-label" for="username">用户名</label>
 		    <div class="controls">
-		      	<input type="text" id="username" name="username" value="<?php echo set_value('username'); ?>" placeholder="用户名">
+		      	<input type="text" id="username" name="username" value="<?php if (set_value('username') == '' && array_key_exists('signupUsername', $post)) echo $post['signupUsername']; else echo set_value('username'); ?>" placeholder="用户名">
 		    </div>
 		</div>
 		<div class="control-group">
 		    <label class="control-label" for="password">密码</label>
 		    <div class="controls">
-		     	<input type="password" id="password" name="password" placeholder="密码">
+		     	<input type="password" id="password" name="password" value="<?php if (array_key_exists('signupPassword', $post)) echo $post['signupPassword']; ?>" placeholder="密码">
 		    </div>
 		</div>
 		<div class="control-group">
 		    <label class="control-label" for="password_confirm">确认密码</label>
 		    <div class="controls">
-		     	<input type="password" id="password_confirm" name="password_confirm" placeholder="确认密码">
+		     	<input type="password" id="password_confirm" name="password_confirm" value="<?php if (array_key_exists('confirmPassword', $post)) echo $post['confirmPassword']; ?>" placeholder="确认密码">
 		    </div>
 		</div>
 		<div class="control-group">
@@ -105,6 +116,4 @@
 		    </div>
 		</div>
 	</form>
-</fieldset>
 </div>
-

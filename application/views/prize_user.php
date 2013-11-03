@@ -1,6 +1,27 @@
+<?php
+/*
+================================================================
+prize_user.php
+
+include: includes/header.php
+         includes/footer.php
+
+Just a single page.
+
+Whenever you changed this page, please leave a log here.
+The log includes time and changed content.
+Just like the following:
+
+#---------------------------------------------------------------
+#Last updated: 11.1.2013 by Wang Sijie
+#What's new: The first vision.
+================================================================
+ */ 
+?>
 <?php include("includes/header.php"); ?>
-	<div class="container">
-		<legend>月大奖</legend>
+
+<div class="content-full">
+		<h2>月大奖</h2>
 		<p>月大奖获得者为machismo~上传书本数为199本。恭喜！！</p>
 
 		<br/><br/>
@@ -104,6 +125,6 @@
       </tbody>
     </table>
 		
-	</div>
+</div>
 
 <?php include("includes/footer.php"); ?>

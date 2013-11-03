@@ -1,41 +1,53 @@
-<div class="container">
+<?php
+/*
+================================================================
+book_modify.php
+
+The page of book modifying.
+
+Whenever you changed this page, please leave a log here.
+The log includes time and changed content.
+Just like the following:
+
+#---------------------------------------------------------------
+#Last updated: 11.1.2013 by Wang Sijie
+#What's new: The first vision.
+================================================================
+ */ 
+?>
 <?php if (form_error('bookname') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('bookname'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('price') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('price'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('originprice') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('originprice'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('userfile') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('userfile'); ?>
 	</div>
 <?php endif; ?>
 <?php if (form_error('class') != ''): ?>
-	<div class="alert alert-error fade in">
+	<div class="main-alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<?php echo form_error('class'); ?>
 	</div>
 <?php endif; ?>
-</div>
 
-
-
-<div id="book_modify" class="container">
-<fieldset>
-	<legend>修改书本信息</legend>
+<div class="content-full"><!-- structure -->
+	<h2>修改书本信息</h2>
 	<form class="form-horizontal" action="<?php echo site_url('book_upload/modify_validation') ?>/<?php echo $id ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		<div class="control-group">
 		    <label class="control-label" for="bookname">书本名称</label>
@@ -116,12 +128,11 @@
 	    </div>
 		</div>				
 	  
-	  <input type="hidden" id="uploader" name="uploader" value="<?php echo $this->session->userdata('username') ?>">
+	  	<input type="hidden" id="uploader" name="uploader" value="<?php echo $this->session->userdata('username') ?>">
 		<div class="control-group">
 		    <div class="controls">
 		      	<button type="submit" class="btn">确认上传</button>
 		    </div>
 		</div>
 	</form>
-</fieldset>
-</div>
+</div><!-- content-full -->

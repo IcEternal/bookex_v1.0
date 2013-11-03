@@ -117,6 +117,7 @@ private $content3 = "<br/><b>BookEx</b>今年5月份成立，还有很大的改�
 	function signup() {
 		$data['main_content'] = 'signup_form';
 		$data['data']['title'] = '注册';
+		$data['post'] = $_POST;
 		$this->load->view('includes/template', $data);
 	}
 

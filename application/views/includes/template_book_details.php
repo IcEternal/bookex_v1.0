@@ -1,12 +1,22 @@
+<?php
+/*
+================================================================
+template_book_details.php
 
+The template_book_details page.( It's a fool page........)
 
+Whenever you changed this page, please leave a log here.
+The log includes time and changed content.
+Just like the following:
+
+#---------------------------------------------------------------
+#Last updated: 11.1.2013 by Wang Sijie
+#What's new: The first vision.
+================================================================
+ */ 
+?>
 <?php $this->load->view('includes/header') ?>
 
-<?php $this->load->view($page, $info) ?>
-
-
-<script src="<?php echo base_url() ?>public/js/jquery-1.9.1.min.js"></script>
-<script src="<?php echo base_url() ?>public/js/bootstrap.min.js"></script>
 <script type="text/javascript">
   $("#phoneInfo").modal('show');
 </script>
@@ -23,5 +33,5 @@
   	$("#shareInfo").modal('show');
   });
 </script>
-</body>
-</html>
+
+<?php $this->load->view($page, $info) ?>

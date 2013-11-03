@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <table>
+	<class lv="1" value="6" name="Service"></class>
 	<class lv="1" value="1" name="教材教辅">
 		<class lv="2" name="数学"></class>
 		<class lv="2" name="英语"></class>
@@ -42,5 +43,4 @@
 		<class lv="2" name="自行车"></class>
 		<class lv="2" name="其他生活用品"></class>
 	</class>
-	<class lv="1" value="6" name="Service"></class>
 </table>
