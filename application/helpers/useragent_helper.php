@@ -62,15 +62,15 @@ function batch_mail($to,$title,$content)
 	$result_arr = json_decode($result_json);
 	if($result_arr == NULL)
 	{
-		echo '与新浪服务器连接失败';
+		//echo '与新浪服务器连接失败';
 		return;
 	}
 	else
 	{
-		echo '与新浪服务器连接成功';
+		//echo '与新浪服务器连接成功';
 	}
 
-	echo '发送到'.$result_arr->to.'<br>';
+	//echo '发送到'.$result_arr->to.'<br>';
 	if($result_arr->result)
 	{
 		$show_result = '成功';
@@ -79,7 +79,7 @@ function batch_mail($to,$title,$content)
 	{
 		$show_result = '失败';
 	}
-	echo '状态:'.$show_result.'<br>';
+	//echo '状态:'.$show_result.'<br>';
 }
 //触发，单个邮件
 function tran_mail($to,$title,$content)
@@ -107,15 +107,15 @@ function tran_mail($to,$title,$content)
 	$result_arr = json_decode($result_json);
 	if($result_arr == NULL)
 	{
-		echo '与新浪服务器连接失败';
+		//echo '与新浪服务器连接失败';
 		return;
 	}
 	else
 	{
-		echo '与新浪服务器连接成功';
+		//echo '与新浪服务器连接成功';
 	}
 
-	echo '发送到'.$result_arr->to.'<br>';
+	//echo '发送到'.$result_arr->to.'<br>';
 	if($result_arr->result)
 	{
 		$show_result = '成功';
@@ -124,5 +124,5 @@ function tran_mail($to,$title,$content)
 	{
 		$show_result = '失败';
 	}
-	echo '状态:'.$show_result.'<br>';
+	//echo '状态:'.$show_result.'<br>';
 }
