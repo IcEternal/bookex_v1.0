@@ -46,7 +46,7 @@ Just like the following:
 			foreach ($result as $index => $item):
 	?>
 				<div class="book-list">
-					<a href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" target="_blank" >
+					<a target="_blank" href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" target="_blank" >
 						<div class="pic-box">
 							<img src = "<?php echo base_url('get_data.php?id='.$item->id); ?>" width="130px" />
 						</div>
@@ -54,7 +54,7 @@ Just like the following:
 				
 
 				    <div class="book-name">
-				    	<a href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" target="_blank" >										
+				    	<a target="_blank" href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" target="_blank" >										
 			        		<?php
 				              	$text = $item->name;
 				              	if (strlen($text) > 16)

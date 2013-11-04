@@ -44,7 +44,7 @@ Just like the following:
 				<div class = "row">
 					<div id = "left" class = "span3 text-center">
 						<div class="thumbnail">
-							<a href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" target="_blank">
+							<a target="_blank" href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" target="_blank">
 								<div class="image" style = "width:100%">
 									<img src = "<?php echo base_url('get_data.php?id='.$item->id); ?>" style = "width:70%" />
 								</div>
@@ -92,7 +92,7 @@ Just like the following:
 						</div>
 					</div>
 					<p>
-						<a href="<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>">
+						<a target="_blank" href="<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>">
 						  详细页面
 						</a>
 					</p>

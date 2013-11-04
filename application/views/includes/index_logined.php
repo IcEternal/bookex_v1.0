@@ -84,14 +84,14 @@ function getstr($string, $length, $encoding  = 'utf-8') {
 		}
 function showItem($item){ ?>
 	<div class="book-list">
-		<a href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" >
+		<a target="_blank" href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" >
 			<div class="pic-box">
 				<img src="<?php echo base_url('get_data.php?id='.$item->id); ?>" width="130px" />
 			</div>
 		</a>
 
 		<div class="book-name">
-			<a href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" >
+			<a target="_blank" href = "<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>" >
 			<?php 
 				$text = $item->name;
 	        	if (strlen($text) > 13) $text = getstr($text, 13).' ...';
