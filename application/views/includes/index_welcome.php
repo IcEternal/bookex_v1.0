@@ -49,6 +49,7 @@ B@         SB@J 7BB@B@B@B@L    :   UB@B  GBMPL:.        ikB8r             S@@@@@
 <title>BookEx - 上海交大二手书-SJTU二手书-上海交通大学二手书交易平台</title>
 <link rel="stylesheet" href="<?php echo base_url() ?>public/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>public/css/style-index.css">
+<link rel ="Shortcut Icon" href="http://acm.sjtu.edu.cn/bookex/favicon.ico">
 <script type="text/javascript" src="<?php echo base_url() ?>public/js/jquery-1.5.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>public/js/index.js"></script>
 <?php include('ajax.php'); ?>
