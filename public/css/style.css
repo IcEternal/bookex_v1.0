@@ -207,9 +207,11 @@ body {
 #main-container {
 	background: #eee;
 	min-height: 550px;
+	width: 100%;
 }
 #main {
 	width: 1040px;
+	background: #eee;
 	margin: 0 auto;
 	padding: 20px;
 }

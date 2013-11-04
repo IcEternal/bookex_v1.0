@@ -9,6 +9,8 @@
 	        {"username":$("#username").attr('value'), "password":$("#password").attr('value')},
 	        function(data)
 	        {
+	        		$(".message").text(data);
+	                $(".message").css("display", "block");
 	                if (data.indexOf("成功") >= 0){
 	                	$.post("<?php echo site_url();?>/login/validate_credentials",
 	                	{"username":$("#username").attr('value'), "password":$("#password").attr('value')},
@@ -16,10 +18,6 @@
 							window.location.href="<?php echo site_url();?>";
 	                	});
 	                	//window.location.href="<?php echo site_url();?>";
-	                }
-	                else {
-	                	$(".message").text(data);
-	                	$(".message").css("display", "block");
 	                }
 	        });
 	}

@@ -120,7 +120,7 @@ B@         SB@J 7BB@B@B@B@L    :   UB@B  GBMPL:.        ikB8r             S@@@@@
 				<ul>
 					<li class="nav-main"><a href="<?php echo site_url('book_upload') ?>"><span class="nav-text">上传书本</span><span class="nav-line"></span></a></li>
 					<li class="nav-drop">
-	            		<a href="<?php echo site_url('site/userspace'); ?>">
+	            		<a href="#">
 	            			<span class="nav-text"><?php echo $this->session->userdata('username'); ?></span><span class="nav-line"></span>
 	          			</a>
 	            		<ul>
