@@ -22,8 +22,10 @@ Just like the following:
 
 <div id="footer"><!-- structure -->
 
-	<p>&copy; 2013 BookEx</p>
+	<span style="float:left">&copy; 2013 BookEx</span>
 
+	<div style="float:right;"> Designed By Wangsijie</div>
+	<div class="fixed"></div>
 	<div id="analysis">
 		<?php // the analysis div will be hidden. ?>
 		<script language="javascript" type="text/javascript" src="http://js.users.51.la/15806741.js"></script>

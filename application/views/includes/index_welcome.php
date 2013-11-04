@@ -79,7 +79,7 @@ B@         SB@J 7BB@B@B@B@L    :   UB@B  GBMPL:.        ikB8r             S@@@@@
                 <input type="text" placeholder="用户名" id="signupUsername" name="signupUsername" class="ipt">
                 <input type="password" placeholder="密码" id="signupPassword" name="signupPassword" class="ipt">
                 <input type="password" placeholder="重复密码" id="confirmPassword" name="confirmPassword" class="ipt">
-                <input type="submit" class="btn" value="加入BookEx"> <span>或</span><span onclick="boxchange(1)" style="cursor: pointer">登录</span>
+                <input type="submit" class="btn" value="注册BookEx"> <span>或</span><span onclick="boxchange(1)" style="cursor: pointer">登录</span>
               </form>
             </div>
             <div id="login">
