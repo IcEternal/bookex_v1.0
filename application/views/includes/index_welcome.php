@@ -77,15 +77,15 @@ B@         SB@J 7BB@B@B@B@L    :   UB@B  GBMPL:.        ikB8r             S@@@@@
             <div id="register">
               <form action="<?php echo site_url(); ?>/login/signup" method="post">
                 <input type="text" placeholder="用户名" id="signupUsername" name="signupUsername" class="ipt">
-                <input type="password" placeholder="密码" id="signupPassword" name="signupPassword" class="ipt">
-                <input type="password" placeholder="重复密码" id="confirmPassword" name="confirmPassword" class="ipt">
+                <input type="password" placeholder="Password" id="signupPassword" name="signupPassword" class="ipt">
+                <input type="password" placeholder="Password" id="confirmPassword" name="confirmPassword" class="ipt">
                 <input type="submit" class="btn" value="注册BookEx"> <span>或</span><span onclick="boxchange(1)" style="cursor: pointer">登录</span>
               </form>
             </div>
             <div id="login">
               <form action="<?php echo site_url('login/validate_credentials') ?>" method="post" accept-charset="utf-8">
                 <input type="text" placeholder="用户名" id="username" name="username" class="ipt">
-                <input type="password" placeholder="密码" id="password" name="password" class="ipt">
+                <input type="password" placeholder="Password" id="password" name="password" class="ipt">
                 <div class="message"></div>
                 <input type="button" id="submitLogin" class="btn" value="登录"> <span>或</span><span onclick="boxchange(2)" style="cursor: pointer">注册</span>
               </form>
