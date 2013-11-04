@@ -65,6 +65,7 @@ B@         SB@J 7BB@B@B@B@L    :   UB@B  GBMPL:.        ikB8r             S@@@@@
 <title>BookEx - 上海交大二手书-SJTU二手书-上海交通大学二手书交易平台</title>
 <link rel="stylesheet" href="<?php echo base_url() ?>public/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>public/css/style.css">
+<link rel ="Shortcut Icon" href="<?php echo base_url() ?>/favicon.ico">
 <script type="text/javascript" src="<?php echo base_url() ?>public/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>public/js/all.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>public/js/bootstrap.min.js"></script>
