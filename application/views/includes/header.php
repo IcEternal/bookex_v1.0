@@ -95,7 +95,7 @@ B@         SB@J 7BB@B@B@B@L    :   UB@B  GBMPL:.        ikB8r             S@@@@@
 	        	<li class="nav-main"><a href="<?php echo site_url() ?>"><span class="nav-line"></span><span class="nav-text">首页</span></a></li>
 	          <li class="nav-main"><a href="<?php echo site_url('welcome/about') ?>"><span class="nav-line"></span><span class="nav-text">如何使用</span></a></li>
 	          <li class="nav-main"><a href="<?php echo site_url('welcome/contact') ?>"><span class="nav-text">联系我们</span><span class="nav-line"></span></a></li>
-	          <li class="nav-main"><a href="<?php echo site_url('book_view/book/activity') ?>"><span class="nav-text" style="font-weight: bold">双11活动物品专区</span><span class="nav-line"></span></a></li>
+	          <!-- <li class="nav-main"><a href="<?php echo site_url('book_view/book/activity') ?>"><span class="nav-text" style="font-weight: bold">双11活动物品专区</span><span class="nav-line"></span></a></li> -->
 	          <li class="nav-drop"><span class="nav-text"><a href="#">活动区书本</a>
 		            <ul>
 					    <li><a href="<?php echo site_url('book_view/discount'); ?>">抵价券使用区</a></li>
