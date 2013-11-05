@@ -39,8 +39,8 @@ function send_mail($to,$title,$content)
 //批量、短时发送
 function batch_mail($to,$title,$content)
 {
-	echo "<meta charset='utf8'>";
-	echo "sendCloud 批量邮件程序开始<br>";
+	//echo "<meta charset='utf8'>";
+	//echo "sendCloud 批量邮件程序开始<br>";
 
 	$post_arr = array(
 		'to'=>$to,
@@ -84,8 +84,8 @@ function batch_mail($to,$title,$content)
 //触发，单个邮件
 function tran_mail($to,$title,$content)
 {
-	echo "<meta charset='utf8'>";
-	echo "sendCloud 触发邮件程序开始<br>";
+	//echo "<meta charset='utf8'>";
+	//echo "sendCloud 触发邮件程序开始<br>";
 
 	$post_arr = array(
 		'to'=>$to,

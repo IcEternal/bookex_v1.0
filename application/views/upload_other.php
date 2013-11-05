@@ -81,7 +81,13 @@ Just like the following:
 		     	<input type="text" id="class" readonly="readonly"
 			     	data-toggle="popover" 
 			     	name="class" 
-			     	value="<?php echo set_value('class')?set_value('class'):'Service';?>" 
+			     	value="<?php 
+			     			if ($this->session->userdata('username') == 'double11') 
+			     				$cls = "activity";
+			     			else 
+			     				$cls = "Service";
+			     			echo set_value('class')?set_value('class'):$cls;
+			     			?>"
 			     	placeholder="分类">
 	    	</div>
 		</div>
