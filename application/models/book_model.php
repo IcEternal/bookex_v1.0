@@ -39,6 +39,7 @@ class Book_model extends CI_Model {
 		$tradeId = $this->findUnfinishedServiceTradeId($serviceId);
 		if ($newSub == 'N') {
 			$this->db->query("UPDATE service_trade SET finishtime = now() where id = $tradeId");
+			$this->db->query("UPDATE service_trade SET canceled = 1 where id = $tradeId");
 		}
 		else {
 			if ($tradeId != 0) return;

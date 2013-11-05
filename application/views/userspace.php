@@ -198,7 +198,7 @@ Just like the following:
                                     </div>
                                     <p> <a href="<?php echo site_url('book_details/book') ?>/<?php echo $item->id ?>"> 详细页面 </a> </p>
                                     <?php 
-                                        if ($item->use_phone == 1){
+                                        if ($item->use_phone == 1 && $item->class != "Service"){
                                     ?>
                                             <p><a href="#myModal1<?php echo $item->id ?>" role="button" data-toggle="modal">完成交易</a></p>
                                     <?php } ?>

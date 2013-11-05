@@ -160,8 +160,11 @@
 			$tmp = array();
 			foreach ($res as $row) {
 				$row_id = $row->id;
-				$res = $this->db->query("SELECT DISTINCT service_id FROM service_trade WHERE (service_id = $row_id and finishtime = 0)")->result();
-				$tmp []= $res[0]->service_id;
+				$query = $this->db->query("SELECT service_id FROM service_trade WHERE (service_id = $row_id and finishtime = 0)");
+				if ($query->num_rows() > 0) {
+					$res = $query->result();
+					$tmp []= $res[0]->service_id;
+				}
 			}
 			foreach ($tmp as $id) {
 				$query = "SELECT $fields FROM book WHERE id = $id";
