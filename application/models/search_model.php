@@ -136,12 +136,39 @@
 		function getUserspaceResult($err = 0){
 			$this->load->helper('safe');
 			jd_stopattack();
-			$fields = "id,name,author,price,originprice,publisher,ISBN,description,uploader,subscriber,subscribetime,finishtime,hasimg,status, use_phone";
+			$fields = "id,name,author,price,originprice,publisher,ISBN,description,class,uploader,subscriber,subscribetime,finishtime,hasimg,status, use_phone";
 			$user = $this->session->userdata('username');
 			$query = "SELECT $fields FROM book WHERE (subscriber = \"$user\" AND del != true AND finishtime = \"0000-00-00 00:00:00\");";
 			$result1 = $this->db->query($query)->result();
+
+			// search for Service
+			$this->load->model('user_model');
+			$buyerId = $this->user_model->getIdByUsername();
+			$res = $this->db->query("SELECT service_id from service_trade where buyer_id = $buyerId and finishtime = 0")->result();
+			foreach ($res as $row) {
+				$row_id = $row->service_id;
+				$tmp = $this->db->query("SELECT $fields FROM book WHERE id = $row_id")->result();
+				$result1 []= $tmp[0];
+			}
+
 			$query = "SELECT $fields FROM book WHERE (uploader = \"$user\" AND del != true AND subscriber != \"N\" AND finishtime = \"0000-00-00 00:00:00\");";
 			$result2 = $this->db->query($query)->result();
+			//search for Service
+			$this->load->model('user_model');
+			$buyerId = $this->user_model->getIdByUsername();
+			$res = $this->db->query("SELECT id FROM book WHERE (uploader = \"$user\" AND del != true AND class = 'Service')")->result();
+			$tmp = array();
+			foreach ($res as $row) {
+				$row_id = $row->id;
+				$res = $this->db->query("SELECT DISTINCT service_id FROM service_trade WHERE (service_id = $row_id and finishtime = 0)")->result();
+				$tmp []= $res[0]->service_id;
+			}
+			foreach ($tmp as $id) {
+				$query = "SELECT $fields FROM book WHERE id = $id";
+				$res = $this->db->query($query)->result();
+				$result2 []= $res[0];
+			}
+
 			$query = "SELECT $fields FROM book WHERE (uploader = \"$user\" AND del != true AND finishtime = \"0000-00-00 00:00:00\") ;";
 			$result3 = $this->db->query($query)->result();
 			$query = "SELECT $fields FROM book WHERE ((uploader = \"$user\" OR subscriber = \"$user\") AND del != true AND finishtime != \"0000-00-00 00:00:00\") ;";

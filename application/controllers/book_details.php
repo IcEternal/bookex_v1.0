@@ -8,10 +8,24 @@ class Book_details extends CI_Controller {
 		$this->load->model('user_collection_model');
 	}
 
+	function getSubscriber($book_id) {
+		if ($this->book_model->isService($book_id)) {
+			$tradeId = $this->book_model->findUnfinishedServiceTradeId($book_id);
+			if ($tradeId != 0) 
+				return $this->session->userdata('username');
+			return "N";
+		}
+		else {
+			$res = $this->book_model->get_book_infomation($book_id);
+			return $res->subscriber;
+		}
+	}
+
 	function load_page($book_id, $message, $is_succ) {
 		$data['page'] = 'book_details';
 		$res = $this->book_model->get_book_infomation($book_id);
 		$data['info']['info'] = $res;
+		$data['info']['sub'] = $this->getSubscriber($book_id);
 		$data['info']['err_mes'] = $message;
 		$data['info']['is_succ'] = $is_succ;
 		$data['info']['title'] = '详细书本信息';
@@ -70,7 +84,7 @@ class Book_details extends CI_Controller {
 		$book_info = $this->book_model->get_book_infomation($book_id);
 		$user = strtolower($this->session->userdata('username'));
 
-		if ($user != strtolower($book_info->subscriber)) {
+		if ($user != $this->getSubscriber($book_id)) {
 			$this->load_page($book_id, '您还未订购该书', false);
 			return;
 		}

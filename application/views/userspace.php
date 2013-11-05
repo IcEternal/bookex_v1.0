@@ -168,12 +168,17 @@ Just like the following:
                                             <p class = "span2"> <strong> <?php echo "交易类型:"; ?></strong></p>
                                             <p class = "span10">
                                                 <?php
-                                                if ($item->use_phone == 1){
-                                                    $subscriber_phone = $user_phone["$item->id"][0]->phone;
-                                                    echo "自行交易（买家手机：$subscriber_phone ）";
+                                                if ($item->class == "Service") {
+                                                    echo "暂时不提供买家手机号，如有急切需求，请发邮件至bookex@163.com";
                                                 }
                                                 else {
-                                                    echo "委托交易";
+                                                    if ($item->use_phone == 1){
+                                                        $subscriber_phone = $user_phone["$item->id"][0]->phone;
+                                                        echo "自行交易（买家手机：$subscriber_phone ）";
+                                                    }
+                                                    else {
+                                                        echo "委托交易";
+                                                    }
                                                 }
                                                 ?>
                                             </p>

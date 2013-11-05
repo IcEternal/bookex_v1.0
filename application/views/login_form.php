@@ -18,7 +18,7 @@ Just like the following:
 ================================================================
  */ 
 ?>
-<?
+<?php
 	// when log in success, redirect to index.
 	$is_logged_in = $this->session->userdata('is_logged_in');
 	if (isset($is_logged_in) && $is_logged_in == true){

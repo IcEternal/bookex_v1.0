@@ -3,6 +3,7 @@
 class Book_model extends CI_Model {
 	function __construct() {
 		parent::__construct();
+		$this->load->model('user_model');
 	}
 
 	function is_book_exist($book_id) {
@@ -17,23 +18,57 @@ class Book_model extends CI_Model {
 		return $query[0];
 	}
 
+	function isService($id) {
+		$result = $this->db->select('*')->from("book")->where('id', $id)->get()->result();
+		if (strpos($result[0]->class, 'Service')!==false) return true;
+		return false;
+	}
+
+	function findUnfinishedServiceTradeId($serviceId) {
+		$user_id = $this->user_model->getIdByUsername();
+		$query = $this->db->query("select * from service_trade where buyer_id = $user_id and service_id = $serviceId and finishtime = 0");
+		if ($query->num_rows() == 0) 
+			return 0;
+		else 
+			$res = $query->result();
+			return $res[0]->id;
+	}
+
+
+	function addServiceRecord($serviceId, $newSub) {
+		$tradeId = $this->findUnfinishedServiceTradeId($serviceId);
+		if ($newSub == 'N') {
+			$this->db->query("UPDATE service_trade SET finishtime = now() where id = $tradeId");
+		}
+		else {
+			if ($tradeId != 0) return;
+			$userId = $this->user_model->getIdByUsername();
+			$this->db->query("INSERT INTO service_trade(service_id, buyer_id, subscribetime) values ($serviceId, $userId, now())");
+		}
+	}
+
 	function update_subscriber($book_id, $new_sub) {
 		$result = $this->db->select('*')->from("book")->where('id', $book_id)->get()->result();
-		$old_sub = $result[0]->subscriber;
-		if ($result[0]->discounted == 1 || $result[0]->freed == 1){
-			$this->db->query("UPDATE user SET used_ticket = used_ticket - 1 WHERE username = \"$old_sub\";");
+		if ($this->isService($book_id)) {
+			$this->addServiceRecord($book_id, $new_sub);
 		}
-		$arr = array(
-			'subscriber' => $new_sub
-		);
-		if ($new_sub == 'N') {
-			$arr['use_phone'] = false;
-			$arr['discounted'] = 0;
-			$arr['freed'] = 0;
+		else {
+			$old_sub = $result[0]->subscriber;
+			if ($result[0]->discounted == 1 || $result[0]->freed == 1){
+				$this->db->query("UPDATE user SET used_ticket = used_ticket - 1 WHERE username = \"$old_sub\";");
+			}
+			$arr = array(
+				'subscriber' => $new_sub
+			);
+			if ($new_sub == 'N') {
+				$arr['use_phone'] = false;
+				$arr['discounted'] = 0;
+				$arr['freed'] = 0;
+			}
+			$this->db->where('id', $book_id);
+			$this->db->update('book', $arr);
+			$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
 		}
-		$this->db->where('id', $book_id);
-		$this->db->update('book', $arr);
-		$this->db->query("UPDATE book SET subscribetime = now(), status = 0 WHERE id = \"$book_id\"");
 
 		//delivery system
 		/*
@@ -92,7 +127,7 @@ class Book_model extends CI_Model {
 		);
 
 		$this->load->model('user_model');  
-    $username = $this->session->userdata('username'); 
+    	$username = $this->session->userdata('username'); 
 		if ($this->input->post('show') == 1) {
 			$new_book_insert_data['show_phone'] = true;
 			$this->user_model->update_use_phone($username, true); 
@@ -169,7 +204,7 @@ class Book_model extends CI_Model {
 			'class' => htmlspecialchars($this->input->post('class'), true),
 		);
 		$this->load->model('user_model');  
-    $username = $this->session->userdata('username'); 
+    	$username = $this->session->userdata('username'); 
 		if ($this->input->post('show') == 1) {
 			$new_book_insert_data['show_phone'] = true;
 			$this->user_model->update_use_phone($username, true); 
@@ -365,6 +400,10 @@ class Book_model extends CI_Model {
 	}
 
 	function is_subscriber($book_id) {
+		if ($this->isService($book_id)) {
+			$tradeId = $this->findUnfinishedServiceTradeId($book_id);
+			return ($tradeId != 0);
+		}
 		if (strtolower($this->session->userdata('username')) == strtolower($this->get_subscriber_by_id($book_id))) return true;
 		return false;
 	}

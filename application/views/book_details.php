@@ -31,7 +31,7 @@ Just like the following:
 	$ISBN = $info->ISBN;
 	$description = $info->description;
 	$uploader = $info->uploader;
-	$subscriber = $info->subscriber;
+	$subscriber = $sub;
 	$originprice = $info->originprice;
 	$finished = ($info->finishtime != "0000-00-00 00:00:00");
 	$show = $info->show_phone;

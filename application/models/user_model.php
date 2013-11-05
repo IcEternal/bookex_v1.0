@@ -34,6 +34,18 @@ class User_model extends CI_Model {
 		return $query[0]->username;
 	}
 
+	function getIdByUsername($user = "") {
+		if ($user == "") {
+			$user = $this->session->userdata('username');
+		} 
+		$query = $this->db->query("select id from user where username = '$user'");
+		if ($query->num_rows() == 0) {
+			return 0;
+		}
+		$res = $query->result();
+		return $res[0]->id;
+	}
+
 	function get_user() {
 		$this->db->where('username', $this->session->userdata('username'));
 		$query = $this->db->get('user')->result();
