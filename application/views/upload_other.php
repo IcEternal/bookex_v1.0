@@ -81,7 +81,7 @@ Just like the following:
 		     	<input type="text" id="class" readonly="readonly"
 			     	data-toggle="popover" 
 			     	name="class" 
-			     	value="<?php echo set_value('class')?set_value('class'):'二手物品';?>" 
+			     	value="<?php echo set_value('class')?set_value('class'):'Service';?>" 
 			     	placeholder="分类">
 	    	</div>
 		</div>
