@@ -168,7 +168,7 @@ Just like the following:
                                             <p class = "span2"> <strong> <?php echo "交易类型:"; ?></strong></p>
                                             <p class = "span10">
                                                 <?php
-                                                if (strpos($res->class, 'Service')!==false) {
+                                                if (strpos($item->class, 'Service')!==false) {
                                                     echo "暂时不提供买家手机号，如有急切需求，请发邮件至bookex@163.com";
                                                 }
                                                 else {

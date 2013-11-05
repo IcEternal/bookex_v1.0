@@ -124,7 +124,7 @@ class Book_details extends CI_Controller {
 			}
 
 			$this->book_model->update_subscriber($book_id, $user);
-			$this->load_page($book_id, '订购成功！工作人员将于1天内于您联系', true);
+			$this->load_page($book_id, '订购成功！工作人员从卖家拿到书后会与您联系', true);
 		}
 		else {
 			$this->load_page($book_id, '您还未登入', false);

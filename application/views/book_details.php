@@ -77,7 +77,7 @@ Just like the following:
 
 	<?php 
 	// big box alert
-	if (($err == '订购成功！工作人员将于1天内于您联系') || ($err == '订购成功！手机号已在图片下方显示。')) { ?>
+	if (($err == '订购成功！工作人员从卖家拿到书后会与您联系') || ($err == '订购成功！手机号已在图片下方显示。')) { ?>
 		<div class="modal hide fade" id="shareInfo">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -99,7 +99,7 @@ Just like the following:
 		</div>
 	<?php } ?> 
 
-	<?php if ($show == true && $err == '订购成功！工作人员将于1天内于您联系') { ?>
+	<?php if ($show == true && $err == '订购成功！工作人员从卖家拿到书后会与您联系') { ?>
 		<?php if ($mustphone) redirect("book_details/use_phone/$id"); ?>
 		<div class="modal hide fade" id="phoneInfo">
 		  <div class="modal-header">
@@ -108,14 +108,11 @@ Just like the following:
 		  </div>
 		  <div class="modal-body">
 		    <p>对方支持当面交易,手机号为 <?php echo $phone ?>.</p>
-		    <p>点击下方的 <strong>自行当面交易</strong> 后，手机号会在书本图片下方显示。</p>
-		    <p>推荐使用 <strong>自行当面交易</strong>，可以出去走走并且认识新同学哈~</p>
-		    <p>如果您不想当面交易,请点击下方的 <strong>委托交易</strong> 按钮, 我们会短信联系您。</p>
-		    <p>PS: 若您订购的是二手书以外的物品，则只能当面交易~</p>
-		  </div>
-		  <div class="modal-footer">
-		    <?php if (!$mustphone) {?><a class="btn" data-dismiss="modal" aria-hidden="true" id="do_not_use_phone">委托交易</a><?php } ?>
-		    <a href='<?php echo site_url("book_details/use_phone/$id") ?>' class="btn btn-primary">自行当面交易</a>
+		    <p><strong>自行当面交易</strong> 后，手机号会在书本图片下方显示。</p>
+		    <br/>
+		    <p> <?php if (!$mustphone) {?> 工作人员从卖家取书后联系，速度慢<a data-dismiss="modal" aria-hidden="true" id="do_not_use_phone">委托BookEx取书</a><?php } ?></p>
+		    <br/>
+		    <p>速度快又方便, 还能认识些同学, 选择<a class="btn" href='<?php echo site_url("book_details/use_phone/$id") ?>'><b>自行当面交易</b></a></p>
 		  </div>
 		</div>
 	<?php } ?>
