@@ -59,8 +59,9 @@ class User_model extends CI_Model {
 			'password' => md5($this->input->post('password', true)),
 			'phone' => htmlspecialchars($this->input->post('phone', true)),
 			'email' => htmlspecialchars($this->input->post('email', true)),
-            		'student_number' => htmlspecialchars($this->input->post('student_number', true)),
-            		'dormitory' => htmlspecialchars($this->input->post('dormitory', true))
+            'student_number' => htmlspecialchars($this->input->post('student_number', true)),
+            'dormitory' => htmlspecialchars($this->input->post('dormitory', true)),
+            'show_phone' => 1
 		);
 
 		$flag = $this->db->insert('user', $new_user_insert_data);

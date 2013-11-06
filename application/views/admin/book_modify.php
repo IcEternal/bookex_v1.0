@@ -36,7 +36,7 @@
 
 <div id="book_modify" class="container">
 <fieldset>
-	<legend>修改书本信息</legend>
+	<legend>修改<?php echo notOfBook($class)?"物品或服务":"书本";?>信息</legend>
 	<div class="row">
 	<div class="span3">
 		<style type="text/css">
@@ -57,11 +57,12 @@
 	<div class="span9">
 	<form class="form-horizontal" action="<?php echo site_url('admin/book_modify/'.$id) ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		<div class="control-group">
-		    <label class="control-label" for="bookname">书本名称</label>
+		    <label class="control-label" for="bookname"><?php echo notOfBook($class)?"物品或服务":"书本";?>名称</label>
 		    <div class="controls">
-		      	<input type="text" id="bookname" name="bookname" value="<?php echo $name?>" placeholder="书本名称">
+		      	<input type="text" id="bookname" name="bookname" value="<?php echo $name?>" placeholder="<?php echo notOfBook($class)?"物品或服务":"书本";?>名称">
 		    </div>
 		</div>
+		<?php if (!notOfBook($class)) { ?>
 		<div class="control-group">
 		    <label class="control-label" for="author">作者</label>
 		    <div class="controls">
@@ -82,6 +83,7 @@
 		    	<span class="help-inline">选填</span>	
 		    </div>
 		</div>
+		<?php } ?>
 		<div class="control-group">
 	    <label class="control-label" for="originprice">原价</label>
 	    <div class="controls">
@@ -107,7 +109,12 @@
 	    <label class="control-label" for="description">简介</label>
 	    <div class="controls">
 	     	<textarea name="description" id="description" cols="60" rows="5"><?php echo $description ?></textarea>
-	     	<span class="help-inline">比如新旧程度，有无笔记（笔记质量好坏）等</span>
+	     	<span class="help-inline">
+	     		<?php echo notOfBook($class)?
+	     		"简单描述下服务或者物品。<br/>工作人员会对您上传的服务进行审核<br/>若有商业行为或侵害他人利益嫌疑的，我们会通知您并删除该服务"
+	     		:
+	     		"比如新旧程度，有无笔记（笔记质量好坏）等";?>
+	     	</span>
 	    </div>
 		</div>
 		<div class="control-group">
@@ -128,5 +135,4 @@
 	</div>
 </fieldset>
 </div>
-
 <?php $this->load->view('includes/footer') ?>

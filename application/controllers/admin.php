@@ -207,6 +207,7 @@ class Admin extends CI_Controller {
 		$data['subscriber'] = $query->subscriber;
 		$data['title'] = '修改书本信息';
 		$data['show'] = $query->show_phone;
+		$data['class'] = $query->class;
 		
 		$this->load->view('admin/book_modify', $data);
 	}

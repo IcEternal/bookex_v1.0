@@ -77,7 +77,7 @@ Just like the following:
 	?>
 
 <?php
-	if ((strpos($class, 'activity')!==false)) 
+	if (isOfActivity($class)) 
 		include("includes/book_details_activity.php");
 	else 
 		include("includes/book_details_normal.php"); 
@@ -133,20 +133,24 @@ Just like the following:
 		</p>
 	</div>
 
+	<?php if (!notOfBook($class)) { ?>
 	<div class = "row-fluid">
 		<p class = "span2"> <strong> 作者 </strong> </p>
 		<p class = "span10"> <?php echo $author; ?> </p>
 	</div>
+	<?php } ?>
 
 	<div class = "row-fluid">
 		<p class = "span2"> <strong> 上传人 </strong> </p>
 		<p class = "span10"> <?php echo $uploader; ?> </p>
 	</div>
 
+	<?php if (!notOfBook($class)) { ?>
 	<div class = "row-fluid">
 		<p class = "span2"> <strong> 出版社 </strong> </p>
 		<p class = "span10"> <?php echo $publisher; ?> </p>
 	</div>
+	<?php } ?>
 
 
 	<?php if ($uploader == $user && $subscriber!='N') { ?>
@@ -164,6 +168,7 @@ Just like the following:
       </div>
     <?php } ?>
 
+    <?php if (!notOfBook($class)) { ?>
 	<div class = "row-fluid">
 		<p class = "span2"> <strong> 豆瓣链接 </strong> </p>
 		<p class = "span10"> 
@@ -177,6 +182,7 @@ Just like the following:
 
 		</p>
 	</div>
+	<?php } ?>
 
 	<div class="fake-back"></div>
 	<div class="content-intitle">简介</div>

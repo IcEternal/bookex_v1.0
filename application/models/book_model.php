@@ -20,7 +20,7 @@ class Book_model extends CI_Model {
 
 	function isService($id) {
 		$result = $this->db->select('*')->from("book")->where('id', $id)->get()->result();
-		if (strpos($result[0]->class, 'Service')!==false) return true;
+		if (isOfService($result[0]->class)) return true;
 		return false;
 	}
 

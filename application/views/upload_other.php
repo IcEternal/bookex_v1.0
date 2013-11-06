@@ -52,14 +52,7 @@ Just like the following:
 		<div class="control-group">
 		    <label class="control-label" for="bookname">物品或服务名称</label>
 		    <div class="controls">
-		      	<input type="text" id="bookname" name="bookname" value="<?php echo set_value('bookname'); ?>" placeholder="书本名称">
-		    </div>
-		</div>
-		<div class="control-group">
-		    <label class="control-label" for="author">作者</label>
-		    <div class="controls">
-		     	<input type="text" id="author" name="author" value="<?php echo set_value('author'); ?>" placeholder="作者">
-		    	<span class="help-inline">如有多个作者请用空格分开.</span>
+		      	<input type="text" id="bookname" name="bookname" value="<?php echo set_value('bookname'); ?>" placeholder="物品或服务名称">
 		    </div>
 		</div>
 		<div class="control-group">
@@ -105,7 +98,7 @@ Just like the following:
 	    <label class="control-label" for="description">简介</label>
 	    <div class="controls">
 	     	<textarea name="description" id="description" cols="60" rows="5"><?php echo set_value('description') ?></textarea>
-	     	<span class="help-inline">比如新旧程度，有无笔记（笔记质量好坏）等。</span>
+	     	<span class="help-inline">简单描述下服务或者物品。<br/>工作人员会对您上传的服务进行审核<br/>若有商业行为或侵害他人利益嫌疑的，我们会通知您并删除该服务</span>
 	    </div>
 		</div>
 		<div class="control-group">

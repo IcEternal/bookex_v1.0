@@ -31,7 +31,7 @@ class Book_details extends CI_Controller {
 		$data['info']['title'] = '详细书本信息';
 		$data['info']['phone'] = $this->book_model->get_phone_by_book_id($res->id);
 		$data['info']['collect'] = $this->user_collection_model->find($book_id);
-		$data['info']['mustphone'] = (strpos($res->class, '二手物品')!==false) || (strpos($res->class, 'Service')!==false);
+		$data['info']['mustphone'] = isOfSecondHand($res->class) || isOfService($res->class) || isOfActivity($res->class);
 		if ($res->use_phone == 1) {
 			$this->load->model('search_model');
 			$data['info']['user_phone'] = $this->search_model->getUserPhone($res->subscriber);
