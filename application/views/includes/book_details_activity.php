@@ -4,12 +4,14 @@ if ($err == "") { ?>
 	<div class="modal in fade" id="shareInfo">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h4>订购成功~喜欢这个网站的话请分享一下哈~</h4>
+	    <h4><span style="font-size: 20px; font-weight: bold;">双11活动商品购买特权</span><br/><br/>
+	    	<p>送一张贺卡~还有代送业务和免费兑书券哦~</p></h4>
 	  </div>
 	  <div class="modal-body">
+	  	<img src="<?php echo base_url()?>/public/img/activity.png">
 	  </div>
 	  <div class="modal-footer">
-	    <a class="btn" data-dismiss="modal" aria-hidden="true">取消</a>
+	    <a class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
 	  </div>
 	</div>
 <?php } ?> 
