@@ -2,6 +2,7 @@
 <table>
 	<class lv="1" value="6" name="Service">
 		<class lv="2" name="电脑手机技术"></class>
+		<class lv="2" name="课程辅导"></class>
 		<class lv="2" name="代购服务"></class>
 		<class lv="2" name="其他"></class>
 	</class>
