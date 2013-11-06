@@ -1,6 +1,6 @@
 <?php 
 // big box alert
-if ($err == "") { ?>
+if ($err == "" && !$never_show_activity) { ?>
 	<div class="modal in fade" id="shareInfo">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -11,6 +11,7 @@ if ($err == "") { ?>
 	  	<img src="<?php echo base_url()?>/public/img/activity.png">
 	  </div>
 	  <div class="modal-footer">
+	    <a class="btn" id="never_show_activity_prompt" data-dismiss="modal" aria-hidden="true">不再显示</a>
 	    <a class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
 	  </div>
 	</div>

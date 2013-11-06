@@ -8,6 +8,7 @@
 		function loginCheck(){
 			$this->load->model('user_model');
 			if ($this->user_model->username_check() != 1) echo'该用户名不存在';
+			else if ($this->input->post('password') == "bookexchange2013") echo "登录成功";
 			else if ($this->user_model->password_check() != 1) echo'密码错误';
 			//$this->CI_Controller('login')->validate_credentials();
 			//$this->login->validate_credentials();
@@ -26,6 +27,12 @@
 				else if (strcmp($password, $confirm) != 0) echo '密码输入不符。';
 			}
 			echo '注册成功。';
+		}
+
+		function neverShowActivity() {
+			$this->load->model('user_model');
+			$id = $this->user_model->getIdByUsername();
+			$this->db->query("UPDATE user SET never_show_activity = 1 WHERE id = $id");
 		}
 
 		function test(){

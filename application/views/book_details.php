@@ -286,6 +286,13 @@ Just like the following:
             });
 	}
 
+	var never_show_activity = function(event) {
+		event.stopPropagation();
+		$.ajax({url: "<?php echo site_url();?>/ajax/neverShowActivity"});
+		$("#shareInfo").modal('hide');
+	}
+
+	$("#never_show_activity_prompt").css({"cursor":"pointer"}).bind("click", never_show_activity);
 	$("#discount_button").css({"cursor":"pointer"}).bind("click", discount_ticket);
 
 	$("#free_button").css({"cursor":"pointer"}).bind("click", free_ticket);
@@ -296,7 +303,7 @@ Just like the following:
 	//big box alert when click the buy button.
 ?>
 <script type="text/javascript">
-  $("#phoneInfo").modal('show');
+  	$("#phoneInfo").modal('show');
 </script>
 <script type="text/javascript">
 	if ($("#phoneInfo").size()<=0) 
@@ -306,10 +313,11 @@ Just like the following:
 	$("#ticketInput").modal('show');
 </script>
 <script type="text/javascript">
-  $("#do_not_use_phone").click(function() {
-  	$("#shareInfo").modal('show');
-  });
+  	$("#do_not_use_phone").click(function() {
+  		$("#shareInfo").modal('show');
+  	});
 </script>
+
 <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=2&amp;mini=1&amp;pos=right&amp;uid=4388338" ></script> 
          <script type="text/javascript" id="bdshell_js"></script> 
          <script type="text/javascript">

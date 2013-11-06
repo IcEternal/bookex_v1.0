@@ -5,6 +5,7 @@ class Book_details extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('book_model');
+		$this->load->model('user_model');
 		$this->load->model('user_collection_model');
 	}
 
@@ -24,6 +25,13 @@ class Book_details extends CI_Controller {
 	function load_page($book_id, $message, $is_succ) {
 		$data['page'] = 'book_details';
 		$res = $this->book_model->get_book_infomation($book_id);
+
+		$userId = $this->user_model->getIdByUsername();
+		if ($userId == 0) 
+			$data['info']['never_show_activity'] = 0;
+		else {
+			$data['info']['never_show_activity'] = $this->user_model->get_user()->never_show_activity;
+		}
 		$data['info']['info'] = $res;
 		$data['info']['sub'] = $this->getSubscriber($book_id);
 		$data['info']['err_mes'] = $message;
