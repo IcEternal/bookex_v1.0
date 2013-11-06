@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <table>
-	<class lv="1" value="6" name="Service"></class>
+	<class lv="1" value="6" name="Service">
+		<class lv="2" name="电脑手机技术"></class>
+		<class lv="2" name="代购服务"></class>
+		<class lv="2" name="其他"></class>
+	</class>
 	<class lv="1" value="5" name="二手物品">
 		<class lv="2" name="电子数码"></class>
 		<class lv="2" name="美妆用品"></class>
