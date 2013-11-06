@@ -156,7 +156,7 @@
 			//search for Service
 			$this->load->model('user_model');
 			$buyerId = $this->user_model->getIdByUsername();
-			$res = $this->db->query("SELECT id FROM book WHERE (uploader = \"$user\" AND del != true AND class = 'Service')")->result();
+			$res = $this->db->query("SELECT id FROM book WHERE (uploader = \"$user\" AND del != true AND class LIKE 'Service%')")->result();
 			$tmp = array();
 			foreach ($res as $row) {
 				$row_id = $row->id;
@@ -176,6 +176,17 @@
 			$result3 = $this->db->query($query)->result();
 			$query = "SELECT $fields FROM book WHERE ((uploader = \"$user\" OR subscriber = \"$user\") AND del != true AND finishtime != \"0000-00-00 00:00:00\") ;";
 			$result4 = $this->db->query($query)->result();
+			// search for Service
+			$this->load->model('user_model');
+			$buyerId = $this->user_model->getIdByUsername();
+			$res = $this->db->query("SELECT service_id from service_trade where buyer_id = $buyerId and finishtime > 0 and canceled = 0")->result();
+			foreach ($res as $row) {
+				$row_id = $row->service_id;
+				$tmp = $this->db->query("SELECT $fields FROM book WHERE id = $row_id")->result();
+				if (!empty($tmp))
+					$result4 []= $tmp[0];
+			}
+
 			$user_phone = array();
 			foreach ($result2 as $book){
 				if ($book->use_phone == 1){
@@ -202,17 +213,17 @@
 				$data['is_success'] = true;
 			}
 			if ($err == 5) {
-                                $data['err'] = '交易完成!感谢您的使用！';
-                                $data['is_success'] = true;
-                        }
-                        if ($err == 6) {
-                                $data['err'] = '交易未能成功完成登记!可能是网络出现问题！';
-                                $data['is_success'] = false;
-                        }
+                $data['err'] = '交易完成咯~~~';
+                $data['is_success'] = true;
+            }
+            if ($err == 6) {
+                $data['err'] = '交易未能成功完成登记!可能是网络出现问题！';
+                $data['is_success'] = false;
+            }
 			if ($err == 7) {
-                                $data['err'] = '该书已交易完成，不能修改信息。';
-                                $data['is_success'] = false;
-                        }
+                $data['err'] = '该书已交易完成，不能修改信息。';
+                $data['is_success'] = false;
+            }
 
 			return $data;
 			//return array("result1"=>$result1, "result2"=>$result2, "result3"=>$result3, "result4"=>$result4);

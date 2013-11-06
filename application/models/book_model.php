@@ -172,7 +172,16 @@ class Book_model extends CI_Model {
 	}
 
 	function book_finish($id) {
-		return $this->db->query("UPDATE book SET finishtime = now() WHERE id = \"$id\"");
+		if ($this->isService($id)) {
+			$tradeId = $this->findUnfinishedServiceTradeId($id);
+			if ($tradeId == 0) 
+				return 0;
+			else {
+				return $this->db->query("UPDATE service_trade SET finishtime = now() WHERE id = $tradeId");
+			}
+		}
+		else 
+			return $this->db->query("UPDATE book SET finishtime = now() WHERE id = \"$id\"");
 	}
 
 	
