@@ -97,7 +97,7 @@ B@         SB@J 7BB@B@B@B@L    :   UB@B  GBMPL:.        ikB8r             S@@@@@
 	          <li class="nav-main"><a href="<?php echo site_url('welcome/contact') ?>"><span class="nav-text">联系我们</span><span class="nav-line"></span></a></li>
 	          <li class="nav-drop"><span class="nav-text"><a href="#">双十一专区</a>
 		            <ul>
-	          			<li><a href="<?php echo site_url('book_view/book/activity') ?>">活动物品</span><span class="nav-line"></a></li>
+	          			<li><a href="<?php echo site_url('book_view/book/activity') ?>">活动物品</a></li>
 					    <li><a href="<?php echo site_url('welcome/act_double11'); ?>">活动介绍</a></li>
 					</ul>
 		      </span><span class="nav-line"></span></li>
