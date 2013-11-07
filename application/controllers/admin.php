@@ -446,6 +446,54 @@ class Admin extends CI_Controller {
 		$this->db->query("UPDATE $database SET activated=1 WHERE id=$id");
 		echo $row->ticket_id;
 	}
+	
+	function service()
+	{
+
+		//导入model
+		$this->load->model('admin_model');
+		$this->load->model('pagination_model');
+
+		//从页面获取数据
+		//貌似get方法获取不存在的 键，返回的值为0,
+		//所以通过判断语句设置 应该从get中得到的值
+		$service_name = $this->input->get('service_name')?$this->input->get('service_name'):NULL;
+		$seller = $this->input->get('seller')?$this->input->get('seller'):NULL;
+		$buyer = $this->input->get('buyer')?$this->input->get('buyer'):NULL;
+		$status = $this->input->get('status')?$this->input->get('status'):0;
+		$offset = $this->input->get('offset')?$this->input->get('offset'):0;
+		
+
+		//进行搜索
+		$search_data = array(
+			'service_name' => $service_name, 
+			'seller' => $seller,
+			'buyer' => $buyer,
+			'status' => $status,
+			);
+		//参数：搜索内容，偏移量，每页显示数
+		//返回：总记录数，搜索结果数组
+		list($total,$search_result) = $this->admin_model->service_search($search_data,$offset,10);
+
+		//页码导航
+		$link_config = array(
+			'total'=>$total,
+			'offset'=>$offset,
+			'search_data'=>$search_data,
+			'pre_url'=>'admin/service',
+			);
+		$this->pagination_model->initialize($link_config);
+		$link_array = $this->pagination_model->create_link();
+
+		//页面显示
+		$data = array(
+			'search_data' => $search_data, 
+			'service_info' => $search_result, 
+			'link_array' => $link_array, 
+			'total_rows'=>$total,
+			);
+		$this->load->view('admin/service',$data);
+	}
 
 
 	//end
