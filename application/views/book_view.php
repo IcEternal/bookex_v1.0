@@ -143,4 +143,37 @@ Just like the following:
 	<?php include("includes/navlist.php"); ?>
 </div>
 
+<?php 
+// big box alert
+if (!$never_show_activity && isOfActivity($class)) { ?>
+	<div class="modal in fade" id="shareInfo">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h4><span style="font-size: 20px; font-weight: bold;">双11活动商品购买特权</span><br/><br/>
+	    	<p>送一张贺卡~还有代送业务和免费兑书券哦~</p></h4>
+	  </div>
+	  <div class="modal-body">
+	  	<img src="<?php echo base_url()?>/public/img/activity.png">
+	  </div>
+	  <div class="modal-footer">
+	    <a class="btn" id="never_show_activity_prompt" data-dismiss="modal" aria-hidden="true">不再显示</a>
+	    <a class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
+	  </div>
+	</div>
+<?php } ?> 
+
+<script type="text/javascript">
+	var never_show_activity = function(event) {
+		event.stopPropagation();
+		$.ajax({url: "<?php echo site_url();?>/ajax/neverShowActivity"});
+		$("#shareInfo").modal('hide');
+	}
+
+	$("#never_show_activity_prompt").css({"cursor":"pointer"}).bind("click", never_show_activity);
+</script>
+
+<script type="text/javascript">
+	$("#shareInfo").modal('show');
+</script>
+
 <?php include("includes/footer.php"); ?>

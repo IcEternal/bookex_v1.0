@@ -12,6 +12,12 @@ class Book_view extends CI_Controller {
   { 
     $this->load->model('search_model');
     $data = $this->search_model->getBookByClass(urldecode($class), $page);
+    $userId = $this->user_model->getIdByUsername();
+    if ($userId == 0) 
+      $data['never_show_activity'] = 0;
+    else {
+      $data['never_show_activity'] = $this->user_model->get_user()->never_show_activity;
+    }
     $this->load->view('book_view', $data);
   }
 
