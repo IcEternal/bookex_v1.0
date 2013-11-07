@@ -269,6 +269,70 @@ class Admin_model extends CI_Model {
 	function getStatistic($days){
 		
 	}
+	
+	function service_search($data,$offset,$limit)
+	{
+		//预搜索，找出能有多少个结果
+		$condition_str = $this->service_search_condition($data);
+		$condition_str = ($condition_str=='')?'1':substr($condition_str,3);
+		$search_str = "SELECT * FROM service_search WHERE ".$condition_str;
+		$pre_query = $this->db->query($search_str);
+		$total_rows = $pre_query->num_rows();
+		//内容搜索，将所有信息显示，并对结果根据页码进行limit
+		$search_str .= " ORDER BY id DESC LIMIT $offset ,$limit ";
+		$search_query = $this->db->query($search_str);
+		$search_result = $search_query->result();
+		return array($total_rows,$search_result);
+	}
+
+	function service_search_condition($data)
+	{
+		$condition_str = NULL;
+		if($data['service_name'] != NULL)
+		{
+			$service_name = $data['service_name'];
+			$condition_str .= "AND name LIKE '%$service_name%'";
+		}
+
+		if($data['seller'] != NULL)
+		{
+			$seller = $data['seller'];
+			$condition_str .= "AND seller LIKE '%$seller%'";
+		}
+
+		if($data['buyer'] != NULL)
+		{
+			$buyer = $data['buyer'];
+			$condition_str .= "AND buyer LIKE '%$buyer%'";
+		}
+
+		//1 - 正在进行，未取消或完成
+		//2 - 已取消
+		//3 - 已完成
+		switch ($data['status']) {
+			case '1':
+			{
+				$condition_str .= "AND canceled = 0 AND finishtime = 0";
+				break;
+			}
+			case '2':
+			{
+				$condition_str .= "AND canceled = 1";
+				break;
+			}
+			case '3':
+			{
+				$condition_str .= "AND canceled = 0 AND finishtime > 0";
+				break;
+			}
+			default:
+			{
+				$condition_str .= NULL;
+				break;
+			}
+		}
+		return $condition_str;
+	}
 
 
 }
