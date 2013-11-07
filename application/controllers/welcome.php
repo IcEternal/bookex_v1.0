@@ -63,6 +63,10 @@ class Welcome extends CI_Controller {
 		$this->load->view('act_detail');
 	}
 
+	function act_double11() {
+		$this->load->view('act_double11');
+	}
+
 	function prize_user() {
 		$this->load->view('prize_user');
 	}
