@@ -4,7 +4,15 @@
 		
 		<div class="alert alert-error fade in">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <div>等待交易的书籍，不包括选择自行交易的图书</div>
+		  <div>注意！！！！！！！！！！！！！！现在按照预定时间排序了，所以处理订单的时候从上往下~~~~</div>
+		</div>
+		<div class="alert alert-error fade in">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <div>注意！！！！！！！！！！！！！！现在按照预定时间排序了，所以处理订单的时候从上往下~~~~</div>
+		</div>
+		<div class="alert alert-error fade in">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <div>注意！！！！！！！！！！！！！！现在按照预定时间排序了，所以处理订单的时候从上往下~~~~</div>
 		</div>
 		<script type="text/javascript" src="<?php echo base_url() ?>public/js/ZeroClipboard.js"></script>
 		<script type="text/javascript">
