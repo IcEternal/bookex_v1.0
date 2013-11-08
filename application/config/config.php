@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://acm.sjtu.edu.cn/bookex/';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
