@@ -361,7 +361,7 @@ class Admin extends CI_Controller {
 		//卖家信息
 		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.uploader,user.dormitory,user.phone,user.remarks,user.id AS user_id 
 		FROM book INNER JOIN user ON 
-		book.uploader = user.username $common_condition group by uploader";
+		book.uploader = user.username $common_condition group by uploader ORDER BY subscribetime ASC";
 		$saler_info = $this->db->query($query_str)->result_array();
 		//获取每个卖家的详细信息
 		$sale_book = array();
@@ -375,7 +375,7 @@ class Admin extends CI_Controller {
 		//买家信息
 		$query_str = "SELECT COUNT(book.id) AS book_num,SUM(book.price) AS book_money,book.subscriber,user.dormitory,user.phone,user.remarks,user.id AS user_id 
 		FROM book INNER JOIN user ON 
-		book.subscriber = user.username $common_condition group by subscriber";
+		book.subscriber = user.username $common_condition group by subscriber ORDER BY subscribetime ASC";
 		$buyer_info = $this->db->query($query_str)->result_array();
 		//获取每个买家的详细信息
 		$buy_book = array();
