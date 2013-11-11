@@ -194,7 +194,7 @@ Just like the following:
 	<div id="book-details-image">
 		<img src = "<?php echo base_url('get_data.php?id='.$id); ?>" width="230px" />
 	</div>
-	
+	<?php if ($id != 4151) { ?>	
 	<div class="sidebarbutton">
 		<?php 
 				if ($user == $subscriber && $use == true) { ?>
@@ -253,6 +253,7 @@ Just like the following:
 				}
 		?>
 	</div>
+	<?php } ?>
 </div> <!-- sidebar -->
 
 <?php //promo code ?>

@@ -163,6 +163,13 @@
 		$('#class_name').css({"cursor":"pointer"}).bind("click",clickFunc);
 
 
+		function getColorByData(data){
+			if (data.indexOf("正在取书") >= 0 && data.indexOf("失败") == -1) return "#99FF00";
+	        else if (data.indexOf("正在送书") >= 0 && data.indexOf("失败") == -1) return "#999900";
+	        else if (data.indexOf("送到易班") >= 0) return "#FF0000";
+	        else if (data.indexOf("找不到") >= 0) return "#333333";
+	        else if (data.indexOf("") >= 0) return "#3A87AD";
+		}
 
 		var clicknext = function(event){
 			event.stopPropagation();
@@ -173,8 +180,7 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
-	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
-	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color", getColorByData(data));
 	            });
 		}
 
@@ -187,8 +193,7 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
-	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
-	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color", getColorByData(data));
 	            });
 		}
 
@@ -201,8 +206,7 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
-	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
-	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color", getColorByData(data));
 	            });
 		}
 
@@ -215,8 +219,7 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
-	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
-	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color", getColorByData(data));
 	            });
 		}
 
@@ -229,8 +232,7 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
-	            	if (data.indexOf(".") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
-	            	else $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color", getColorByData(data));
 	            });
 		}
 		//给下一步按钮绑定点击事件

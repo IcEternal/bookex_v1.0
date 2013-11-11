@@ -233,9 +233,7 @@
 	            function(data)
 	            {
 	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").text(data);
-	            	if (data.indexOf("正在取书") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#99FF00");
-	            	else if (data.indexOf("正在送书") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#999900");
-	            	else if (data.indexOf("") >= 0) $("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color","#3A87AD");
+	            	$("span[book_id='"+span.attr("book_id")+"'][status='1']").css("background-color", getColorByData(data));
 	            });
 		}
 		//给下一步按钮绑定点击事件

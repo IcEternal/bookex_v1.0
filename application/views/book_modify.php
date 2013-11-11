@@ -116,7 +116,7 @@ Just like the following:
 	     	<textarea name="description" id="description" cols="60" rows="5"><?php echo $description ?></textarea>
 	     	<span class="help-inline">
 	     		<?php echo notOfBook($class)?
-	     		"简单描述下服务或者物品。<br/>工作人员会对您上传的服务及物品进行审核<br/>若有商业行为或侵害他人利益嫌疑的，我们会通知您并删除该服务及物品"
+	     		"简单描述下服务或者物品。<br/>请勿在介绍中出现手机号等联系方式，如有必要请致信bookex@163.com<br/>工作人员会对您上传的服务及物品进行审核<br/>若有商业行为或侵害他人利益嫌疑的，我们会通知您并删除该服务及物品"
 	     		:
 	     		"比如新旧程度，有无笔记（笔记质量好坏）等";?>
 	     	</span>
