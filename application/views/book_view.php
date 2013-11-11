@@ -39,7 +39,7 @@ Just like the following:
 		// 404
 	?>
 			<a href="<?php echo site_url('welcome/act_detail') ?>">
-				<img src = "<?php echo base_url('public/img/notFound.jpg'); ?>" style = "width:100%;" />
+				<img src = "<?php echo base_url('public/img/notFound.png'); ?>" style = "width:100%;" />
 			</a>
 	<?php
 		} else {
