@@ -78,7 +78,7 @@ Just like the following:
 			     			if ($this->session->userdata('username') == 'double11') 
 			     				$cls = "activity";
 			     			else 
-			     				$cls = "Service";
+			     				$cls = "";
 			     			echo set_value('class')?set_value('class'):$cls;
 			     			?>"
 			     	placeholder="分类">
